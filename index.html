@@ -78,11 +78,48 @@
       color: #94a3b8;
       font-size: 0.9rem;
     }
+    .social-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .social-btn {
+      background-color: #334155;
+      color: #f8fafc;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .social-btn:hover {
+      background-color: #0284c7;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 5px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background-color: #0f172a;
+      color: #fff;
+      box-sizing: border-box;
+    }
     button {
       background: linear-gradient(135deg, #0284c7, #0369a1);
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 12px 20px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
@@ -107,6 +144,16 @@
     <section class="card">
       <h3>👋 About Me</h3>
       <p>Passionate about bridging electrical engineering with software development. Experienced in electrical maintenance, IoT hardware tinkering (ESP32), and learning modern web development and cybersecurity.</p>
+    </section>
+
+    <!-- Connect / YouTube -->
+    <section class="card">
+      <h3>📺 Connect & My Channel</h3>
+      <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 5px;">Check out my technical tutorials and electrical engineering guides:</p>
+      <div class="social-links">
+        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ Electrician to Engineer (YouTube)</a>
+        <a href="https://github.com/suyog69" target="_blank" class="social-btn">💻 GitHub Profile</a>
+      </div>
     </section>
 
     <!-- Skills -->
@@ -138,6 +185,23 @@
       </div>
     </section>
 
+    <!-- Login Section -->
+    <section class="card">
+      <h3>🔐 Portal Login</h3>
+      <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <p id="loginMsg" style="margin-top: 15px; text-align: center; font-weight: 500;"></p>
+    </section>
+
     <!-- Interactive Counter -->
     <section class="card">
       <h3>🚀 Test My App</h3>
@@ -147,6 +211,7 @@
   </main>
 
   <script>
+    // Counter logic
     const button = document.getElementById("clickBtn");
     const message = document.getElementById("msg");
     let clickCount = 0;
@@ -155,6 +220,15 @@
       clickCount++;
       message.textContent = `Awesome! You clicked the button ${clickCount} times. 🚀`;
     });
+
+    // Login simulation logic
+    function handleLogin() {
+      const user = document.getElementById("username").value;
+      const loginMsg = document.getElementById("loginMsg");
+      
+      loginMsg.style.color = "#38bdf8";
+      loginMsg.textContent = `Welcome back, ${user}! Login successful. 🎉`;
+    }
   </script>
 </body>
 </html>
