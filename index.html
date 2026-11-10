@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suyog Chaudhari | Portfolio & Portal</title>
+  <title>Suyog Chaudhari | Portfolio & Learning Hub</title>
   <style>
     :root {
       --bg-color: #0f172a;
@@ -166,88 +166,59 @@
       color: #fff;
     }
 
-    .form-group {
-      margin-bottom: 12px;
+    /* Quiz Styling */
+    .quiz-container {
+      margin-top: 10px;
     }
 
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      margin-bottom: 5px;
+    .question-box {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-main);
     }
 
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border-color);
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
       background-color: var(--bg-color);
       color: var(--text-main);
-      box-sizing: border-box;
-      font-family: inherit;
-    }
-
-    button.primary-btn {
-      background: linear-gradient(135deg, #0284c7, #0369a1);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1rem;
-      width: 100%;
-      transition: opacity 0.2s;
-      margin-top: 5px;
-    }
-
-    button.primary-btn:hover {
-      opacity: 0.9;
-    }
-
-    .auth-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      background: var(--bg-color);
-      color: var(--text-sub);
       border: 1px solid var(--border-color);
-      padding: 8px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: left;
       cursor: pointer;
-      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s;
     }
 
-    .tab-btn.active {
-      background: var(--accent);
-      color: #0f172a;
+    .option-btn:hover {
       border-color: var(--accent);
+      background-color: rgba(56, 189, 248, 0.1);
     }
 
-    .auth-form {
-      display: none;
+    .option-btn.correct {
+      background-color: #166534 !important;
+      border-color: #22c55e !important;
+      color: #fff !important;
     }
 
-    .auth-form.active {
-      display: block;
+    .option-btn.wrong {
+      background-color: #991b1b !important;
+      border-color: #ef4444 !important;
+      color: #fff !important;
     }
 
-    .auth-switch {
+    .quiz-score {
+      font-size: 1.1rem;
       text-align: center;
-      margin-top: 12px;
-      font-size: 0.85rem;
-      color: var(--text-sub);
-    }
-
-    .auth-switch span {
+      font-weight: bold;
       color: var(--accent);
-      cursor: pointer;
-      font-weight: 600;
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -268,16 +239,20 @@
     <!-- About Me -->
     <section class="card">
       <h3>👋 About Me</h3>
-      <p>Passionate about bridging electrical engineering with software development. Experienced in electrical maintenance, IoT hardware tinkering (ESP32), and learning modern web development and cybersecurity.</p>
+      <p>Passionate about bridging electrical engineering with software development. Experienced in electrical maintenance, IoT hardware tinkering (ESP32), solar systems, and modern web technologies.</p>
     </section>
 
-    <!-- Connect / YouTube -->
+    <!-- Connect / YouTube & Platforms -->
     <section class="card">
-      <h3>📺 Connect & My Channel</h3>
-      <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">Check out my technical tutorials and electrical engineering guides:</p>
+      <h3>📺 Connect & Learning Hub</h3>
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">My channels and essential technical portals:</p>
       <div class="social-links">
         <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ Electrician to Engineer (YouTube)</a>
         <a href="https://github.com/suyog69" target="_blank" class="social-btn">💻 GitHub Profile</a>
+        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn">🌐 The Tech Unique Academy</a>
+        <a href="https://upskill.tutedude.com/course/lecture-cloudcomputing" target="_blank" class="social-btn">☁️ Tutedude Cloud Computing</a>
+        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn">⚡ Electrical Technician Course</a>
+        <a href="https://electricaldost.online/" target="_blank" class="social-btn">💡 Electrical Dost</a>
       </div>
     </section>
 
@@ -288,7 +263,8 @@
         <span class="badge">HTML & CSS</span>
         <span class="badge">JavaScript</span>
         <span class="badge">Electrical Wiring</span>
-        <span class="badge">IoT & Microcontrollers</span>
+        <span class="badge">IoT & ESP32</span>
+        <span class="badge">Solar Systems</span>
         <span class="badge">Git & GitHub</span>
       </div>
     </section>
@@ -298,7 +274,7 @@
       <h3>💻 Projects</h3>
       <div class="project-item">
         <h4>1. Personal Portfolio Website</h4>
-        <p>A responsive live portfolio hosted on GitHub Pages built with HTML, CSS, and JavaScript.</p>
+        <p>A fully responsive live portfolio hosted on GitHub Pages built with HTML, CSS, and JavaScript.</p>
       </div>
       <div class="project-item">
         <h4>2. ESP32 IoT Experiments</h4>
@@ -310,80 +286,14 @@
       </div>
     </section>
 
-    <!-- Authentication Section (Login / Register / Forgot Password) -->
+    <!-- Interactive ITI / Electrical Quiz -->
     <section class="card">
-      <h3>🔐 Portal Access</h3>
-      
-      <!-- Tab Navigation -->
-      <div class="auth-tabs">
-        <button class="tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Login</button>
-        <button class="tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">Register</button>
+      <h3>🧠 ITI & Electrical Quiz Game</h3>
+      <div class="quiz-container" id="quizContainer">
+        <div class="question-box" id="questionText">Loading question...</div>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="quiz-score" id="quizScore"></div>
       </div>
-
-      <!-- 1. LOGIN FORM -->
-      <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); handleLogin();">
-        <div class="form-group">
-          <label>Email or Mobile Number</label>
-          <input type="text" id="loginId" placeholder="Enter email or mobile" required>
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="loginPass" placeholder="Enter password" required>
-        </div>
-        <button type="submit" class="primary-btn">Login</button>
-        <div class="auth-switch">
-          <span onclick="switchAuthTab('forgot')">Forgot Password?</span>
-        </div>
-      </form>
-
-      <!-- 2. REGISTER FORM -->
-      <form id="registerForm" class="auth-form" onsubmit="event.preventDefault(); handleRegister();">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="regName" placeholder="Enter full name" required>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="regEmail" placeholder="Enter email" required>
-        </div>
-        <div class="form-group">
-          <label>Mobile Number</label>
-          <input type="tel" id="regMobile" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
-        </div>
-        <div class="form-group">
-          <label>Create Password</label>
-          <input type="password" id="regPass" placeholder="Create password" required>
-        </div>
-        <div class="form-group" id="otpGroup" style="display:none;">
-          <label>Enter OTP (sent to Mobile/Email)</label>
-          <input type="text" id="regOtp" placeholder="Enter 4-digit OTP">
-        </div>
-        <button type="submit" class="primary-btn" id="regSubmitBtn">Get OTP & Register</button>
-        <div class="auth-switch">
-          Already have an account? <span onclick="switchAuthTab('login')">Login here</span>
-        </div>
-      </form>
-
-      <!-- 3. FORGOT PASSWORD FORM -->
-      <form id="forgotForm" class="auth-form" onsubmit="event.preventDefault(); handleForgot();">
-        <div class="form-group">
-          <label>Registered Email or Mobile Number</label>
-          <input type="text" id="forgotInput" placeholder="Enter email or mobile" required>
-        </div>
-        <button type="submit" class="primary-btn">Reset Password (Send OTP)</button>
-        <div class="auth-switch">
-          Remembered password? <span onclick="switchAuthTab('login')">Back to Login</span>
-        </div>
-      </form>
-
-      <p id="authMsg" style="margin-top: 15px; text-align: center; font-weight: 500; font-size: 0.9rem;"></p>
-    </section>
-
-    <!-- Interactive Counter -->
-    <section class="card">
-      <h3>🚀 Test My App</h3>
-      <button class="primary-btn" id="clickBtn">Click For Magic</button>
-      <p id="msg" style="margin-top: 15px; text-align: center; color: var(--accent); font-weight: 500;"></p>
     </section>
   </main>
 
@@ -393,92 +303,88 @@
       document.body.classList.toggle("light-theme");
     }
 
-    // Auth Tabs Switcher
-    function switchAuthTab(tab) {
-      document.getElementById("loginForm").classList.remove("active");
-      document.getElementById("registerForm").classList.remove("active");
-      document.getElementById("forgotForm").classList.remove("active");
-      
-      document.getElementById("loginTabBtn").classList.remove("active");
-      document.getElementById("registerTabBtn").classList.remove("active");
-      
-      document.getElementById("authMsg").textContent = "";
-
-      if(tab === 'login') {
-        document.getElementById("loginForm").classList.add("active");
-        document.getElementById("loginTabBtn").classList.add("active");
-      } else if(tab === 'register') {
-        document.getElementById("registerForm").classList.add("active");
-        document.getElementById("registerTabBtn").classList.add("active");
-        // Reset registration state
-        document.getElementById("otpGroup").style.display = "none";
-        document.getElementById("regSubmitBtn").textContent = "Get OTP & Register";
-      } else if(tab === 'forgot') {
-        document.getElementById("forgotForm").classList.add("active");
+    // Quiz Data
+    const quizData = [
+      {
+        question: "Q1. What is the SI unit of Electrical Resistance?",
+        options: ["Volt", "Ampere", "Ohm", "Watt"],
+        answer: 2
+      },
+      {
+        question: "Q2. Which microcontroller is widely used for Wi-Fi IoT projects?",
+        options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"],
+        answer: 0
+      },
+      {
+        question: "Q3. In a domestic electrical circuit, fuses are connected in:",
+        options: ["Parallel", "Series with Live wire", "Series with Neutral", "Earth wire"],
+        answer: 1
       }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function loadQuiz() {
+      answered = false;
+      const q = quizData[currentQuestion];
+      document.getElementById("questionText").textContent = q.question;
+      const optContainer = document.getElementById("optionsContainer");
+      optContainer.innerHTML = "";
+
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = opt;
+        btn.onclick = () => selectOption(index, btn);
+        optContainer.appendChild(btn);
+      });
+      document.getElementById("quizScore").textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
     }
 
-    // Register Logic with OTP step
-    let otpSent = false;
-    function handleRegister() {
-      const name = document.getElementById("regName").value;
-      const email = document.getElementById("regEmail").value;
-      const mobile = document.getElementById("regMobile").value;
-      const pass = document.getElementById("regPass").value;
-      const otpGroup = document.getElementById("otpGroup");
-      const authMsg = document.getElementById("authMsg");
-      const submitBtn = document.getElementById("regSubmitBtn");
+    function selectOption(selectedIndex, btnElement) {
+      if (answered) return;
+      answered = true;
+      const q = quizData[currentQuestion];
+      const buttons = document.querySelectorAll(".option-btn");
 
-      if (!otpSent) {
-        // Step 1: Send OTP simulation
-        otpSent = true;
-        otpGroup.style.display = "block";
-        submitBtn.textContent = "Verify OTP & Complete Registration";
-        authMsg.style.color = "var(--accent)";
-        authMsg.textContent = `OTP sent successfully to mobile ${mobile} and email ${email}! (Demo OTP: 1234)`;
+      if (selectedIndex === q.answer) {
+        btnElement.classList.add("correct");
+        score++;
       } else {
-        // Step 2: Verify OTP
-        const enteredOtp = document.getElementById("regOtp").value;
-        if (enteredOtp === "1234") {
-          authMsg.style.color = "#22c55e"; // Green color
-          authMsg.textContent = `Registration Successful! Welcome, ${name}. You can now login.`;
-          setTimeout(() => {
-            switchAuthTab('login');
-            otpSent = false;
-            document.getElementById("registerForm").reset();
-          }, 2000);
-        } else {
-          authMsg.style.color = "#ef4444"; // Red color
-          authMsg.textContent = "Invalid OTP! Please enter correct OTP (1234).";
-        }
+        btnElement.classList.add("wrong");
+        buttons[q.answer].classList.add("correct");
       }
+
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+          loadQuiz();
+        } else {
+          document.getElementById("quizContainer").innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+              <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
+              <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${score} / ${quizData.length}</p>
+              <button class="social-btn" onclick="restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px;">Play Again</button>
+            </div>
+          `;
+        }
+      }, 1500);
     }
 
-    // Login Logic
-    function handleLogin() {
-      const userId = document.getElementById("loginId").value;
-      const authMsg = document.getElementById("authMsg");
-      authMsg.style.color = "var(--accent)";
-      authMsg.textContent = `Welcome back, ${userId}! Login successful. 🎉`;
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      document.getElementById("quizContainer").innerHTML = `
+        <div class="question-box" id="questionText"></div>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="quiz-score" id="quizScore"></div>
+      `;
+      loadQuiz();
     }
 
-    // Forgot Password Logic
-    function handleForgot() {
-      const inputVal = document.getElementById("forgotInput").value;
-      const authMsg = document.getElementById("authMsg");
-      authMsg.style.color = "var(--accent)";
-      authMsg.textContent = `Password reset link / OTP has been sent to your mobile & email (${inputVal}).`;
-    }
-
-    // Counter logic
-    const button = document.getElementById("clickBtn");
-    const message = document.getElementById("msg");
-    let clickCount = 0;
-
-    button.addEventListener("click", () => {
-      clickCount++;
-      message.textContent = `Awesome! You clicked the button ${clickCount} times. 🚀`;
-    });
+    loadQuiz();
   </script>
 </body>
 </html>
