@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suyog Chaudhari | Portfolio & Learning Hub</title>
+  <title>Suyog Chaudhari | Portfolio & Tech Dashboard</title>
   <style>
     :root {
       --bg-color: #0f172a;
@@ -37,7 +37,7 @@
 
     .theme-toggle {
       align-self: flex-end;
-      max-width: 650px;
+      max-width: 680px;
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -87,7 +87,7 @@
 
     .container {
       width: 100%;
-      max-width: 650px;
+      max-width: 680px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -124,25 +124,6 @@
       font-weight: 500;
     }
 
-    .project-item {
-      background-color: var(--bg-color);
-      padding: 14px 16px;
-      border-radius: 8px;
-      margin-top: 12px;
-      border-left: 4px solid var(--accent);
-    }
-
-    .project-item h4 {
-      margin: 0 0 5px 0;
-      color: var(--accent);
-    }
-
-    .project-item p {
-      margin: 0;
-      color: var(--text-sub);
-      font-size: 0.9rem;
-    }
-
     .social-links {
       display: flex;
       gap: 10px;
@@ -153,10 +134,10 @@
     .social-btn {
       background-color: var(--border-color);
       color: var(--text-main);
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       transition: background 0.2s;
     }
@@ -164,6 +145,13 @@
     .social-btn:hover {
       background-color: #0284c7;
       color: #fff;
+    }
+
+    .cat-title {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin: 15px 0 8px 0;
     }
 
     /* Quiz Styling */
@@ -224,7 +212,6 @@
 </head>
 <body>
 
-  <!-- Theme Switcher Button -->
   <div class="theme-toggle">
     <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
   </div>
@@ -232,61 +219,81 @@
   <header>
     <div class="avatar">SC</div>
     <h2>Suyog Chaudhari</h2>
-    <p class="subtitle">Electrical Engineer & Web Developer</p>
+    <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
   </header>
 
   <main class="container">
-    <!-- About Me -->
+    <!-- Quick Launcher Hub -->
     <section class="card">
-      <h3>👋 About Me</h3>
-      <p>Passionate about bridging electrical engineering with software development. Experienced in electrical maintenance, IoT hardware tinkering (ESP32), solar systems, and modern web technologies.</p>
-    </section>
-
-    <!-- Connect / YouTube & Platforms -->
-    <section class="card">
-      <h3>📺 Connect & Learning Hub</h3>
-      <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">My channels and essential technical portals:</p>
+      <h3>🚀 Master Work Launcher</h3>
+      
+      <div class="cat-title">🎓 Degree & Official Portals</div>
       <div class="social-links">
-        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ Electrician to Engineer (YouTube)</a>
-        <a href="https://github.com/suyog69" target="_blank" class="social-btn">💻 GitHub Profile</a>
-        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn">🌐 The Tech Unique Academy</a>
-        <a href="https://upskill.tutedude.com/course/lecture-cloudcomputing" target="_blank" class="social-btn">☁️ Tutedude Cloud Computing</a>
-        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn">⚡ Electrical Technician Course</a>
+        <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn">🎓 Manipal BCA LMS</a>
+        <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn">🏛️ YCMOU Portal</a>
+        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn">📜 NCVT MIS (ITI)</a>
+        <a href="https://digilocker.gov.in/" target="_blank" class="social-btn">📁 DigiLocker</a>
+      </div>
+
+      <div class="cat-title">⚡ Electrical, Solar & Courses</div>
+      <div class="social-links">
+        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ My YouTube Channel</a>
         <a href="https://electricaldost.online/" target="_blank" class="social-btn">💡 Electrical Dost</a>
+        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn">🌐 The Tech Unique</a>
+        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn">🛠️ Electrical Technician</a>
+        <a href="https://www.rapidtables.com/calc/electric/index.html" target="_blank" class="social-btn">🧮 RapidTables Electric</a>
+        <a href="https://pvwatts.nrel.gov/" target="_blank" class="social-btn">☀️ PVWatts Solar Calc</a>
+      </div>
+
+      <div class="cat-title">📁 Quick Office, Media & Document Tools</div>
+      <div class="social-links">
+        <a href="https://tinypng.com/" target="_blank" class="social-btn">🖼️ TinyPNG Compress</a>
+        <a href="https://carbon.now.sh/" target="_blank" class="social-btn">📸 Carbon Code Snap</a>
+        <a href="https://www.canva.com/" target="_blank" class="social-btn">🎨 Canva Banners & Thumbnails</a>
+        <a href="https://excalibur.com/" target="_blank" class="social-btn">📐 Excalidraw Whiteboard</a>
+        <a href="https://tools.pdf24.org/" target="_blank" class="social-btn">📄 PDF24 Suite</a>
+        <a href="https://smallpdf.com/" target="_blank" class="social-btn">📑 Smallpdf Editor</a>
+        <a href="https://www.editpad.org/" target="_blank" class="social-btn">📝 Editpad Scratchpad</a>
+        <a href="https://www.virustotal.com/" target="_blank" class="social-btn">🛡️ VirusTotal Check</a>
+        <a href="https://rxresu.me/" target="_blank" class="social-btn">📝 Reactive Resume Builder</a>
+        <a href="https://remove.bg/" target="_blank" class="social-btn">✂️ Remove BG</a>
+        <a href="https://ocr.space/" target="_blank" class="social-btn">🔍 OCR Image to Text</a>
+        <a href="https://drive.google.com/" target="_blank" class="social-btn">☁️ Google Drive & Docs</a>
+        <a href="https://iloveimg.com/" target="_blank" class="social-btn">🖼️ ILoveIMG Tools</a>
+      </div>
+
+      <div class="cat-title">💻 Microcontrollers, Linux & Dev Tools</div>
+      <div class="social-links">
+        <a href="https://wokwi.com/" target="_blank" class="social-btn">🤖 Wokwi ESP32 Simulator</a>
+        <a href="https://flasher.esphome.io/" target="_blank" class="social-btn">⚡ ESP Web Flasher</a>
+        <a href="https://pinout.xyz/" target="_blank" class="social-btn">📌 Raspberry/Pinouts</a>
+        <a href="https://explainshell.com/" target="_blank" class="social-btn">🐧 Explain Shell</a>
+        <a href="https://crontab.guru/" target="_blank" class="social-btn">⏰ Crontab Guru</a>
+        <a href="https://cyberchef.org/" target="_blank" class="social-btn">🔐 CyberChef Tools</a>
+        <a href="https://duinocoin.com/" target="_blank" class="social-btn">⛏️ Duino-Coin Wallet</a>
+      </div>
+
+      <div class="cat-title">🛠️ Code Utilities & Inspection</div>
+      <div class="social-links">
+        <a href="https://hoppscotch.io/" target="_blank" class="social-btn">📡 Hoppscotch API</a>
+        <a href="https://transform.tools/" target="_blank" class="social-btn">🔄 Transform Code Tools</a>
       </div>
     </section>
 
     <!-- Skills -->
     <section class="card">
-      <h3>⚡ Skills & Stack</h3>
+      <h3>⚡ Technical Stack</h3>
       <div class="skills-list">
-        <span class="badge">HTML & CSS</span>
-        <span class="badge">JavaScript</span>
-        <span class="badge">Electrical Wiring</span>
-        <span class="badge">IoT & ESP32</span>
-        <span class="badge">Solar Systems</span>
+        <span class="badge">ESP32 & IoT</span>
+        <span class="badge">Electrical Wiring & Solar</span>
+        <span class="badge">Python</span>
+        <span class="badge">HTML / CSS / JS</span>
+        <span class="badge">Termux & Linux</span>
         <span class="badge">Git & GitHub</span>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="card">
-      <h3>💻 Projects</h3>
-      <div class="project-item">
-        <h4>1. Personal Portfolio Website</h4>
-        <p>A fully responsive live portfolio hosted on GitHub Pages built with HTML, CSS, and JavaScript.</p>
-      </div>
-      <div class="project-item">
-        <h4>2. ESP32 IoT Experiments</h4>
-        <p>Configuring microcontrollers for custom web servers, captive portals, and automation setups.</p>
-      </div>
-      <div class="project-item">
-        <h4>3. Solar & Electrical Maintenance</h4>
-        <p>Hands-on setup and management of solar power generation systems and industrial grid distribution.</p>
-      </div>
-    </section>
-
-    <!-- Interactive ITI / Electrical Quiz -->
+    <!-- Quiz -->
     <section class="card">
       <h3>🧠 ITI & Electrical Quiz Game</h3>
       <div class="quiz-container" id="quizContainer">
@@ -298,12 +305,10 @@
   </main>
 
   <script>
-    // Theme Switcher Logic
     function toggleTheme() {
       document.body.classList.toggle("light-theme");
     }
 
-    // Quiz Data
     const quizData = [
       {
         question: "Q1. What is the SI unit of Electrical Resistance?",
