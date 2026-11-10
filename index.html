@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suyog Chaudhari | Portfolio</title>
+  <title>Suyog Chaudhari | Portfolio & Portal</title>
   <style>
     :root {
       --bg-color: #0f172a;
@@ -177,7 +177,7 @@
       margin-bottom: 5px;
     }
 
-    .form-group input, .form-group textarea {
+    .form-group input {
       width: 100%;
       padding: 10px;
       border-radius: 6px;
@@ -199,10 +199,55 @@
       font-size: 1rem;
       width: 100%;
       transition: opacity 0.2s;
+      margin-top: 5px;
     }
 
     button.primary-btn:hover {
       opacity: 0.9;
+    }
+
+    .auth-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: var(--bg-color);
+      color: var(--text-sub);
+      border: 1px solid var(--border-color);
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #0f172a;
+      border-color: var(--accent);
+    }
+
+    .auth-form {
+      display: none;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    .auth-switch {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+
+    .auth-switch span {
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -265,21 +310,73 @@
       </div>
     </section>
 
-    <!-- Get In Touch Form -->
+    <!-- Authentication Section (Login / Register / Forgot Password) -->
     <section class="card">
-      <h3>📩 Get In Touch</h3>
-      <form id="contactForm" onsubmit="event.preventDefault(); handleContact();">
+      <h3>🔐 Portal Access</h3>
+      
+      <!-- Tab Navigation -->
+      <div class="auth-tabs">
+        <button class="tab-btn active" id="loginTabBtn" onclick="switchAuthTab('login')">Login</button>
+        <button class="tab-btn" id="registerTabBtn" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <!-- 1. LOGIN FORM -->
+      <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); handleLogin();">
         <div class="form-group">
-          <label for="senderName">Your Name</label>
-          <input type="text" id="senderName" placeholder="Enter your name" required>
+          <label>Email or Mobile Number</label>
+          <input type="text" id="loginId" placeholder="Enter email or mobile" required>
         </div>
         <div class="form-group">
-          <label for="senderMsg">Message</label>
-          <textarea id="senderMsg" rows="3" placeholder="Type your message here..." required></textarea>
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="Enter password" required>
         </div>
-        <button type="submit" class="primary-btn">Send Message</button>
+        <button type="submit" class="primary-btn">Login</button>
+        <div class="auth-switch">
+          <span onclick="switchAuthTab('forgot')">Forgot Password?</span>
+        </div>
       </form>
-      <p id="contactResponse" style="margin-top: 15px; text-align: center; font-weight: 500;"></p>
+
+      <!-- 2. REGISTER FORM -->
+      <form id="registerForm" class="auth-form" onsubmit="event.preventDefault(); handleRegister();">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="regName" placeholder="Enter full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="regEmail" placeholder="Enter email" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" id="regMobile" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-group">
+          <label>Create Password</label>
+          <input type="password" id="regPass" placeholder="Create password" required>
+        </div>
+        <div class="form-group" id="otpGroup" style="display:none;">
+          <label>Enter OTP (sent to Mobile/Email)</label>
+          <input type="text" id="regOtp" placeholder="Enter 4-digit OTP">
+        </div>
+        <button type="submit" class="primary-btn" id="regSubmitBtn">Get OTP & Register</button>
+        <div class="auth-switch">
+          Already have an account? <span onclick="switchAuthTab('login')">Login here</span>
+        </div>
+      </form>
+
+      <!-- 3. FORGOT PASSWORD FORM -->
+      <form id="forgotForm" class="auth-form" onsubmit="event.preventDefault(); handleForgot();">
+        <div class="form-group">
+          <label>Registered Email or Mobile Number</label>
+          <input type="text" id="forgotInput" placeholder="Enter email or mobile" required>
+        </div>
+        <button type="submit" class="primary-btn">Reset Password (Send OTP)</button>
+        <div class="auth-switch">
+          Remembered password? <span onclick="switchAuthTab('login')">Back to Login</span>
+        </div>
+      </form>
+
+      <p id="authMsg" style="margin-top: 15px; text-align: center; font-weight: 500; font-size: 0.9rem;"></p>
     </section>
 
     <!-- Interactive Counter -->
@@ -296,6 +393,83 @@
       document.body.classList.toggle("light-theme");
     }
 
+    // Auth Tabs Switcher
+    function switchAuthTab(tab) {
+      document.getElementById("loginForm").classList.remove("active");
+      document.getElementById("registerForm").classList.remove("active");
+      document.getElementById("forgotForm").classList.remove("active");
+      
+      document.getElementById("loginTabBtn").classList.remove("active");
+      document.getElementById("registerTabBtn").classList.remove("active");
+      
+      document.getElementById("authMsg").textContent = "";
+
+      if(tab === 'login') {
+        document.getElementById("loginForm").classList.add("active");
+        document.getElementById("loginTabBtn").classList.add("active");
+      } else if(tab === 'register') {
+        document.getElementById("registerForm").classList.add("active");
+        document.getElementById("registerTabBtn").classList.add("active");
+        // Reset registration state
+        document.getElementById("otpGroup").style.display = "none";
+        document.getElementById("regSubmitBtn").textContent = "Get OTP & Register";
+      } else if(tab === 'forgot') {
+        document.getElementById("forgotForm").classList.add("active");
+      }
+    }
+
+    // Register Logic with OTP step
+    let otpSent = false;
+    function handleRegister() {
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const mobile = document.getElementById("regMobile").value;
+      const pass = document.getElementById("regPass").value;
+      const otpGroup = document.getElementById("otpGroup");
+      const authMsg = document.getElementById("authMsg");
+      const submitBtn = document.getElementById("regSubmitBtn");
+
+      if (!otpSent) {
+        // Step 1: Send OTP simulation
+        otpSent = true;
+        otpGroup.style.display = "block";
+        submitBtn.textContent = "Verify OTP & Complete Registration";
+        authMsg.style.color = "var(--accent)";
+        authMsg.textContent = `OTP sent successfully to mobile ${mobile} and email ${email}! (Demo OTP: 1234)`;
+      } else {
+        // Step 2: Verify OTP
+        const enteredOtp = document.getElementById("regOtp").value;
+        if (enteredOtp === "1234") {
+          authMsg.style.color = "#22c55e"; // Green color
+          authMsg.textContent = `Registration Successful! Welcome, ${name}. You can now login.`;
+          setTimeout(() => {
+            switchAuthTab('login');
+            otpSent = false;
+            document.getElementById("registerForm").reset();
+          }, 2000);
+        } else {
+          authMsg.style.color = "#ef4444"; // Red color
+          authMsg.textContent = "Invalid OTP! Please enter correct OTP (1234).";
+        }
+      }
+    }
+
+    // Login Logic
+    function handleLogin() {
+      const userId = document.getElementById("loginId").value;
+      const authMsg = document.getElementById("authMsg");
+      authMsg.style.color = "var(--accent)";
+      authMsg.textContent = `Welcome back, ${userId}! Login successful. 🎉`;
+    }
+
+    // Forgot Password Logic
+    function handleForgot() {
+      const inputVal = document.getElementById("forgotInput").value;
+      const authMsg = document.getElementById("authMsg");
+      authMsg.style.color = "var(--accent)";
+      authMsg.textContent = `Password reset link / OTP has been sent to your mobile & email (${inputVal}).`;
+    }
+
     // Counter logic
     const button = document.getElementById("clickBtn");
     const message = document.getElementById("msg");
@@ -305,15 +479,6 @@
       clickCount++;
       message.textContent = `Awesome! You clicked the button ${clickCount} times. 🚀`;
     });
-
-    // Contact Form Logic
-    function handleContact() {
-      const name = document.getElementById("senderName").value;
-      const resp = document.getElementById("contactResponse");
-      resp.style.color = "var(--accent)";
-      resp.textContent = `Thank you, ${name}! Your message has been sent successfully. 🚀`;
-      document.getElementById("contactForm").reset();
-    }
   </script>
 </body>
 </html>
