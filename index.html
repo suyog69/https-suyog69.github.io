@@ -3,119 +3,399 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suyog Chaudhari | Special Daily Workflow Hub</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Suyog Chaudhari | Portfolio & Mega Tech Hub</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(56, 189, 248, 0.2); }
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --accent: #38bdf8;
+      --border-color: #334155;
+    }
+
+    body.light-theme {
+      --bg-color: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --accent: #0284c7;
+      --border-color: #cbd5e1;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Top Controls Bar */
+    .top-controls {
+      align-self: flex-end;
+      max-width: 680px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .theme-btn, .welcome-trigger-btn {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .welcome-trigger-btn:hover, .theme-btn:hover {
+      background-color: var(--accent);
+      color: #0f172a;
+      transform: translateY(-1px);
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--accent);
+      padding: 25px;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+      position: relative;
+    }
+
+    .modal-card h2 {
+      color: var(--accent);
+      margin-top: 0;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--text-sub);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: var(--accent);
+    }
+
+    .modal-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    /* Fixed & Polished Header & SC Logo */
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+      width: 100%;
+    }
+
+    .avatar {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #0284c7);
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin: 0 auto 14px auto;
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      letter-spacing: 1px;
+    }
+
+    header h2 {
+      color: var(--accent);
+      margin: 0 0 6px 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: var(--text-sub);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-color);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .badge {
+      background-color: #0369a1;
+      color: #e0f2fe;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Category Launcher Buttons */
+    .grid-launchers {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .category-card-btn {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent);
+      color: var(--text-main);
+      padding: 14px 18px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .category-card-btn:hover {
+      border-color: var(--accent);
+      background-color: rgba(56, 189, 248, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .social-btn {
+      background-color: var(--border-color);
+      color: var(--text-main);
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+      display: block;
+      text-align: left;
+    }
+
+    .social-btn:hover {
+      background-color: #0284c7;
+      color: #fff;
+    }
+
+    /* Quiz Styling */
+    .quiz-container { margin-top: 10px; }
+    .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
+    .options-grid { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn {
+      background-color: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color);
+      padding: 12px; border-radius: 8px; text-align: left; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;
+    }
+    .option-btn:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
+    .option-btn.correct { background-color: #166534 !important; border-color: #22c55e !important; color: #fff !important; }
+    .option-btn.wrong { background-color: #991b1b !important; border-color: #ef4444 !important; color: #fff !important; }
+    .quiz-score { font-size: 1.1rem; text-align: center; font-weight: bold; color: var(--accent); margin-top: 15px; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center p-4 sm:p-6 transition-colors duration-300" id="bodyRoot">
+<body>
 
-  <!-- Top Controls: Theme & Welcome Button -->
-  <div class="w-full max-w-4xl flex justify-between items-center mb-6">
-    <button onclick="openModal('welcomeModal')" class="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-slate-950 font-bold px-5 py-2.5 rounded-full shadow-lg shadow-sky-500/20 transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
-      <span>👋</span> Welcome Hub
-    </button>
-    <button onclick="toggleTheme()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-2 rounded-full text-sm font-medium transition cursor-pointer">
-      ☀️ Light / 🌙 Dark
-    </button>
+  <!-- Welcome Modal / Popup -->
+  <div class="modal-overlay" id="welcomeModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('welcomeModal')">&times;</button>
+      <div class="avatar" style="width: 70px; height: 70px; font-size: 1.6rem; margin-bottom: 15px;">SC</div>
+      <h2>Welcome to Mega Tech Hub! 👋</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
+        Explore your systematic workspace including free coding resources, Govt exam mock tests, typing speed training, media converters, and live railway tracking popups.
+      </p>
+      <button class="social-btn" style="background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 24px; border-radius: 20px; cursor: pointer; text-align: center;" onclick="closeModal('welcomeModal')">Get Started 🚀</button>
+    </div>
   </div>
-  
- <!-- Header Section -->
-  <header class="text-center mb-8">
-    <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-sky-600 via-blue-500 to-indigo-400 text-slate-950 flex items-center justify-center text-3xl font-black mx-auto mb-3 shadow-xl shadow-sky-500/40 ring-4 ring-sky-400/20">
-      SC
-    </div>
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-sky-400 tracking-tight">Suyog Chaudhari</h1>
-    <p class="text-slate-400 mt-1 text-sm sm:text-base">Electrical Engineer | IoT Specialist | Full-Stack & Workflow Hub</p>
-  </header>
- 
-  <!-- Main Grid Categories -->
-  <main class="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12">
 
-    <!-- 1. Free Coding -->
-    <div onclick="openModal('codingModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">💻</span>
-        <h3 class="font-bold text-lg text-slate-100">Free Coding & Practice</h3>
-        <p class="text-xs text-slate-400 mt-1">Python, Web Dev, W3Schools & freeCodeCamp</p>
+  <!-- POPUP MODALS FOR ALL CATEGORIES -->
+
+  <!-- 1. Free Coding Popup -->
+  <div class="modal-overlay" id="codingModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('codingModal')">&times;</button>
+      <h2>💻 Free Coding, Languages & Practice</h2>
+      <div class="modal-links">
+        <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn">🎓 freeCodeCamp (Python & Web)</a>
+        <a href="https://www.w3schools.com/default.asp" target="_blank" class="social-btn">📚 W3Schools Tutorials</a>
+        <a href="https://www.programiz.com/" target="_blank" class="social-btn">🐍 Programiz Python & C++</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 2. Govt Exams -->
-    <div onclick="openModal('examModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">🎯</span>
-        <h3 class="font-bold text-lg text-slate-100">Govt Exams & Mocks</h3>
-        <p class="text-xs text-slate-400 mt-1">RRB, SSC, Testbook & Oliveboard tests</p>
+  <!-- 2. Govt Exams Popup -->
+  <div class="modal-overlay" id="govtExamsModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('govtExamsModal')">&times;</button>
+      <h2>🎯 Govt Exams, RRB/SSC & Mock Tests</h2>
+      <div class="modal-links">
+        <a href="https://www.oliveboard.in/free-mock-test/" target="_blank" class="social-btn">🎯 Oliveboard RRB & SSC Mocks</a>
+        <a href="https://testbook.com/free-mock-tests" target="_blank" class="social-btn">📝 Testbook Free Test Series</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 3. Free Typing -->
-    <div onclick="openModal('typingModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">⌨️</span>
-        <h3 class="font-bold text-lg text-slate-100">Free Typing Training</h3>
-        <p class="text-xs text-slate-400 mt-1">Monkeytype, TypingClub & Speed Test</p>
+  <!-- 3. Free Typing Training Popup -->
+  <div class="modal-overlay" id="typingModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('typingModal')">&times;</button>
+      <h2>⌨️ Free Typing Training</h2>
+      <div class="modal-links">
+        <a href="https://monkeytype.com/" target="_blank" class="social-btn">⚡ Monkeytype Speed Test</a>
+        <a href="https://www.typingclub.com/" target="_blank" class="social-btn">⌨️ TypingClub Touch Typing</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 4. Live Train Tracking -->
-    <div onclick="openModal('trainModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">🚆</span>
-        <h3 class="font-bold text-lg text-slate-100">Live Train Tracking</h3>
-        <p class="text-xs text-slate-400 mt-1">RailYatri, eTrain, m-Indicator & Where is my Train</p>
+  <!-- 4. Live Train Tracking Popup -->
+  <div class="modal-overlay" id="trainModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('trainModal')">&times;</button>
+      <h2>🚆 Live Train Tracking & Media Tools</h2>
+      <div class="modal-links">
+        <a href="https://www.railyatri.in/" target="_blank" class="social-btn">🚂 RailYatri Train Status</a>
+        <a href="https://etrain.info/" target="_blank" class="social-btn">🚆 eTrain Info & Status</a>
+        <a href="https://m-indicator.in/" target="_blank" class="social-btn">🚆 m-Indicator Web</a>
+        <a href="https://whereismytrain.in/" target="_blank" class="social-btn">📍 Where is my Train</a>
+        <a href="https://cobalt.tools" target="_blank" class="social-btn">📥 Cobalt.tools (Ad-free Downloader)</a>
+        <a href="https://app.clipchamp.com/" target="_blank" class="social-btn">🎬 Clipchamp Video Editor</a>
+        <a href="https://www.ixigo.com/trains" target="_blank" class="social-btn">🚆 Ixigo Train Status & PNR</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 5. Video & Media Converters -->
-    <div onclick="openModal('mediaModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">📥</span>
-        <h3 class="font-bold text-lg text-slate-100">Video & MP4 Converters</h3>
-        <p class="text-xs text-slate-400 mt-1">Cobalt, Clipchamp, Insta & YT tools</p>
+  <!-- 5. Video MP4 Converter Popup -->
+  <div class="modal-overlay" id="mediaModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('mediaModal')">&times;</button>
+      <h2>📥 Video MP4 Converter & Media Tools</h2>
+      <div class="modal-links">
+        <a href="https://convertio.co/mp4-converter/" target="_blank" class="social-btn">🔄 Video MP4 Converter</a>
+        <a href="https://snapinst.app/" target="_blank" class="social-btn">🎬 Insta Reels Downloader</a>
+        <a href="https://podcast.adobe.com/enhance" target="_blank" class="social-btn">🎙️ Adobe Audio Enhancer</a>
+        <a href="https://vocalremover.org/" target="_blank" class="social-btn">🎼 Vocal & Music Remover</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 6. Special Workflow Hub -->
-    <div onclick="openModal('workflowModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">🌟</span>
-        <h3 class="font-bold text-lg text-slate-100">Daily Workflow Hub</h3>
-        <p class="text-xs text-slate-400 mt-1">ChatGPT, Claude, GitHub Trending & StackOverflow</p>
+  <!-- 6. Daily Workflow Hub Popup -->
+  <div class="modal-overlay" id="workflowModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('workflowModal')">&times;</button>
+      <h2>🌟 Suyog's Special Daily Workflow Hub</h2>
+      <div class="modal-links">
+        <a href="https://github.com/trending" target="_blank" class="social-btn">🔥 GitHub Trending Repos</a>
+        <a href="https://stackoverflow.com/" target="_blank" class="social-btn">💬 Stack Overflow Q&A</a>
+        <a href="https://chatgpt.com/" target="_blank" class="social-btn">🤖 ChatGPT Assistant</a>
+        <a href="https://claude.ai/" target="_blank" class="social-btn">🧠 Claude AI</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 7. Mega Web Directories -->
-    <div onclick="openModal('dirModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">🌐</span>
-        <h3 class="font-bold text-lg text-slate-100">Mega Web Directories</h3>
-        <p class="text-xs text-slate-400 mt-1">10,000+ Tools, DevSheets & FreeStuff</p>
+  <!-- 7. Mega Web Directories Popup -->
+  <div class="modal-overlay" id="directoriesModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('directoriesModal')">&times;</button>
+      <h2>🌐 Mega Web Directories (10,000+ Tools Access)</h2>
+      <div class="modal-links">
+        <a href="https://devsheets.io/" target="_blank" class="social-btn">📚 DevSheets (Cheat Sheets)</a>
+        <a href="https://cheatsheets.zip/" target="_blank" class="social-btn">⚡ CheatSheets.zip (All Code)</a>
+        <a href="https://freestuff.dev/" target="_blank" class="social-btn">🎁 FreeStuff.dev (Free Tools)</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 8. Degree & Portals -->
-    <div onclick="openModal('degreeModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">🎓</span>
-        <h3 class="font-bold text-lg text-slate-100">Degree & Official Portals</h3>
-        <p class="text-xs text-slate-400 mt-1">Manipal, YCMOU, NCVT ITI & DigiLocker</p>
+  <!-- 8. Degree & Official Portals Popup -->
+  <div class="modal-overlay" id="degreeModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('degreeModal')">&times;</button>
+      <h2>🎓 Degree & Official Portals</h2>
+      <div class="modal-links">
+        <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn">🎓 Manipal BCA LMS</a>
+        <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn">🏛️ YCMOU Portal</a>
+        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn">📜 NCVT MIS (ITI)</a>
+        <a href="https://digilocker.gov.in/" target="_blank" class="social-btn">📁 DigiLocker</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 9. Electrical, Solar & Courses Popup -->
+  <!-- 9. Electrical, Solar & Courses Popup -->
   <div class="modal-overlay" id="electricalModal">
     <div class="modal-card">
       <button class="close-btn" onclick="closeModal('electricalModal')">&times;</button>
@@ -129,314 +409,249 @@
     </div>
   </div>
 
-    <!-- 10. Office & Document Tools -->
-    <div onclick="openModal('officeModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">📁</span>
-        <h3 class="font-bold text-lg text-slate-100">Office & Document Tools</h3>
-        <p class="text-xs text-slate-400 mt-1">TinyPNG, PDF24, Canva, Photopea & Resume Builder</p>
+  <!-- 10. Quick Office & Document Tools Popup -->
+  <div class="modal-overlay" id="officeModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('officeModal')">&times;</button>
+      <h2>📁 Quick Office, Media & Document Tools</h2>
+      <div class="modal-links">
+        <a href="https://tinypng.com/" target="_blank" class="social-btn">🖼️ TinyPNG Compress</a>
+        <a href="https://www.canva.com/" target="_blank" class="social-btn">🎨 Canva Banners & Thumbnails</a>
+        <a href="https://photopea.com/" target="_blank" class="social-btn">🖼️ Photopea Online Photoshop</a>
+        <a href="https://tools.pdf24.org/" target="_blank" class="social-btn">📄 PDF24 Suite</a>
+        <a href="https://rxresu.me/" target="_blank" class="social-btn">📝 Reactive Resume Builder</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 11. Microcontrollers & Linux -->
-    <div onclick="openModal('devToolsModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">💻</span>
-        <h3 class="font-bold text-lg text-slate-100">Microcontrollers & Linux</h3>
-        <p class="text-xs text-slate-400 mt-1">Wokwi ESP32, Pinout, ExplainShell & CyberChef</p>
+  <!-- 11. Microcontrollers & Dev Tools Popup -->
+  <div class="modal-overlay" id="microModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('microModal')">&times;</button>
+      <h2>💻 Microcontrollers, Linux & Dev Tools</h2>
+      <div class="modal-links">
+        <a href="https://wokwi.com/" target="_blank" class="social-btn">🤖 Wokwi ESP32 Simulator</a>
+        <a href="https://pinout.xyz/" target="_blank" class="social-btn">📌 Raspberry/Pinouts</a>
+        <a href="https://explainshell.com/" target="_blank" class="social-btn">🐧 Explain Shell</a>
+        <a href="https://gchq.github.io/CyberChef/" target="_blank" class="social-btn">🔐 CyberChef Tools</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
-    <!-- 12. Network & Design Utilities -->
-    <div onclick="openModal('networkModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">🛠️</span>
-        <h3 class="font-bold text-lg text-slate-100">Network & Design Utilities</h3>
-        <p class="text-xs text-slate-400 mt-1">Speedtest, Hoppscotch, Temp-Mail & Color Hex</p>
+  <!-- 12. Network, Testing & Design Utilities Popup -->
+  <div class="modal-overlay" id="networkModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('networkModal')">&times;</button>
+      <h2>🛠️ Network, Testing & Design Utilities</h2>
+      <div class="modal-links">
+        <a href="https://hoppscotch.io/" target="_blank" class="social-btn">📡 Hoppscotch API</a>
+        <a href="https://fast.com/" target="_blank" class="social-btn">🚀 Fast.com Speed Test</a>
+        <a href="https://www.color-hex.com/" target="_blank" class="social-btn">🎨 Color Hex Codes</a>
+        <a href="https://temp-mail.org/" target="_blank" class="social-btn">✉️ Temp Mail</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
+  <!-- MAIN PAGE LAYOUT -->
+  <div class="top-controls">
+    <button class="welcome-trigger-btn" onclick="openModal('welcomeModal')">👋 Welcome</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
+  </div>
+
+  <header>
+    <div class="avatar">SC</div>
+    <h2>Suyog Chaudhari</h2>
+    <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
+  </header>
+
+  <main class="container">
+    <!-- Master Systematic Hub -->
+    <section class="card">
+      <h3>🚀 Master Systematic Hub</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Click any category to open its dedicated tools popup window:</p>
+      
+      <div class="grid-launchers">
+        <button class="category-card-btn" onclick="openModal('codingModal')">
+          <span>💻 Free Coding, Languages & Practice</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('govtExamsModal')">
+          <span>🎯 Govt Exams, RRB/SSC & Mock Tests</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('typingModal')">
+          <span>⌨️ Free Typing Training</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('trainModal')">
+          <span>🚆 Live Train Tracking & Media Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('mediaModal')">
+          <span>📥 Video MP4 Converter & Media Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('workflowModal')">
+          <span>🌟 Suyog's Special Daily Workflow Hub</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('directoriesModal')">
+          <span>🌐 Mega Web Directories (10,000+ Tools)</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('degreeModal')">
+          <span>🎓 Degree & Official Portals</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('electricalModal')">
+          <span>⚡ Electrical, Solar & Courses</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('officeModal')">
+          <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('microModal')">
+          <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('networkModal')">
+          <span>🛠️ Network, Testing & Design Utilities</span> <span>➔</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Technical Stack -->
+    <section class="card">
+      <h3>⚡ Technical Stack</h3>
+      <div class="skills-list">
+        <span class="badge">ESP32 & IoT</span>
+        <span class="badge">Electrical Wiring & Solar</span>
+        <span class="badge">Python</span>
+        <span class="badge">HTML / CSS / JS</span>
+        <span class="badge">Termux & Linux</span>
+        <span class="badge">Git & GitHub</span>
+      </div>
+    </section>
+
+    <!-- Quiz Game -->
+    <section class="card">
+      <h3>🧠 ITI & Electrical Quiz Game</h3>
+      <div class="quiz-container" id="quizContainer">
+        <div class="question-box" id="questionText">Loading question...</div>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="quiz-score" id="quizScore"></div>
+      </div>
+    </section>
   </main>
 
-  <!-- Quiz Section -->
-  <section class="w-full max-w-4xl glass-card p-6 rounded-2xl mb-12 shadow-xl">
-    <h3 class="text-xl font-bold text-sky-400 mb-4 border-b border-slate-700 pb-2">🧠 ITI & Electrical Knowledge Quiz</h3>
-    <div id="quizContainer">
-      <div id="questionText" class="font-semibold text-lg mb-4 text-slate-200">Loading question...</div>
-      <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-      <div id="quizScore" class="mt-4 font-bold text-sky-400 text-center"></div>
-    </div>
-  </section>
-
-  <!-- ================= POPUP MODALS ================= -->
-
-  <!-- Welcome Modal -->
-  <div id="welcomeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border-2 border-sky-500 p-6 rounded-2xl max-w-md w-full text-center shadow-2xl relative">
-      <button onclick="closeModal('welcomeModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <div class="w-16 h-16 rounded-full bg-sky-500 text-slate-950 flex items-center justify-center text-2xl font-black mx-auto mb-3 shadow-lg">SC</div>
-      <h2 class="text-2xl font-bold text-sky-400 mb-2">Welcome to Suyog's Mega Hub! 👋</h2>
-      <p class="text-slate-300 text-sm mb-6 leading-relaxed">
-        Your systematic personal portal for coding resources, Govt mock tests, IoT & electrical simulators, media converters, and live railway tracking. Click any category card to explore tools!
-      </p>
-      <button onclick="closeModal('welcomeModal')" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-6 py-2.5 rounded-full transition w-full shadow-md">Enter Dashboard 🚀</button>
-    </div>
-  </div>
-
-  <!-- Modal 1: Coding -->
-  <div id="codingModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('codingModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">💻 Free Coding & Practice</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://www.freecodecamp.org/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎓 freeCodeCamp (Python & Web)</span> &rarr;</a>
-        <a href="https://www.w3schools.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📚 W3Schools Tutorials</span> &rarr;</a>
-        <a href="https://www.programiz.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🐍 Programiz (Python & C++)</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2: Govt Exams -->
-  <div id="examModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('examModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">🎯 Govt Exams & Mock Tests</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://www.oliveboard.in/free-mock-test/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎯 Oliveboard RRB & SSC Mocks</span> &rarr;</a>
-        <a href="https://testbook.com/free-mock-tests" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📝 Testbook Free Test Series</span> &rarr;</a>
-        <a href="https://byjusexamprep.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🚀 BYJU'S Exam Prep</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3: Typing -->
-  <div id="typingModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('typingModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">⌨️ Free Typing Training</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://monkeytype.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>⚡ Monkeytype Speed Test</span> &rarr;</a>
-        <a href="https://www.typingclub.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>⌨️ TypingClub Touch Typing</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 4: Live Train Tracking -->
-  <div id="trainModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('trainModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">🚆 Live Train Tracking & Travel</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://www.railyatri.in/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🚂 RailYatri Train Status</span> &rarr;</a>
-        <a href="https://etrain.info/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🚆 eTrain Info & Status</span> &rarr;</a>
-        <a href="https://m-indicator.in/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🚆 m-Indicator Web</span> &rarr;</a>
-        <a href="https://whereismytrain.in/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📍 Where is my Train</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 5: Media & MP4 Converters -->
-  <div id="mediaModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('mediaModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">📥 Video MP4 Converter & Media</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://cobalt.tools" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📥 Cobalt.tools (Ad-free Downloader)</span> &rarr;</a>
-        <a href="https://convertio.co/mp4-converter/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🔄 Video MP4 Converter</span> &rarr;</a>
-        <a href="https://snapinst.app/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎬 Insta Reels Downloader</span> &rarr;</a>
-        <a href="https://app.clipchamp.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎬 Clipchamp Video Editor</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 6: Workflow Hub -->
-  <div id="workflowModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('workflowModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">🌟 Suyog's Special Workflow Hub</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://github.com/trending" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🔥 GitHub Trending Repos</span> &rarr;</a>
-        <a href="https://stackoverflow.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>💬 Stack Overflow Q&A</span> &rarr;</a>
-        <a href="https://chatgpt.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🤖 ChatGPT Assistant</span> &rarr;</a>
-        <a href="https://claude.ai/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🧠 Claude AI</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 7: Mega Web Directories -->
-  <div id="dirModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('dirModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">🌐 Mega Web Directories</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://devsheets.io/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📚 DevSheets (Cheat Sheets)</span> &rarr;</a>
-        <a href="https://cheatsheets.zip/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>⚡ CheatSheets.zip</span> &rarr;</a>
-        <a href="https://freestuff.dev/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎁 FreeStuff.dev (Free Tools)</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 8: Degree & Portals -->
-  <div id="degreeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('degreeModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">🎓 Degree & Official Portals</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://lms.onlinemanipal.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎓 Manipal BCA LMS</span> &rarr;</a>
-        <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🏛️ YCMOU Portal</span> &rarr;</a>
-        <a href="https://ncvtmis.gov.in/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📜 NCVT MIS (ITI)</span> &rarr;</a>
-        <a href="https://digilocker.gov.in/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📁 DigiLocker</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 9: Electrical & Solar -->
-  <div id="electricalModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('electricalModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">⚡ Electrical, Solar & Courses</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>⚡ My YouTube Channel</span> &rarr;</a>
-        <a href="https://electricaldost.online/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>💡 Electrical Dost</span> &rarr;</a>
-        <a href="https://thetechuniqueacademy.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🌐 The Tech Unique</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 10: Office & Document Tools -->
-  <div id="officeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('officeModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">📁 Office, Media & Documents</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://tinypng.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🖼️ TinyPNG Compress</span> &rarr;</a>
-        <a href="https://tools.pdf24.org/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📄 PDF24 Suite</span> &rarr;</a>
-        <a href="https://www.canva.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎨 Canva Banners</span> &rarr;</a>
-        <a href="https://rxresu.me/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📝 Reactive Resume Builder</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 11: Microcontrollers & Linux -->
-  <div id="devToolsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('devToolsModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">💻 Microcontrollers & Linux</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://wokwi.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🤖 Wokwi ESP32 Simulator</span> &rarr;</a>
-        <a href="https://pinout.xyz/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📌 Raspberry/Pinouts</span> &rarr;</a>
-        <a href="https://explainshell.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🐧 Explain Shell</span> &rarr;</a>
-        <a href="https://gchq.github.io/CyberChef/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🔐 CyberChef Tools</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 12: Network & Design Utilities -->
-  <div id="networkModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
-    <div class="bg-slate-900 border border-slate-700 p-6 rounded-2xl max-w-md w-full shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('networkModal')" class="absolute top-3 right-4 text-slate-400 hover:text-white text-xl">&times;</button>
-      <h3 class="text-xl font-bold text-sky-400 mb-4">🛠️ Network & Design Utilities</h3>
-      <div class="flex flex-col gap-2.5">
-        <a href="https://fast.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🚀 Fast.com Speed Test</span> &rarr;</a>
-        <a href="https://hoppscotch.io/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>📡 Hoppscotch API</span> &rarr;</a>
-        <a href="https://temp-mail.org/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>✉️ Temp Mail</span> &rarr;</a>
-        <a href="https://www.color-hex.com/" target="_blank" class="bg-slate-800 hover:bg-sky-600 hover:text-white p-3 rounded-lg text-sm font-medium transition flex items-center justify-between"><span>🎨 Color Hex Codes</span> &rarr;</a>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Modal controls
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-      document.getElementById(id).classList.add('flex');
-    }
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('flex');
-      document.getElementById(id).classList.add('hidden');
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add("active");
     }
 
-    // Theme toggle
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove("active");
+    }
+
     function toggleTheme() {
-      const body = document.getElementById('bodyRoot');
-      body.classList.toggle('bg-slate-950');
-      body.classList.toggle('text-slate-100');
-      body.classList.toggle('bg-slate-100');
-      body.classList.toggle('text-slate-900');
+      document.body.classList.toggle("light-theme");
     }
 
-    // Quiz logic
+    // Quiz JavaScript
     const quizData = [
-      { question: "Q1. What is the SI unit of Electrical Resistance?", options: ["Volt", "Ampere", "Ohm", "Watt"], answer: 2 },
-      { question: "Q2. Which microcontroller is widely used for Wi-Fi IoT projects?", options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"], answer: 0 },
-      { question: "Q3. In a domestic electrical circuit, fuses are connected in:", options: ["Parallel", "Series with Live wire", "Series with Neutral", "Earth wire"], answer: 1 }
+      {
+        question: "Q1. What is the SI unit of Electrical Resistance?",
+        options: ["Volt", "Ampere", "Ohm", "Watt"],
+        answer: 2
+      },
+      {
+        question: "Q2. Which microcontroller is widely used for Wi-Fi IoT projects?",
+        options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"],
+        answer: 0
+      },
+      {
+        question: "Q3. In a domestic electrical circuit, fuses are connected in:",
+        options: ["Parallel", "Series with Live wire", "Series with Neutral", "Earth wire"],
+        answer: 1
+      }
     ];
 
-    let currentQ = 0, score = 0, answered = false;
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
 
     function loadQuiz() {
       answered = false;
-      const q = quizData[currentQ];
-      document.getElementById("questionText").textContent = q.question;
-      const container = document.getElementById("optionsContainer");
-      container.innerHTML = "";
-      q.options.forEach((opt, idx) => {
+      const q = quizData[currentQuestion];
+      const qText = document.getElementById("questionText");
+      if (qText) qText.textContent = q.question;
+      
+      const optContainer = document.getElementById("optionsContainer");
+      if (!optContainer) return;
+      optContainer.innerHTML = "";
+
+      q.options.forEach((opt, index) => {
         const btn = document.createElement("button");
-        btn.className = "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 p-3 rounded-xl text-left text-sm font-medium transition cursor-pointer";
+        btn.className = "option-btn";
         btn.textContent = opt;
-        btn.onclick = () => selectAnswer(idx, btn);
-        container.appendChild(btn);
+        btn.onclick = () => selectOption(index, btn);
+        optContainer.appendChild(btn);
       });
-      document.getElementById("quizScore").textContent = `Question ${currentQ + 1} of ${quizData.length}`;
+      const qScore = document.getElementById("quizScore");
+      if (qScore) qScore.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
     }
 
-    function selectAnswer(selectedIdx, btnElement) {
+    function selectOption(selectedIndex, btnElement) {
       if (answered) return;
       answered = true;
-      const q = quizData[currentQ];
-      const buttons = document.querySelectorAll("#optionsContainer button");
-      if (selectedIdx === q.answer) {
-        btnElement.classList.add("bg-emerald-800", "border-emerald-500", "text-white");
+      const q = quizData[currentQuestion];
+      const buttons = document.querySelectorAll(".option-btn");
+
+      if (selectedIndex === q.answer) {
+        btnElement.classList.add("correct");
         score++;
       } else {
-        btnElement.classList.add("bg-rose-800", "border-rose-500", "text-white");
-        buttons[q.answer].classList.add("bg-emerald-800", "border-emerald-500", "text-white");
+        btnElement.classList.add("wrong");
+        if (buttons[q.answer]) buttons[q.answer].classList.add("correct");
       }
+
       setTimeout(() => {
-        currentQ++;
-        if (currentQ < quizData.length) {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
           loadQuiz();
         } else {
-          document.getElementById("quizContainer").innerHTML = `
-            <div class="text-center py-4">
-              <h4 class="text-xl font-bold text-sky-400 mb-2">Quiz Completed! 🎉</h4>
-              <p class="text-slate-300 mb-4">Your Score: ${score} / ${quizData.length}</p>
-              <button onclick="resetQuiz()" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-6 py-2 rounded-full transition cursor-pointer">Play Again</button>
-            </div>
-          `;
+          const quizContainer = document.getElementById("quizContainer");
+          if (quizContainer) {
+            quizContainer.innerHTML = `
+              <div style="text-align: center; padding: 20px;">
+                <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
+                <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${score} / ${quizData.length}</p>
+                <button class="social-btn" onclick="restartQuiz()" style="margin: 0 auto; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play Again</button>
+              </div>
+            `;
+          }
         }
       }, 1500);
     }
 
-    function resetQuiz() {
-      currentQ = 0;
+    function restartQuiz() {
+      currentQuestion = 0;
       score = 0;
-      document.getElementById("quizContainer").innerHTML = `
-        <div id="questionText" class="font-semibold text-lg mb-4 text-slate-200"></div>
-        <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-        <div id="quizScore" class="mt-4 font-bold text-sky-400 text-center"></div>
-      `;
+      const quizContainer = document.getElementById("quizContainer");
+      if (quizContainer) {
+        quizContainer.innerHTML = `
+          <div class="question-box" id="questionText"></div>
+          <div class="options-grid" id="optionsContainer"></div>
+          <div class="quiz-score" id="quizScore"></div>
+        `;
+      }
       loadQuiz();
     }
 
-    window.onload = () => {
-      loadQuiz();
-      // Auto open welcome modal on load
-      openModal('welcomeModal');
-    };
+    loadQuiz();
   </script>
 </body>
 </html>
