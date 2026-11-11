@@ -130,6 +130,36 @@
       margin-top: 15px;
     }
 
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .contact-form label {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      font-weight: 500;
+    }
+
+    .contact-form input, .contact-form textarea {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
     header {
       text-align: center;
       margin-bottom: 25px;
@@ -286,6 +316,19 @@
       transition: opacity 0.2s;
       width: 100%;
     }
+
+    /* Quiz Styling */
+    .quiz-container { margin-top: 10px; }
+    .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
+    .options-grid { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn {
+      background-color: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color);
+      padding: 12px; border-radius: 8px; text-align: left; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;
+    }
+    .option-btn:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
+    .option-btn.correct { background-color: #166534 !important; border-color: #22c55e !important; color: #fff !important; }
+    .option-btn.wrong { background-color: #991b1b !important; border-color: #ef4444 !important; color: #fff !important; }
+    .quiz-score { font-size: 1.1rem; text-align: center; font-weight: bold; color: var(--accent); margin-top: 15px; }
   </style>
 </head>
 <body onload="initTracker()">
@@ -300,7 +343,7 @@
       <div class="avatar" style="width: 70px; height: 70px; font-size: 1.6rem; margin-bottom: 15px;">SC</div>
       <h2>Welcome to Suyog's Mega Tech Hub! 👋</h2>
       <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
-        Aapka swagat hai! Explore your systematic workspace including free coding resources, web hosting, and tools.
+        Aapka swagat hai! Explore your systematic workspace including all coding resources, web hosting, tools, and family utility services.
       </p>
       <button class="submit-btn" style="border-radius: 20px;" onclick="closeModal('welcomeModal')">Get Started 🚀</button>
     </div>
@@ -321,15 +364,256 @@
     </div>
   </div>
 
-  <!-- POPUP MODALS FOR CATEGORIES -->
+  <!-- ALL POPUP MODALS FOR CATEGORIES -->
+
+  <!-- 1. Free Coding Popup -->
   <div class="modal-overlay" id="codingModal">
     <div class="modal-card">
       <button class="close-btn" onclick="closeModal('codingModal')">&times;</button>
-      <h2>💻 Free Coding & Practice</h2>
+      <h2>💻 Free Coding, Languages & Practice</h2>
       <div class="modal-links">
-        <a href="https://www.mindluster.com/" target="_blank" class="social-btn" onclick="logAction('Opened Mindluster')">🎓 Mindluster Courses</a>
-        <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn" onclick="logAction('Opened freeCodeCamp')">🎓 freeCodeCamp</a>
+        <a href="https://www.mindluster.com/" target="_blank" class="social-btn" onclick="logAction('Opened Mindluster')">🎓 Mindluster (Free Courses & Certificates)</a>
+        <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn" onclick="logAction('Opened freeCodeCamp')">🎓 freeCodeCamp (Python & Web)</a>
+        <a href="https://www.w3schools.com/default.asp" target="_blank" class="social-btn" onclick="logAction('Opened W3Schools')">📚 W3Schools Tutorials</a>
+        <a href="https://www.programiz.com/" target="_blank" class="social-btn" onclick="logAction('Opened Programiz')">🐍 Programiz Python & C++</a>
+        <a href="https://leetcode.com/" target="_blank" class="social-btn" onclick="logAction('Opened LeetCode')">⚡ LeetCode Practice</a>
       </div>
+    </div>
+  </div>
+
+  <!-- 2. Govt Exams Popup -->
+  <div class="modal-overlay" id="govtExamsModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('govtExamsModal')">&times;</button>
+      <h2>🎯 Govt Exams, RRB/SSC & Mock Tests</h2>
+      <div class="modal-links">
+        <a href="https://www.oliveboard.in/free-mock-test/" target="_blank" class="social-btn" onclick="logAction('Opened Oliveboard')">🎯 Oliveboard RRB & SSC Mocks</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Free Typing Training Popup -->
+  <div class="modal-overlay" id="typingModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('typingModal')">&times;</button>
+      <h2>⌨️ Free Typing Training</h2>
+      <div class="modal-links">
+        <a href="https://monkeytype.com/" target="_blank" class="social-btn" onclick="logAction('Opened Monkeytype')">⚡ Monkeytype Speed Test</a>
+        <a href="https://www.typingclub.com/" target="_blank" class="social-btn" onclick="logAction('Opened TypingClub')">⌨️ TypingClub Touch Typing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Live Train Tracking Popup -->
+  <div class="modal-overlay" id="trainModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('trainModal')">&times;</button>
+      <h2>🚆 Live Train Tracking & Media Tools</h2>
+      <div class="modal-links">
+        <a href="https://www.railyatri.in/" target="_blank" class="social-btn" onclick="logAction('Opened RailYatri')">🚂 RailYatri Train Status</a>
+        <a href="https://etrain.info/" target="_blank" class="social-btn" onclick="logAction('Opened eTrain')">🚆 eTrain Info & Status</a>
+        <a href="https://m-indicator.in/" target="_blank" class="social-btn" onclick="logAction('Opened m-Indicator')">🚆 m-Indicator Web</a>
+        <a href="https://whereismytrain.in/" target="_blank" class="social-btn" onclick="logAction('Opened Where is my Train')">📍 Where is my Train</a>
+        <a href="https://cobalt.tools" target="_blank" class="social-btn" onclick="logAction('Opened Cobalt Tools')">📥 Cobalt.tools (Ad-free Downloader)</a>
+        <a href="https://app.clipchamp.com/" target="_blank" class="social-btn" onclick="logAction('Opened Clipchamp')">🎬 Clipchamp Video Editor</a>
+        <a href="https://www.ixigo.com/trains" target="_blank" class="social-btn" onclick="logAction('Opened Ixigo')">🚆 Ixigo Train Status & PNR</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Video MP4 Converter Popup -->
+  <div class="modal-overlay" id="mediaModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('mediaModal')">&times;</button>
+      <h2>📥 Video MP4 Converter & Media Tools</h2>
+      <div class="modal-links">
+        <a href="https://convertio.co/mp4-converter/" target="_blank" class="social-btn" onclick="logAction('Opened Convertio')">🔄 Video MP4 Converter</a>
+        <a href="https://snapinst.app/" target="_blank" class="social-btn" onclick="logAction('Opened SnapInst')">🎬 Insta Reels Downloader</a>
+        <a href="https://instadp.io/" target="_blank" class="social-btn" onclick="logAction('Opened InstaDP')">🖼️ Insta HD DP Viewer</a>
+        <a href="https://storysaver.net/" target="_blank" class="social-btn" onclick="logAction('Opened StorySaver')">📖 Insta Stories Saver</a>
+        <a href="https://podcast.adobe.com/enhance" target="_blank" class="social-btn" onclick="logAction('Opened Adobe Podcast')">🎙️ Adobe Audio Enhancer</a>
+        <a href="https://vocalremover.org/" target="_blank" class="social-btn" onclick="logAction('Opened VocalRemover')">🎼 Vocal & Music Remover</a>
+        <a href="https://wetransfer.com/" target="_blank" class="social-btn" onclick="logAction('Opened WeTransfer')">📦 WeTransfer (2GB Share)</a>
+        <a href="https://file.io/" target="_blank" class="social-btn" onclick="logAction('Opened File.io')">📁 File.io (Temp Storage)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Daily Workflow Hub Popup -->
+  <div class="modal-overlay" id="workflowModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('workflowModal')">&times;</button>
+      <h2>🌟 Suyog's Special Daily Workflow Hub</h2>
+      <div class="modal-links">
+        <a href="https://github.com/trending" target="_blank" class="social-btn" onclick="logAction('Opened GitHub Trending')">🔥 GitHub Trending Repos</a>
+        <a href="https://stackoverflow.com/" target="_blank" class="social-btn" onclick="logAction('Opened StackOverflow')">💬 Stack Overflow Q&A</a>
+        <a href="https://chatgpt.com/" target="_blank" class="social-btn" onclick="logAction('Opened ChatGPT')">🤖 ChatGPT Assistant</a>
+        <a href="https://claude.ai/" target="_blank" class="social-btn" onclick="logAction('Opened Claude AI')">🧠 Claude AI</a>
+        <a href="https://www.youtube.com/" target="_blank" class="social-btn" onclick="logAction('Opened YouTube')">▶️ YouTube Learning</a>
+        <a href="https://web.whatsapp.com/" target="_blank" class="social-btn" onclick="logAction('Opened WhatsApp Web')">💬 WhatsApp Web</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Mega Web Directories Popup -->
+  <div class="modal-overlay" id="directoriesModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('directoriesModal')">&times;</button>
+      <h2>🌐 Mega Web Directories (10,000+ Tools Access)</h2>
+      <div class="modal-links">
+        <a href="https://devsheets.io/" target="_blank" class="social-btn" onclick="logAction('Opened DevSheets')">📚 DevSheets (Cheat Sheets)</a>
+        <a href="https://cheatsheets.zip/" target="_blank" class="social-btn" onclick="logAction('Opened CheatSheets.zip')">⚡ CheatSheets.zip (All Code)</a>
+        <a href="https://freestuff.dev/" target="_blank" class="social-btn" onclick="logAction('Opened FreeStuff.dev')">🎁 FreeStuff.dev (Free Tools)</a>
+        <a href="https://github.com/sindresorhus/awesome" target="_blank" class="social-btn" onclick="logAction('Opened Awesome List')">🔥 Awesome List (1000s Repos)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Degree & Official Portals Popup -->
+  <div class="modal-overlay" id="degreeModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('degreeModal')">&times;</button>
+      <h2>🎓 Degree & Official Portals</h2>
+      <div class="modal-links">
+        <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn" onclick="logAction('Opened Manipal LMS')">🎓 Manipal BCA LMS</a>
+        <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn" onclick="logAction('Opened YCMOU')">🏛️ YCMOU Portal</a>
+        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
+        <a href="https://digilocker.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened DigiLocker')">📁 DigiLocker</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Electrical, Solar & Courses Popup -->
+  <div class="modal-overlay" id="electricalModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('electricalModal')">&times;</button>
+      <h2>⚡ Electrical, Solar & Courses</h2>
+      <div class="modal-links">
+        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn" onclick="logAction('Opened YouTube Channel')">⚡ My YouTube Channel</a>
+        <a href="https://electricaldost.online/" target="_blank" class="social-btn" onclick="logAction('Opened Electrical Dost')">💡 Electrical Dost</a>
+        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn" onclick="logAction('Opened Tech Unique')">🌐 The Tech Unique</a>
+        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn" onclick="logAction('Opened Electrical Technician')">🛠️ Electrical Technician</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Quick Office & Document Tools Popup -->
+  <div class="modal-overlay" id="officeModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('officeModal')">&times;</button>
+      <h2>📁 Quick Office, Media & Document Tools</h2>
+      <div class="modal-links">
+        <a href="https://tinypng.com/" target="_blank" class="social-btn" onclick="logAction('Opened TinyPNG')">🖼️ TinyPNG Compress</a>
+        <a href="https://carbon.now.sh/" target="_blank" class="social-btn" onclick="logAction('Opened Carbon')">📸 Carbon Code Snap</a>
+        <a href="https://www.canva.com/" target="_blank" class="social-btn" onclick="logAction('Opened Canva')">🎨 Canva Banners & Thumbnails</a>
+        <a href="https://excalidraw.com/" target="_blank" class="social-btn" onclick="logAction('Opened Excalidraw')">📐 Excalidraw Whiteboard</a>
+        <a href="https://photopea.com/" target="_blank" class="social-btn" onclick="logAction('Opened Photopea')">🖼️ Photopea Online Photoshop</a>
+        <a href="https://tools.pdf24.org/" target="_blank" class="social-btn" onclick="logAction('Opened PDF24')">📄 PDF24 Suite</a>
+        <a href="https://rxresu.me/" target="_blank" class="social-btn" onclick="logAction('Opened Reactive Resume')">📝 Reactive Resume Builder</a>
+        <a href="https://remove.bg/" target="_blank" class="social-btn" onclick="logAction('Opened RemoveBG')">✂️ Remove BG</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Microcontrollers & Dev Tools Popup -->
+  <div class="modal-overlay" id="microModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('microModal')">&times;</button>
+      <h2>💻 Microcontrollers, Linux & Dev Tools</h2>
+      <div class="modal-links">
+        <a href="https://wokwi.com/" target="_blank" class="social-btn" onclick="logAction('Opened Wokwi Simulator')">🤖 Wokwi ESP32 & IoT Simulator</a>
+        <a href="https://portswigger.net/web-security" target="_blank" class="social-btn" onclick="logAction('Opened PortSwigger')">🛡️ PortSwigger Web Security (Hacking)</a>
+        <a href="https://pinout.xyz/" target="_blank" class="social-btn" onclick="logAction('Opened Pinout')">📌 Raspberry/Pinouts</a>
+        <a href="https://explainshell.com/" target="_blank" class="social-btn" onclick="logAction('Opened ExplainShell')">🐧 Explain Shell</a>
+        <a href="https://gchq.github.io/CyberChef/" target="_blank" class="social-btn" onclick="logAction('Opened CyberChef')">🔐 CyberChef Tools</a>
+        <a href="https://duinocoin.com/" target="_blank" class="social-btn" onclick="logAction('Opened Duino-Coin')">⛏️ Duino-Coin Wallet</a>
+        <a href="https://devdocs.io/" target="_blank" class="social-btn" onclick="logAction('Opened DevDocs')">📚 DevDocs Offline Docs</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. Network, Testing & Design Utilities Popup -->
+  <div class="modal-overlay" id="networkModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('networkModal')">&times;</button>
+      <h2>🛠️ Network, Testing & Design Utilities</h2>
+      <div class="modal-links">
+        <a href="https://hoppscotch.io/" target="_blank" class="social-btn" onclick="logAction('Opened Hoppscotch')">📡 Hoppscotch API</a>
+        <a href="https://transform.tools/" target="_blank" class="social-btn" onclick="logAction('Opened TransformTools')">🔄 Transform Code Tools</a>
+        <a href="https://fast.com/" target="_blank" class="social-btn" onclick="logAction('Opened Fast.com')">🚀 Fast.com Speed Test</a>
+        <a href="https://www.speedtest.net/" target="_blank" class="social-btn" onclick="logAction('Opened Speedtest')">🌐 Speedtest Ookla</a>
+        <a href="https://www.color-hex.com/" target="_blank" class="social-btn" onclick="logAction('Opened ColorHex')">🎨 Color Hex Codes</a>
+        <a href="https://temp-mail.org/" target="_blank" class="social-btn" onclick="logAction('Opened TempMail')">✉️ Temp Mail</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. Family Utility & Govt Services Popup -->
+  <div class="modal-overlay" id="familyModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('familyModal')">&times;</button>
+      <h2>🏡 Family Utility & Govt Services</h2>
+      <div class="modal-links">
+        <a href="https://bss.mahadiscom.in/wss/wss" target="_blank" class="social-btn" onclick="logAction('Opened MSEDCL Bill')">💡 Mahavitaran / MSEDCL Electricity Bill</a>
+        <a href="https://rcms.mahafood.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened Ration Card')">🌾 Maharashtra Ration Card Portal</a>
+        <a href="https://pmkisan.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened PM Kisan')">🚜 PM Kisan Samman Nidhi Portal</a>
+        <a href="https://beneficiary.nha.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened Ayushman Bharat')">🏥 Ayushman Bharat Health Card</a>
+        <a href="https://www.irctc.co.in/" target="_blank" class="social-btn" onclick="logAction('Opened IRCTC')">🎟️ IRCTC Ticket Booking</a>
+        <a href="https://msrtc.maharashtra.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened MSRTC')">🚌 MSRTC Bus Reservation</a>
+        <a href="https://uidai.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened UIDAI Aadhaar')">🆔 UIDAI Official Aadhaar Services</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. Free Hosting, Deployment & Cloud Storage Popup -->
+  <div class="modal-overlay" id="hostingModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('hostingModal')">&times;</button>
+      <h2>🚀 Free Hosting, Deployment & Cloud Storage</h2>
+      <div class="modal-links">
+        <a href="https://netlify.com" target="_blank" class="social-btn" onclick="logAction('Opened Netlify')">🌐 Netlify (Free Web Hosting)</a>
+        <a href="https://vercel.com" target="_blank" class="social-btn" onclick="logAction('Opened Vercel')">⚡ Vercel (App Deployment)</a>
+        <a href="https://pages.github.com/" target="_blank" class="social-btn" onclick="logAction('Opened GitHub Pages')">🐙 GitHub Pages Live Site</a>
+        <a href="https://mega.nz" target="_blank" class="social-btn" onclick="logAction('Opened MEGA')">☁️ MEGA.nz (20GB Free Secure Cloud)</a>
+        <a href="https://pixeldrain.com/" target="_blank" class="social-btn" onclick="logAction('Opened Pixeldrain')">📁 Pixeldrain Fast File Share</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15. Online Compilers & Code Sandboxes Popup -->
+  <div class="modal-overlay" id="sandboxModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('sandboxModal')">&times;</button>
+      <h2>💻 Online Compilers & Code Sandboxes</h2>
+      <div class="modal-links">
+        <a href="https://replit.com" target="_blank" class="social-btn" onclick="logAction('Opened Replit')">🐍 Replit (Python, C++, Node.js Compiler)</a>
+        <a href="https://codepen.io" target="_blank" class="social-btn" onclick="logAction('Opened CodePen')">🎨 CodePen (HTML/CSS/JS Sandbox)</a>
+        <a href="https://codesandbox.io/" target="_blank" class="social-btn" onclick="logAction('Opened CodeSandbox')">📦 CodeSandbox (React & Web Apps)</a>
+        <a href="https://www.onlinegdb.com/" target="_blank" class="social-btn" onclick="logAction('Opened OnlineGDB')">⚡ OnlineGDB Compiler</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16. Contact Me & Direct Message Popup -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('contactModal')">&times;</button>
+      <h2>✉️ Send Me a Message</h2>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
+        Yahan message likhein, yeh seedha Suyog ke email par pahunch jayega!
+      </p>
+      <form class="contact-form" action="https://formspree.io/f/xbgorypr" method="POST">
+        <label>Aapka Naam (Your Name):</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Aapka Email (Your Email):</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Message:</label>
+        <textarea name="message" rows="4" placeholder="Write your message here..." required></textarea>
+
+        <button type="submit" class="submit-btn" onclick="logAction('Submitted Contact Form')">Send Message 🚀</button>
+      </form>
     </div>
   </div>
 
@@ -346,12 +630,98 @@
   </header>
 
   <main class="container">
+    <!-- Master Systematic Hub -->
     <section class="card">
       <h3>🚀 Master Systematic Hub</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Click any category to open its dedicated tools popup window:</p>
+      
       <div class="grid-launchers">
         <button class="category-card-btn" onclick="openModal('codingModal'); logAction('Opened Coding Hub');">
           <span>💻 Free Coding, Mindluster & Practice</span> <span>➔</span>
         </button>
+
+        <button class="category-card-btn" onclick="openModal('govtExamsModal'); logAction('Opened Govt Exams Hub');">
+          <span>🎯 Govt Exams, RRB/SSC & Mock Tests</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('typingModal'); logAction('Opened Typing Hub');">
+          <span>⌨️ Free Typing Training</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('trainModal'); logAction('Opened Train Tracking Hub');">
+          <span>🚆 Live Train Tracking & Media Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('mediaModal'); logAction('Opened Media & Converter Hub');">
+          <span>📥 Video MP4 Converter & Media Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('workflowModal'); logAction('Opened Workflow Hub');">
+          <span>🌟 Suyog's Special Daily Workflow Hub</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('directoriesModal'); logAction('Opened Web Directories Hub');">
+          <span>🌐 Mega Web Directories (10,000+ Tools)</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('degreeModal'); logAction('Opened Degree & Portals Hub');">
+          <span>🎓 Degree & Official Portals</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('electricalModal'); logAction('Opened Electrical Hub');">
+          <span>⚡ Electrical, Solar & Courses</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('officeModal'); logAction('Opened Office Tools Hub');">
+          <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('microModal'); logAction('Opened Microcontrollers Hub');">
+          <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('networkModal'); logAction('Opened Network Utilities Hub');">
+          <span>🛠️ Network, Testing & Design Utilities</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('hostingModal'); logAction('Opened Hosting Hub');" style="border-left-color: #38bdf8;">
+          <span>🚀 Free Hosting, Deployment & Cloud</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('sandboxModal'); logAction('Opened Code Sandboxes Hub');" style="border-left-color: #a855f7;">
+          <span>💻 Online Compilers & Code Sandboxes</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('familyModal'); logAction('Opened Family Utility Hub');" style="border-left-color: #22c55e;">
+          <span>🏡 Family Utility & Govt Services</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('contactModal'); logAction('Opened Contact Hub');" style="border-left-color: #f59e0b;">
+          <span>✉️ Contact Me / Send Message (Email)</span> <span>➔</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Technical Stack -->
+    <section class="card">
+      <h3>⚡ Technical Stack</h3>
+      <div class="skills-list">
+        <span class="badge">ESP32 & IoT</span>
+        <span class="badge">Electrical Wiring & Solar</span>
+        <span class="badge">Python</span>
+        <span class="badge">HTML / CSS / JS</span>
+        <span class="badge">Termux & Linux</span>
+        <span class="badge">Git & GitHub</span>
+      </div>
+    </section>
+
+    <!-- Quiz Game -->
+    <section class="card">
+      <h3>🧠 ITI & Electrical Quiz Game</h3>
+      <div class="quiz-container" id="quizContainer">
+        <div class="question-box" id="questionText">Loading question...</div>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="quiz-score" id="quizScore"></div>
       </div>
     </section>
   </main>
@@ -379,10 +749,9 @@
 
     // 🚀 AUTOMATIC EMAIL ALERT + MOBILE FOOTPRINT TRACKER
     function sendInstantEmailAlert(actionDetails) {
-      const formspreeEndpoint = "https://formspree.io/f/xbgorypr"; // Aapka Formspree URL jo pehle se use ho raha hai
-      const visitorInfo = `Device/OS: ${navigator.platform}\nBrowser: ${navigator.userAgent}\nTime: new Date().toLocaleString()\nAction: ${actionDetails}`;
+      const formspreeEndpoint = "https://formspree.io/f/xbgorypr"; 
+      const visitorInfo = `Device/OS: ${navigator.platform}\nBrowser: ${navigator.userAgent}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}`;
 
-      // Background mein fetch API ke zariye aapke email par notification bhej dega bina user ko roke
       fetch(formspreeEndpoint, {
         method: "POST",
         headers: {
@@ -394,10 +763,6 @@
           email: "tracker@portfolio.com",
           message: `🚨 New Visitor Activity Alert!\n\n${visitorInfo}`
         })
-      }).then(response => {
-        if(response.ok) {
-          console.log("Email alert sent successfully!");
-        }
       }).catch(error => {
         console.log("Email alert error:", error);
       });
@@ -410,8 +775,6 @@
       const platform = navigator.platform || "Mobile/Unknown Device";
       
       adminLog.innerHTML += `> [${time}] Visitor active on: ${platform}<br>`;
-      
-      // Page khulte hi (login/visit karte hi) turant email alert bhejega
       sendInstantEmailAlert("Visitor opened/logged into the website.");
     }
 
@@ -421,13 +784,99 @@
       adminLog.innerHTML += `> [${time}] Action: ${actionName}<br>`;
       adminLog.scrollTop = adminLog.scrollHeight;
 
-      // Kisi bhi button click par bhi instant mail alert trigger kar sakte hain
       sendInstantEmailAlert(`User performed action: ${actionName}`);
     }
 
     function clearLogs() {
       document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>';
     }
+
+    // Quiz JavaScript
+    const quizData = [
+      {
+        question: "Q1. What is the SI unit of Electrical Resistance?",
+        options: ["Volt", "Ampere", "Ohm", "Watt"],
+        answer: 2
+      },
+      {
+        question: "Q2. Which microcontroller is widely used for Wi-Fi IoT projects?",
+        options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"],
+        answer: 0
+      },
+      {
+        question: "Q3. In a domestic electrical circuit, fuses are connected in:",
+        options: ["Parallel", "Series with Live wire", "Series with Neutral", "Earth wire"],
+        answer: 1
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function loadQuiz() {
+      answered = false;
+      const q = quizData[currentQuestion];
+      document.getElementById("questionText").textContent = q.question;
+      const optContainer = document.getElementById("optionsContainer");
+      optContainer.innerHTML = "";
+
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = opt;
+        btn.onclick = () => selectOption(index, btn);
+        optContainer.appendChild(btn);
+      });
+      document.getElementById("quizScore").textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+    }
+
+    function selectOption(selectedIndex, btnElement) {
+      if (answered) return;
+      answered = true;
+      const q = quizData[currentQuestion];
+      const buttons = document.querySelectorAll(".option-btn");
+
+      if (selectedIndex === q.answer) {
+        btnElement.classList.add("correct");
+        score++;
+        logAction('Quiz: Correct Answer Selected');
+      } else {
+        btnElement.classList.add("wrong");
+        buttons[q.answer].classList.add("correct");
+        logAction('Quiz: Wrong Answer Selected');
+      }
+
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+          loadQuiz();
+        } else {
+          document.getElementById("quizContainer").innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+              <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
+              <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${score} / ${quizData.length}</p>
+              <button class="social-btn" onclick="restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play Again</button>
+            </div>
+          `;
+          logAction(`Quiz Completed with Score: ${score}/${quizData.length}`);
+        }
+      }, 1500);
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      document.getElementById("quizContainer").innerHTML = `
+        <div class="question-box" id="questionText"></div>
+        <div class="options-grid" id="optionsContainer"></div>
+        <div class="quiz-score" id="quizScore"></div>
+      `;
+      loadQuiz();
+      logAction('Restarted Quiz Game');
+    }
+
+    loadQuiz();
   </script>
 </body>
 </html>
