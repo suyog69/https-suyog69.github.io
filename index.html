@@ -35,7 +35,33 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Modal Overlay */
+    .top-controls {
+      align-self: flex-end;
+      max-width: 680px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .theme-btn, .welcome-trigger-btn {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+
+    .welcome-trigger-btn:hover, .theme-btn:hover {
+      background-color: var(--accent);
+      color: #0f172a;
+    }
+
+    /* Welcome Modal Overlay */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -62,61 +88,26 @@
       border: 2px solid var(--accent);
       padding: 25px;
       border-radius: 16px;
-      max-width: 500px;
+      max-width: 420px;
       width: 90%;
-      max-height: 85vh;
-      overflow-y: auto;
       text-align: center;
       box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
       position: relative;
     }
 
-    .modal-card h2 {
-      color: var(--accent);
-      margin-top: 0;
-      font-size: 1.5rem;
-      margin-bottom: 12px;
-    }
-
     .close-btn {
       position: absolute;
-      top: 12px;
-      right: 16px;
+      top: 10px;
+      right: 14px;
       background: none;
       border: none;
       color: var(--text-sub);
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       cursor: pointer;
     }
 
     .close-btn:hover {
       color: var(--accent);
-    }
-
-    .modal-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .theme-toggle {
-      align-self: flex-end;
-      max-width: 680px;
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 10px;
-    }
-
-    .theme-btn {
-      background: var(--card-bg);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 6px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.85rem;
     }
 
     header {
@@ -183,71 +174,34 @@
     .badge {
       background-color: #0369a1;
       color: #e0f2fe;
-      padding: 8px 16px;
+      padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
     }
 
-    .badge:hover, .badge.active {
+    .badge:hover {
       background-color: var(--accent);
       color: #0f172a;
-      font-weight: bold;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
     }
 
-    .grid-launchers {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .category-card-btn {
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      border-left: 4px solid var(--accent);
-      color: var(--text-main);
-      padding: 16px;
-      border-radius: 10px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
+    .social-links {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s ease;
-    }
-
-    .category-card-btn:hover {
-      border-color: var(--accent);
-      background-color: rgba(56, 189, 248, 0.08);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .category-card-btn.highlight {
-      border-color: var(--accent) !important;
-      background-color: rgba(56, 189, 248, 0.2) !important;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
     }
 
     .social-btn {
       background-color: var(--border-color);
       color: var(--text-main);
-      padding: 10px 16px;
-      border-radius: 8px;
+      padding: 8px 14px;
+      border-radius: 6px;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
-      transition: background 0.2s, transform 0.2s;
-      display: block;
-      text-align: left;
+      transition: background 0.2s;
     }
 
     .social-btn:hover {
@@ -255,107 +209,134 @@
       color: #fff;
     }
 
-    .skill-info-box {
-      margin-top: 12px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      background-color: var(--bg-color);
-      border: 1px dashed var(--accent);
-      font-size: 0.88rem;
-      color: var(--text-main);
-      display: none;
+    .cat-title {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin: 15px 0 8px 0;
     }
 
     /* Quiz Styling */
-    .quiz-container { margin-top: 10px; }
-    .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
-    .options-grid { display: flex; flex-direction: column; gap: 10px; }
-    .option-btn {
-      background-color: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color);
-      padding: 12px; border-radius: 8px; text-align: left; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;
+    .quiz-container {
+      margin-top: 10px;
     }
-    .option-btn:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
-    .option-btn.correct { background-color: #166534 !important; border-color: #22c55e !important; color: #fff !important; }
-    .option-btn.wrong { background-color: #991b1b !important; border-color: #ef4444 !important; color: #fff !important; }
-    .quiz-score { font-size: 1.1rem; text-align: center; font-weight: bold; color: var(--accent); margin-top: 15px; }
+
+    .question-box {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-main);
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover {
+      border-color: var(--accent);
+      background-color: rgba(56, 189, 248, 0.1);
+    }
+
+    .option-btn.correct {
+      background-color: #166534 !important;
+      border-color: #22c55e !important;
+      color: #fff !important;
+    }
+
+    .option-btn.wrong {
+      background-color: #991b1b !important;
+      border-color: #ef4444 !important;
+      color: #fff !important;
+    }
+
+    .quiz-score {
+      font-size: 1.1rem;
+      text-align: center;
+      font-weight: bold;
+      color: var(--accent);
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Welcome Modal -->
-  <div class="modal-overlay active" id="welcomeModal">
+  <!-- Welcome Modal / Popup -->
+  <div class="modal-overlay" id="welcomeModal">
     <div class="modal-card">
+      <button class="close-btn" onclick="closeWelcome()">&times;</button>
       <div class="avatar" style="width: 70px; height: 70px; font-size: 1.8rem; margin-bottom: 15px;">SC</div>
-      <h2>Welcome! 👋</h2>
-      <p style="color: var(--text-sub);">Welcome to <strong>Suyog Chaudhari's Mega Tech Hub</strong>.<br>A systematic workspace for coding, exams, IoT tools, converters, and live railway tracking.</p>
-      <button class="social-btn" style="background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 12px 28px; border-radius: 25px; cursor: pointer; text-align: center;" onclick="closeModal('welcomeModal')">Enter Dashboard 🚀</button>
+      <h2>Welcome to Mega Tech Hub! 👋</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px;">
+        Explore your complete workspace including coding platforms, Govt exam mock tests, typing speed tools, electrical guides, IoT simulators, and live train status.
+      </p>
+      <button class="social-btn" style="background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 24px; border-radius: 20px; cursor: pointer;" onclick="closeWelcome()">Get Started 🚀</button>
     </div>
   </div>
 
-  <!-- POPUPS FOR CATEGORIES -->
+  <div class="top-controls">
+    <button class="welcome-trigger-btn" onclick="openWelcome()">👋 Welcome</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
+  </div>
 
-  <!-- 1. Free Coding Popup -->
-  <div class="modal-overlay" id="codingModal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal('codingModal')">&times;</button>
-      <h2>💻 Free Coding & Practice</h2>
-      <div class="modal-links">
-        <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn">🎓 freeCodeCamp (Python & Web Dev)</a>
-        <a href="https://www.w3schools.com/" target="_blank" class="social-btn">📚 W3Schools Web Tutorials</a>
-        <a href="https://www.programiz.com/" target="_blank" class="social-btn">🐍 Programiz (Python, C, C++)</a>
-        <a href="https://leetcode.com/" target="_blank" class="social-btn">🧩 LeetCode (Coding Practice)</a>
-        <a href="https://www.geeksforgeeks.org/" target="_blank" class="social-btn">🧠 GeeksforGeeks CS Notes</a>
+  <header>
+    <div class="avatar">SC</div>
+    <h2>Suyog Chaudhari</h2>
+    <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
+  </header>
+
+  <main class="container">
+    <!-- Quick Launcher Hub -->
+    <section class="card">
+      <h3>🚀 Master Work Launcher</h3>
+      
+      <!-- Free Coding & Mock Tests (Naye Add kiye hue resources) -->
+      <div class="cat-title">💻 Free Coding, Languages & Practice</div>
+      <div class="social-links">
+        <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn">🎓 freeCodeCamp (Python & Web)</a>
+        <a href="https://www.w3schools.com/default.asp" target="_blank" class="social-btn">📚 W3Schools Tutorials</a>
+        <a href="https://www.programiz.com/" target="_blank" class="social-btn">🐍 Programiz Python & C++</a>
       </div>
-    </div>
-  </div>
 
-  <!-- 2. Govt Exams Popup -->
-  <div class="modal-overlay" id="govtExamsModal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal('govtExamsModal')">&times;</button>
-      <h2>🎯 Govt Exams & Free Mock Tests</h2>
-      <div class="modal-links">
+      <div class="cat-title">📝 Govt Exams, RRB/SSC & Mock Tests</div>
+      <div class="social-links">
         <a href="https://www.oliveboard.in/free-mock-test/" target="_blank" class="social-btn">🎯 Oliveboard RRB & SSC Mocks</a>
-        <a href="https://testbook.com/free-mock-tests" target="_blank" class="social-btn">📝 Testbook Free Test Series</a>
-        <a href="https://www.exambazaar.com/" target="_blank" class="social-btn">📚 ExamBazaar Previous Papers</a>
-        <a href="https://byjusexamprep.com/" target="_blank" class="social-btn">🚀 BYJU'S Exam Prep (Gradeup)</a>
       </div>
-    </div>
-  </div>
 
-  <!-- 3. Free Typing Popup -->
-  <div class="modal-overlay" id="typingModal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal('typingModal')">&times;</button>
-      <h2>⌨️ Typing Speed Training</h2>
-      <div class="modal-links">
+      <div class="cat-title">⌨️ Free Typing Training</div>
+      <div class="social-links">
         <a href="https://monkeytype.com/" target="_blank" class="social-btn">⚡ Monkeytype Speed Test</a>
         <a href="https://www.typingclub.com/" target="_blank" class="social-btn">⌨️ TypingClub Touch Typing</a>
       </div>
-    </div>
-  </div>
 
-  <!-- 4. Train Tracking Popup -->
-  <div class="modal-overlay" id="trainModal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal('trainModal')">&times;</button>
-      <h2>🚆 Live Train Tracking & Travel</h2>
-      <div class="modal-links">
+      <!-- Live Train Tracking & Media Tools -->
+      <div class="cat-title">🚆 Live Train Tracking & Media Tools</div>
+      <div class="social-links">
         <a href="https://www.railyatri.in/" target="_blank" class="social-btn">🚂 RailYatri Train Status</a>
         <a href="https://etrain.info/" target="_blank" class="social-btn">🚆 eTrain Info & Status</a>
         <a href="https://m-indicator.in/" target="_blank" class="social-btn">🚆 m-Indicator Web</a>
         <a href="https://whereismytrain.in/" target="_blank" class="social-btn">📍 Where is my Train</a>
+        <a href="https://cobalt.tools" target="_blank" class="social-btn">📥 Cobalt.tools (Ad-free Downloader)</a>
+        <a href="https://app.clipchamp.com/" target="_blank" class="social-btn">🎬 Clipchamp Video Editor</a>
         <a href="https://www.ixigo.com/trains" target="_blank" class="social-btn">🚆 Ixigo Train Status & PNR</a>
       </div>
-    </div>
-  </div>
 
-  <!-- 5. Media & Converters Popup -->
-  <div class="modal-overlay" id="mediaModal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal('mediaModal')">&times;</button>
-      <h2>📥 Media Downloader & Converters</h2>
-      <div class="modal-links">
+      <!-- Video MP4 Converter & Media Downloader Tools -->
+      <div class="cat-title">📥 Video MP4 Converter & Media Tools</div>
+      <div class="social-links">
         <a href="https://convertio.co/mp4-converter/" target="_blank" class="social-btn">🔄 Video MP4 Converter</a>
         <a href="https://snapinst.app/" target="_blank" class="social-btn">🎬 Insta Reels Downloader</a>
         <a href="https://instadp.io/" target="_blank" class="social-btn">🖼️ Insta HD DP Viewer</a>
@@ -368,34 +349,64 @@
         <a href="https://vocalremover.org/" target="_blank" class="social-btn">🎼 Vocal & Music Remover</a>
         <a href="https://clideo.com/editor" target="_blank" class="social-btn">✂️ Clideo Video Editor</a>
         <a href="https://www.kapwing.com/tools" target="_blank" class="social-btn">🎬 Kapwing Studio</a>
-        <a href="https://cobalt.tools" target="_blank" class="social-btn">📥 Cobalt.tools (Ad-free Downloader)</a>
-        <a href="https://app.clipchamp.com/" target="_blank" class="social-btn">🎬 Clipchamp Video Editor</a>
         <a href="https://wetransfer.com/" target="_blank" class="social-btn">📦 WeTransfer (2GB Share)</a>
         <a href="https://file.io/" target="_blank" class="social-btn">📁 File.io (Temp Storage)</a>
       </div>
-    </div>
-  </div>
 
-  <!-- 6. Degree Portals Popup -->
-  <div class="modal-overlay" id="degreeModal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal('degreeModal')">&times;</button>
-      <h2>🎓 Degree & Official Portals</h2>
-      <div class="modal-links">
+      <div class="cat-title">🌟 Suyog's Special Daily Workflow Hub</div>
+      <div class="social-links">
+        <a href="https://github.com/trending" target="_blank" class="social-btn">🔥 GitHub Trending Repos</a>
+        <a href="https://stackoverflow.com/" target="_blank" class="social-btn">💬 Stack Overflow Q&A</a>
+        <a href="https://chatgpt.com/" target="_blank" class="social-btn">🤖 ChatGPT Assistant</a>
+        <a href="https://claude.ai/" target="_blank" class="social-btn">🧠 Claude AI</a>
+        <a href="https://www.youtube.com/" target="_blank" class="social-btn">▶️ YouTube Learning</a>
+        <a href="https://web.whatsapp.com/" target="_blank" class="social-btn">💬 WhatsApp Web</a>
+      </div>
+
+      <div class="cat-title">🌐 Mega Web Directories (10,000+ Tools Access)</div>
+      <div class="social-links">
+        <a href="https://devsheets.io/" target="_blank" class="social-btn">📚 DevSheets (Cheat Sheets)</a>
+        <a href="https://cheatsheets.zip/" target="_blank" class="social-btn">⚡ CheatSheets.zip (All Code)</a>
+        <a href="https://freestuff.dev/" target="_blank" class="social-btn">🎁 FreeStuff.dev (Free Tools)</a>
+        <a href="https://github.com/sindresorhus/awesome" target="_blank" class="social-btn">🔥 Awesome List (1000s Repos)</a>
+      </div>
+
+      <div class="cat-title">🎓 Degree & Official Portals</div>
+      <div class="social-links">
         <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn">🎓 Manipal BCA LMS</a>
         <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn">🏛️ YCMOU Portal</a>
         <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn">📜 NCVT MIS (ITI)</a>
         <a href="https://digilocker.gov.in/" target="_blank" class="social-btn">📁 DigiLocker</a>
       </div>
-    </div>
-  </div>
 
-  <!-- 7. Microcontrollers & Dev Popup -->
-  <div class="modal-overlay" id="devModal">
-    <div class="modal-card">
-      <button class="close-btn" onclick="closeModal('devModal')">&times;</button>
-      <h2>💻 Microcontrollers, Linux & Dev Tools</h2>
-      <div class="modal-links">
+      <div class="cat-title">⚡ Electrical, Solar & Courses</div>
+      <div class="social-links">
+        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ My YouTube Channel</a>
+        <a href="https://electricaldost.online/" target="_blank" class="social-btn">💡 Electrical Dost</a>
+        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn">🌐 The Tech Unique</a>
+        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn">🛠️ Electrical Technician</a>
+      </div>
+
+      <div class="cat-title">📁 Quick Office, Media & Document Tools</div>
+      <div class="social-links">
+        <a href="https://tinypng.com/" target="_blank" class="social-btn">🖼️ TinyPNG Compress</a>
+        <a href="https://carbon.now.sh/" target="_blank" class="social-btn">📸 Carbon Code Snap</a>
+        <a href="https://www.canva.com/" target="_blank" class="social-btn">🎨 Canva Banners & Thumbnails</a>
+        <a href="https://excalidraw.com/" target="_blank" class="social-btn">📐 Excalidraw Whiteboard</a>
+        <a href="https://photopea.com/" target="_blank" class="social-btn">🖼️ Photopea Online Photoshop</a>
+        <a href="https://tools.pdf24.org/" target="_blank" class="social-btn">📄 PDF24 Suite</a>
+        <a href="https://smallpdf.com/" target="_blank" class="social-btn">📑 Smallpdf Editor</a>
+        <a href="https://editpad.org/" target="_blank" class="social-btn">📝 Editpad Scratchpad</a>
+        <a href="https://www.virustotal.com/" target="_blank" class="social-btn">🛡️ VirusTotal Check</a>
+        <a href="https://rxresu.me/" target="_blank" class="social-btn">📝 Reactive Resume Builder</a>
+        <a href="https://remove.bg/" target="_blank" class="social-btn">✂️ Remove BG</a>
+        <a href="https://ocr.space/" target="_blank" class="social-btn">🔍 OCR Image to Text</a>
+        <a href="https://drive.google.com/" target="_blank" class="social-btn">☁️ Google Drive & Docs</a>
+        <a href="https://iloveimg.com/" target="_blank" class="social-btn">🖼️ ILoveIMG Tools</a>
+      </div>
+
+      <div class="cat-title">💻 Microcontrollers, Linux & Dev Tools</div>
+      <div class="social-links">
         <a href="https://wokwi.com/" target="_blank" class="social-btn">🤖 Wokwi ESP32 Simulator</a>
         <a href="https://pinout.xyz/" target="_blank" class="social-btn">📌 Raspberry/Pinouts</a>
         <a href="https://explainshell.com/" target="_blank" class="social-btn">🐧 Explain Shell</a>
@@ -405,72 +416,32 @@
         <a href="https://devdocs.io/" target="_blank" class="social-btn">📚 DevDocs Offline Docs</a>
         <a href="https://codepen.io/" target="_blank" class="social-btn">💻 CodePen Playground</a>
       </div>
-    </div>
-  </div>
 
-  <!-- MAIN PAGE LAYOUT -->
-  <div class="theme-toggle">
-    <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
-  </div>
+      <div class="cat-title">🛠️ Network, Testing & Design Utilities</div>
+      <div class="social-links">
+        <a href="https://hoppscotch.io/" target="_blank" class="social-btn">📡 Hoppscotch API</a>
+        <a href="https://transform.tools/" target="_blank" class="social-btn">🔄 Transform Code Tools</a>
+        <a href="https://fast.com/" target="_blank" class="social-btn">🚀 Fast.com Speed Test</a>
+        <a href="https://www.speedtest.net/" target="_blank" class="social-btn">🌐 Speedtest Ookla</a>
+        <a href="https://www.color-hex.com/" target="_blank" class="social-btn">🎨 Color Hex Codes</a>
+        <a href="https://temp-mail.org/" target="_blank" class="social-btn">✉️ Temp Mail</a>
+      </div>
+    </section>
 
-  <header>
-    <div class="avatar">SC</div>
-    <h2>Suyog Chaudhari</h2>
-    <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
-  </header>
-
-  <main class="container">
-    <!-- Skills Interactive Section -->
+    <!-- Skills -->
     <section class="card">
-      <h3>⚡ Technical Stack & Skill Filters</h3>
+      <h3>⚡ Technical Stack</h3>
       <div class="skills-list">
-        <span class="badge" onclick="filterBySkill('esp32', this)">ESP32 & IoT</span>
-        <span class="badge" onclick="filterBySkill('electrical', this)">Electrical Wiring & Solar</span>
-        <span class="badge" onclick="filterBySkill('python', this)">Python</span>
-        <span class="badge" onclick="filterBySkill('web', this)">HTML / CSS / JS</span>
-        <span class="badge" onclick="filterBySkill('linux', this)">Termux & Linux</span>
-        <span class="badge" onclick="filterBySkill('git', this)">Git & GitHub</span>
-      </div>
-      <div id="skillInfoBox" class="skill-info-box"></div>
-    </section>
-
-    <!-- Master Systematic Launcher Cards -->
-    <section class="card">
-      <h3>🚀 Master Systematic Hub</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Click any category to open its dedicated tools popup window:</p>
-      
-      <div class="grid-launchers">
-        <button class="category-card-btn" data-category="python,web" onclick="openModal('codingModal')">
-          <span>💻 Free Coding & Practice</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" data-category="exam" onclick="openModal('govtExamsModal')">
-          <span>🎯 Govt Exams & Free Mocks</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" data-category="typing" onclick="openModal('typingModal')">
-          <span>⌨️ Typing Speed Training</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" data-category="train" onclick="openModal('trainModal')">
-          <span>🚆 Live Train Tracking & Travel</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" data-category="media" onclick="openModal('mediaModal')">
-          <span>📥 Media Tools & Converters</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" data-category="degree" onclick="openModal('degreeModal')">
-          <span>🎓 Degree & Portals</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" data-category="esp32,linux" onclick="openModal('devModal')">
-          <span>💻 Microcontrollers & Dev Tools</span> <span>➔</span>
-        </button>
+        <span class="badge">ESP32 & IoT</span>
+        <span class="badge">Electrical Wiring & Solar</span>
+        <span class="badge">Python</span>
+        <span class="badge">HTML / CSS / JS</span>
+        <span class="badge">Termux & Linux</span>
+        <span class="badge">Git & GitHub</span>
       </div>
     </section>
 
-    <!-- Quiz Game -->
+    <!-- Quiz -->
     <section class="card">
       <h3>🧠 ITI & Electrical Quiz Game</h3>
       <div class="quiz-container" id="quizContainer">
@@ -482,48 +453,18 @@
   </main>
 
   <script>
-    function openModal(modalId) {
-      document.getElementById(modalId).classList.add("active");
-    }
-
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove("active");
-    }
-
     function toggleTheme() {
       document.body.classList.toggle("light-theme");
     }
 
-    function filterBySkill(skillKey, element) {
-      const allBadges = document.querySelectorAll(".badge");
-      const categoryBtns = document.querySelectorAll(".category-card-btn");
-      const infoBox = document.getElementById("skillInfoBox");
-
-      const isActive = element.classList.contains("active");
-      allBadges.forEach(b => b.classList.remove("active"));
-      categoryBtns.forEach(btn => btn.classList.remove("highlight"));
-
-      if (isActive) {
-        infoBox.style.display = "none";
-        return;
-      }
-
-      element.classList.add("active");
-      let matches = 0;
-
-      categoryBtns.forEach(btn => {
-        const cat = btn.getAttribute("data-category");
-        if (cat && cat.split(",").includes(skillKey)) {
-          btn.classList.add("highlight");
-          matches++;
-        }
-      });
-
-      infoBox.style.display = "block";
-      infoBox.innerHTML = `✨ Highlighted <strong>${matches}</strong> systematic category popups matching <strong>${element.textContent}</strong> below!`;
+    function openWelcome() {
+      document.getElementById("welcomeModal").classList.add("active");
     }
 
-    // Quiz JavaScript
+    function closeWelcome() {
+      document.getElementById("welcomeModal").classList.remove("active");
+    }
+
     const quizData = [
       {
         question: "Q1. What is the SI unit of Electrical Resistance?",
@@ -586,7 +527,7 @@
             <div style="text-align: center; padding: 20px;">
               <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
               <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${score} / ${quizData.length}</p>
-              <button class="social-btn" onclick="restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play Again</button>
+              <button class="social-btn" onclick="restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px;">Play Again</button>
             </div>
           `;
         }
