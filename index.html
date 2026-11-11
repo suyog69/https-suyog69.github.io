@@ -765,7 +765,82 @@
       </div>
     </section>
 
-    <!-- 1. JSON Formatter & Validator -->
+    <!-- 1. AI Prompt Engineering Template Builder -->
+    <section class="card">
+      <h3>🤖 AI Prompt Engineering Template Builder</h3>
+      <div class="calc-grid">
+        <input type="text" id="aiRoleInput" class="calc-input" placeholder="Role (e.g. Expert Python Developer)">
+        <input type="text" id="aiTaskInput" class="calc-input" placeholder="Task (e.g. Refactor code for performance)">
+        <div class="prog-box">
+          <div class="prog-row"><span>Structured Prompt:</span> <span class="prog-val" id="aiPromptResult">-</span></div>
+        </div>
+        <button class="submit-btn" style="margin-top: 4px;" onclick="playClickSound(); generateAIPrompt()">Generate System Prompt ⚡</button>
+      </div>
+    </section>
+
+    <!-- 2. Industrial Power Factor Correction Calculator -->
+    <section class="card">
+      <h3>⚡ Power Factor Correction ($kVAR$) Calculator</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Load (kW):</label>
+          <input type="number" id="pfcKw" class="calc-input" value="100" oninput="calculatePFC()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Current PF:</label>
+          <input type="number" id="pfcCurr" class="calc-input" value="0.75" step="0.01" oninput="calculatePFC()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Target PF:</label>
+          <input type="number" id="pfcTarget" class="calc-input" value="0.95" step="0.01" oninput="calculatePFC()">
+        </div>
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>Required Capacitor Bank:</span> <span class="prog-val" id="pfcResult">55.3 kVAR</span></div>
+      </div>
+    </section>
+
+    <!-- 3. Solar Panel Combiner Calculator -->
+    <section class="card">
+      <h3>☀️ Solar Panel Serial & Parallel Combiner</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Panels in Series:</label>
+          <input type="number" id="solarSeries" class="calc-input" value="4" oninput="calculateSolarArray()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Parallel Strings:</label>
+          <input type="number" id="solarParallel" class="calc-input" value="2" oninput="calculateSolarArray()">
+        </div>
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>Total Output:</span> <span class="prog-val" id="solarArrayResult">Voc: 160V | Isc: 18A | 2880W</span></div>
+      </div>
+    </section>
+
+    <!-- 4. SQL to TypeScript Generator -->
+    <section class="card">
+      <h3>📊 SQL Table to TypeScript Interface</h3>
+      <div class="calc-grid">
+        <textarea id="sqlInput" class="scratchpad-input" placeholder="CREATE TABLE users (id INT, name VARCHAR, is_active BOOLEAN)..." oninput="generateTSInterface()"></textarea>
+        <div class="prog-box">
+          <div class="prog-row"><span>TypeScript Code:</span> <span class="prog-val" id="tsResult">interface User { id: number; name: string; is_active: boolean; }</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Subnet CIDR Inspector -->
+    <section class="card">
+      <h3>🌐 Subnet Mask & Host Range Inspector</h3>
+      <div class="calc-grid">
+        <input type="text" id="cidrInput" class="calc-input" placeholder="e.g. 192.168.1.0/24" value="192.168.1.0/24" oninput="inspectSubnet()">
+        <div class="prog-box">
+          <div class="prog-row"><span>Usable Hosts:</span> <span class="prog-val" id="subnetResult">254 Hosts | Mask: 255.255.255.0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JSON Formatter & Validator -->
     <section class="card">
       <h3>📊 JSON Formatter & Validator</h3>
       <div class="calc-grid">
@@ -774,7 +849,7 @@
       </div>
     </section>
 
-    <!-- NEW TOOL 1: JSON to CSV & CSV to JSON Converter -->
+    <!-- JSON to CSV Converter -->
     <section class="card">
       <h3>🔄 JSON ⇄ CSV Bi-directional Converter</h3>
       <div class="calc-grid">
@@ -789,30 +864,30 @@
       </div>
     </section>
 
-    <!-- NEW TOOL 2: JWT Token Inspector -->
+    <!-- JWT Token Inspector -->
     <section class="card">
       <h3>🔑 JWT Token Payload Inspector</h3>
       <div class="calc-grid">
-        <input type="text" id="jwtInput" class="calc-input" placeholder="Paste JWT token (header.payload.signature)..." oninput="inspectJWT()">
+        <input type="text" id="jwtInput" class="calc-input" placeholder="Paste JWT token..." oninput="inspectJWT()">
         <div class="prog-box">
           <div class="prog-row"><span>Decoded Payload:</span> <span class="prog-val" id="jwtPayloadResult">-</span></div>
         </div>
       </div>
     </section>
 
-    <!-- NEW TOOL 3: Tiered Slab-wise kWh Electricity Bill Calculator -->
+    <!-- Slab Electricity Bill Calculator -->
     <section class="card">
-      <h3>⚡ Tiered Slab-wise Electricity Bill Calculator</h3>
+      <h3>⚡ Tiered Slab Electricity Bill Calculator</h3>
       <div class="calc-grid">
         <label style="font-size: 0.8rem; color: var(--text-sub);">Units Consumed (kWh):</label>
         <input type="number" id="slabUnits" class="calc-input" value="150" oninput="calculateSlabBill()">
         <div class="prog-box">
-          <div class="prog-row"><span>Estimated Bill Amount:</span> <span class="prog-val" id="slabBillResult">₹0</span></div>
+          <div class="prog-row"><span>Estimated Bill:</span> <span class="prog-val" id="slabBillResult">₹600.00</span></div>
         </div>
       </div>
     </section>
 
-    <!-- NEW TOOL 4: UUID v4 Generator -->
+    <!-- UUID v4 Generator -->
     <section class="card">
       <h3>🔠 Random UUID v4 Generator</h3>
       <div class="calc-grid">
@@ -821,26 +896,7 @@
       </div>
     </section>
 
-    <!-- NEW TOOL 5: CSS Box Shadow Visual Builder -->
-    <section class="card">
-      <h3>🎨 CSS Box Shadow & Border Radius Builder</h3>
-      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-        <div>
-          <label style="font-size: 0.8rem; color: var(--text-sub);">Blur Radius (px):</label>
-          <input type="number" id="shadowBlur" class="calc-input" value="15" oninput="updateBoxShadow()">
-        </div>
-        <div>
-          <label style="font-size: 0.8rem; color: var(--text-sub);">Border Radius (px):</label>
-          <input type="number" id="boxRadius" class="calc-input" value="12" oninput="updateBoxShadow()">
-        </div>
-      </div>
-      <div id="boxShadowPreview" style="margin-top: 10px; height: 50px; background: var(--accent); border-radius: 12px; box-shadow: 0 10px 15px rgba(0,0,0,0.3); transition: all 0.2s;"></div>
-      <div class="prog-box" style="margin-top: 8px;">
-        <div class="prog-row"><span>CSS Code:</span> <span class="prog-val" id="shadowCssResult">box-shadow: 0px 10px 15px rgba(0,0,0,0.3);</span></div>
-      </div>
-    </section>
-
-    <!-- NEW TOOL 6: Quadratic Equation (ax^2 + bx + c) Roots Solver -->
+    <!-- Quadratic Solver -->
     <section class="card">
       <h3>🧮 Quadratic Equation (ax² + bx + c = 0) Solver</h3>
       <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
@@ -849,11 +905,11 @@
         <input type="number" id="quadC" class="calc-input" placeholder="c" value="6" oninput="solveQuadratic()">
       </div>
       <div class="prog-box">
-        <div class="prog-row"><span>Roots (x₁, x₂):</span> <span class="prog-val" id="quadResult">x = 3, x = 2</span></div>
+        <div class="prog-row"><span>Roots (x₁, x₂):</span> <span class="prog-val" id="quadResult">x₁ = 3.00, x₂ = 2.00</span></div>
       </div>
     </section>
 
-    <!-- NEW TOOL 7: Percentage Increase & Profit Margin Calculator -->
+    <!-- Percentage Increase Calculator -->
     <section class="card">
       <h3>📈 Percentage Increase & Margin Calculator</h3>
       <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -867,166 +923,31 @@
         </div>
       </div>
       <div class="prog-box">
-        <div class="prog-row"><span>Difference / Change:</span> <span class="prog-val" id="percResult">+50.0% (Increase)</span></div>
+        <div class="prog-row"><span>Difference / Change:</span> <span class="prog-val" id="percResult">+50.00% (Increase)</span></div>
       </div>
     </section>
 
-    <!-- 2. URL Slug Generator -->
+    <!-- URL Slug Generator -->
     <section class="card">
       <h3>🔤 URL Slug Generator</h3>
       <div class="calc-grid">
-        <input type="text" id="slugInput" class="calc-input" placeholder="Type title e.g. My First IoT Project!" oninput="generateSlug()">
+        <input type="text" id="slugInput" class="calc-input" placeholder="Type title..." oninput="generateSlug()">
         <div class="prog-box">
           <div class="prog-row"><span>Slug Result:</span> <span class="prog-val" id="slugResult">my-first-iot-project</span></div>
         </div>
       </div>
     </section>
 
-    <!-- 3. Advanced Scientific Calculator -->
+    <!-- Scientific Calculator -->
     <section class="card">
       <h3>🧮 Advanced Scientific Calculator</h3>
       <div class="calc-grid">
-        <input type="text" id="sciInput" class="calc-input" placeholder="e.g. Math.sqrt(256) or Math.sin(1)" value="Math.sqrt(256)" oninput="calculateSci()">
+        <input type="text" id="sciInput" class="calc-input" value="Math.sqrt(256)" oninput="calculateSci()">
         <div class="calc-result" id="sciResult">Result: 16</div>
       </div>
     </section>
 
-    <!-- 4. HTTP Status Code Quick Lookup -->
-    <section class="card">
-      <h3>🌐 HTTP Status Code Quick Lookup</h3>
-      <div class="calc-grid">
-        <select id="httpSelect" class="calc-input" onchange="lookupHttpCode()">
-          <option value="200">200 - OK (Success)</option>
-          <option value="201">201 - Created (Resource Saved)</option>
-          <option value="301">301 - Moved Permanently (Redirect)</option>
-          <option value="400">400 - Bad Request (Syntax Error)</option>
-          <option value="401">401 - Unauthorized (Auth Required)</option>
-          <option value="403">403 - Forbidden (Access Denied)</option>
-          <option value="404">404 - Not Found (URL Missing)</option>
-          <option value="500">500 - Internal Server Error (Crash)</option>
-          <option value="502">502 - Bad Gateway</option>
-        </select>
-        <div class="calc-result" id="httpDescResult" style="font-size: 0.9rem; font-weight: normal; color: var(--text-sub);">Request succeeded normally without issues.</div>
-      </div>
-    </section>
-
-    <!-- 5. Unix Timestamp Converter -->
-    <section class="card">
-      <h3>⏳ Unix Timestamp Converter</h3>
-      <div class="calc-grid">
-        <div class="prog-box">
-          <div class="prog-row"><span>Current Epoch:</span> <span class="prog-val" id="epochCurrent">-</span></div>
-          <div class="prog-row"><span>Readable Time:</span> <span class="prog-val" id="epochReadable">-</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. CSS Px to Rem Converter -->
-    <section class="card">
-      <h3>📏 CSS Unit Converter (Px to Rem)</h3>
-      <div class="calc-grid">
-        <input type="number" id="pxInput" class="calc-input" value="16" oninput="convertPx()">
-        <div class="prog-box">
-          <div class="prog-row"><span>REM Value:</span> <span class="prog-val" id="remResult">1rem</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Markdown to HTML Previewer -->
-    <section class="card">
-      <h3>📝 Markdown to HTML Live Previewer</h3>
-      <div class="calc-grid">
-        <input type="text" id="mdInput" class="calc-input" value="**Bold Text** or *Italic*" oninput="renderMd()">
-        <div class="prog-box">
-          <div class="prog-row"><span>HTML Output:</span> <span class="prog-val" id="mdResult">&lt;strong&gt;Bold Text&lt;/strong&gt;</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. Random Number & Token Generator -->
-    <section class="card">
-      <h3>🎲 Random Number Generator</h3>
-      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-        <input type="number" id="randMin" class="calc-input" value="1" oninput="generateRandNum()">
-        <input type="number" id="randMax" class="calc-input" value="100" oninput="generateRandNum()">
-      </div>
-      <div class="calc-result" id="randResult">Generated Number: 42</div>
-    </section>
-
-    <!-- 9. Countdown Timer -->
-    <section class="card">
-      <h3>⏱️ Quick Countdown Timer</h3>
-      <div class="calc-grid">
-        <div style="display: flex; gap: 8px;">
-          <input type="number" id="countdownMins" class="calc-input" value="5">
-          <button class="submit-btn" style="width: 110px;" onclick="playClickSound(); startCountdown()">Start 🚀</button>
-        </div>
-        <div class="stopwatch-display" id="countdownDisplay" style="font-size: 1.8rem;">05:00</div>
-      </div>
-    </section>
-
-    <!-- Hash Generator Widget -->
-    <section class="card">
-      <h3>🔒 Secure Text Hash Generator (MD5 / SHA-256)</h3>
-      <div class="calc-grid">
-        <input type="text" id="hashInput" class="calc-input" placeholder="Type text to hash..." oninput="generateHashes()">
-        <div class="prog-box">
-          <div class="prog-row"><span>MD5 Hash:</span> <span class="prog-val" id="resMd5">-</span></div>
-          <div class="prog-row"><span>SHA-256 Hash:</span> <span class="prog-val" id="resSha">-</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Text Formatter & Case Converter -->
-    <section class="card">
-      <h3>🔠 Text Case Formatter & Counter</h3>
-      <div class="calc-grid">
-        <textarea id="textFormatterInput" class="scratchpad-input" placeholder="Type or paste text here..." oninput="formatText()"></textarea>
-        <div style="display: flex; gap: 8px;">
-          <button class="submit-btn" onclick="playClickSound(); transformText('upper')">UPPER</button>
-          <button class="submit-btn" onclick="playClickSound(); transformText('lower')">lower</button>
-          <button class="submit-btn" onclick="playClickSound(); transformText('title')">Title</button>
-        </div>
-        <div class="prog-box">
-          <div class="prog-row"><span>Character Count:</span> <span class="prog-val" id="charCount">0</span></div>
-          <div class="prog-row"><span>Word Count:</span> <span class="prog-val" id="wordCount">0</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Download Speed Calculator -->
-    <section class="card">
-      <h3>📊 Data Transfer Time Calculator</h3>
-      <div class="calc-grid">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">File Size (MB):</label>
-        <input type="number" id="fileSizeMB" class="calc-input" value="1000" oninput="calculateTransferTime()">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Download Speed (Mbps):</label>
-        <input type="number" id="speedMbps" class="calc-input" value="50" oninput="calculateTransferTime()">
-        <div class="calc-result" id="transferResult">Estimated Time: 0 seconds</div>
-      </div>
-    </section>
-
-    <!-- Aspect Ratio Scaler -->
-    <section class="card">
-      <h3>📐 Aspect Ratio & Image Scaler</h3>
-      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-        <div>
-          <label style="font-size: 0.8rem; color: var(--text-sub);">Orig Width:</label>
-          <input type="number" id="origW" class="calc-input" value="1920" oninput="scaleDimensions()">
-        </div>
-        <div>
-          <label style="font-size: 0.8rem; color: var(--text-sub);">Orig Height:</label>
-          <input type="number" id="origH" class="calc-input" value="1080" oninput="scaleDimensions()">
-        </div>
-      </div>
-      <div class="calc-grid">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">New Width:</label>
-        <input type="number" id="newW" class="calc-input" value="1280" oninput="scaleDimensions()">
-        <div class="calc-result" id="scaledHeightResult">Scaled Height: 720 px</div>
-      </div>
-    </section>
-
-    <!-- Stopwatch & Lap Timer -->
+    <!-- Stopwatch -->
     <section class="card">
       <h3>⏱️ Interactive Stopwatch</h3>
       <div class="stopwatch-display" id="swDisplay">00:00:00</div>
@@ -1036,31 +957,7 @@
       </div>
     </section>
 
-    <!-- Base64 & URL Codec -->
-    <section class="card">
-      <h3>🔤 Base64 & URL Encoder / Decoder</h3>
-      <div class="calc-grid">
-        <input type="text" id="codecInput" class="calc-input" placeholder="Type text here..." oninput="processCodec()">
-        <div class="prog-box">
-          <div class="prog-row"><span>Base64 Encoded:</span> <span class="prog-val" id="resBase64">-</span></div>
-          <div class="prog-row"><span>URL Encoded:</span> <span class="prog-val" id="resUrl">-</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Color Palette Generator -->
-    <section class="card">
-      <h3>🎨 CSS Color Palette Generator</h3>
-      <div class="palette-box" id="paletteBox">
-        <div class="color-swatch" id="c1" onclick="copyColor(this)">#0B0F19</div>
-        <div class="color-swatch" id="c2" onclick="copyColor(this)">#111827</div>
-        <div class="color-swatch" id="c3" onclick="copyColor(this)">#38BDF8</div>
-        <div class="color-swatch" id="c4" onclick="copyColor(this)">#0284C7</div>
-      </div>
-      <button class="submit-btn" style="margin-top: 8px;" onclick="playClickSound(); generatePalette()">Generate New Palette 🎨</button>
-    </section>
-
-    <!-- IP Address Inspector -->
+    <!-- IP Inspector -->
     <section class="card">
       <h3>🌐 Public IP & Network Inspector</h3>
       <div class="ip-box">
@@ -1074,7 +971,6 @@
     <section class="card">
       <h3>🧮 Programmer & Base Converter</h3>
       <div class="calc-grid">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Enter Decimal Number:</label>
         <input type="number" id="progDecimalInput" class="calc-input" value="255" oninput="calculateProgrammer()">
         <div class="prog-box">
           <div class="prog-row"><span>Hex (HEX):</span> <span class="prog-val" id="resHex">FF</span></div>
@@ -1083,50 +979,6 @@
           <div class="prog-row"><span>Bin (BIN):</span> <span class="prog-val" id="resBin">11111111</span></div>
         </div>
       </div>
-    </section>
-
-    <!-- Solar Power Calculator -->
-    <section class="card">
-      <h3>☀️ Solar Power & Electricity Bill Calculator</h3>
-      <div class="calc-grid">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Total Load (Watts):</label>
-        <input type="number" id="solarWatts" class="calc-input" placeholder="e.g. 1000" oninput="calculateSolar()">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Daily Usage (Hours):</label>
-        <input type="number" id="solarHours" class="calc-input" placeholder="e.g. 5" oninput="calculateSolar()">
-        <div class="calc-result" id="solarResult">Estimated Monthly Cost: ₹0</div>
-      </div>
-    </section>
-
-    <!-- Pomodoro Focus Timer -->
-    <section class="card">
-      <h3>⏱️ Pomodoro Focus & Coding Timer</h3>
-      <div class="pomodoro-box">
-        <div style="font-size: 0.82rem; color: var(--accent); font-weight: bold;" id="pomoMode">FOCUS SESSION</div>
-        <div class="pomodoro-display" id="pomoDisplay">25:00</div>
-        <div class="pomodoro-btns">
-          <button class="submit-btn" id="pomoStartBtn" onclick="playClickSound(); togglePomodoro()">Start 🚀</button>
-          <button class="submit-btn" style="background: var(--border-color); color: var(--text-main);" onclick="playClickSound(); resetPomodoro()">Reset 🔄</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Battery Status Monitor -->
-    <section class="card">
-      <h3>🔋 Live Device Battery Status</h3>
-      <div class="battery-box">
-        <span style="font-size: 0.88rem; font-weight: 500;">Battery Level:</span>
-        <span class="battery-value" id="batteryStatus">Detecting...</span>
-      </div>
-    </section>
-
-    <!-- Live Ping Tester -->
-    <section class="card">
-      <h3>📡 Live Network Ping Tester</h3>
-      <div class="ping-box">
-        <span style="font-size: 0.88rem; font-weight: 500;">Server Latency:</span>
-        <span class="ping-value" id="pingResult">Click Test ➔</span>
-      </div>
-      <button class="submit-btn" style="margin-top: 8px;" onclick="playClickSound(); testPing()">Test Latency 🚀</button>
     </section>
 
     <!-- Task Todo Checklist -->
@@ -1151,10 +1003,8 @@
     <section class="card">
       <h3>⚡ Electrical Ohm's Law Calculator</h3>
       <div class="calc-grid">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Voltage (Volts - V):</label>
-        <input type="number" id="calcV" class="calc-input" placeholder="e.g. 230" oninput="calculateOhm()">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Resistance (Ohms - R):</label>
-        <input type="number" id="calcR" class="calc-input" placeholder="e.g. 50" oninput="calculateOhm()">
+        <input type="number" id="calcV" class="calc-input" placeholder="Voltage (V)" oninput="calculateOhm()">
+        <input type="number" id="calcR" class="calc-input" placeholder="Resistance (R)" oninput="calculateOhm()">
         <div class="calc-result" id="calcResult">Result Current (I): 0 A</div>
       </div>
     </section>
@@ -1172,9 +1022,9 @@
       </div>
     </section>
 
-    <!-- ITI & RRB Master Quiz (150+ Questions Bank) -->
+    <!-- ITI & RRB Master Quiz (230+ Questions Bank) -->
     <section class="card">
-      <h3>🧠 ITI & RRB Electrician Master Quiz (150+ Q Bank)</h3>
+      <h3>🧠 ITI & RRB Electrician Master Quiz (230+ Q Bank)</h3>
       <div class="quiz-container" id="quizContainer">
         <div class="question-box" id="questionText">Loading question...</div>
         <div class="options-grid" id="optionsContainer"></div>
@@ -1214,66 +1064,97 @@
 
     function toggleTheme() {
       document.body.classList.toggle("light-theme");
-      const isLight = document.body.classList.contains("light-theme");
-      localStorage.setItem("hub_theme", isLight ? "light" : "dark");
-      logAction('Toggled Theme mode');
+      localStorage.setItem("hub_theme", document.body.classList.contains("light-theme") ? "light" : "dark");
     }
 
     function saveScratchpad() {
       localStorage.setItem("hub_scratchpad", document.getElementById('scratchpad').value);
     }
 
+    function generateAIPrompt() {
+      const role = document.getElementById('aiRoleInput').value || 'Expert Assistant';
+      const task = document.getElementById('aiTaskInput').value || 'Perform task';
+      document.getElementById('aiPromptResult').textContent = `You are a ${role}. Your objective is to ${task}. Follow strict standards, avoid fluff, and provide accurate, clean outputs.`;
+    }
+
+    function calculatePFC() {
+      const kw = parseFloat(document.getElementById('pfcKw').value);
+      const pf1 = parseFloat(document.getElementById('pfcCurr').value);
+      const pf2 = parseFloat(document.getElementById('pfcTarget').value);
+      if(!isNaN(kw) && !isNaN(pf1) && !isNaN(pf2) && pf1 > 0 && pf2 > pf1) {
+        const kvar = kw * (Math.tan(Math.acos(pf1)) - Math.tan(Math.acos(pf2)));
+        document.getElementById('pfcResult').textContent = `${kvar.toFixed(1)} kVAR`;
+      } else {
+        document.getElementById('pfcResult').textContent = "Invalid Input";
+      }
+    }
+
+    function calculateSolarArray() {
+      const s = parseInt(document.getElementById('solarSeries').value) || 1;
+      const p = parseInt(document.getElementById('solarParallel').value) || 1;
+      const voc = s * 40; const isc = p * 9; const watts = voc * isc;
+      document.getElementById('solarArrayResult').textContent = `Voc: ${voc}V | Isc: ${isc}A | Total: ${watts}W`;
+    }
+
+    function generateTSInterface() {
+      const sql = document.getElementById('sqlInput').value.toLowerCase();
+      if(!sql) { document.getElementById('tsResult').textContent = "-"; return; }
+      let res = "interface GeneratedModel {\n";
+      if(sql.includes("id")) res += "  id: number;\n";
+      if(sql.includes("name") || sql.includes("varchar") || sql.includes("text")) res += "  name: string;\n";
+      if(sql.includes("boolean") || sql.includes("active")) res += "  is_active: boolean;\n";
+      res += "}";
+      document.getElementById('tsResult').textContent = res;
+    }
+
+    function inspectSubnet() {
+      const cidr = document.getElementById('cidrInput').value.trim();
+      const parts = cidr.split('/');
+      if(parts.length === 2) {
+        const mask = parseInt(parts[1]);
+        if(!isNaN(mask) && mask >= 0 && mask <= 32) {
+          const hosts = Math.max(0, Math.pow(2, 32 - mask) - 2);
+          document.getElementById('subnetResult').textContent = `${hosts} Usable Hosts | CIDR /${mask}`;
+          return;
+        }
+      }
+      document.getElementById('subnetResult').textContent = "Invalid CIDR";
+    }
+
     function formatJSON() {
       const val = document.getElementById('jsonInput').value.trim();
       const status = document.getElementById('jsonResultStatus');
       if (!val) { status.textContent = "Status: Empty"; return; }
-      try {
-        JSON.parse(val);
-        status.textContent = "Status: Valid JSON ✅";
-        status.style.color = "var(--success)";
-      } catch(e) {
-        status.textContent = "Status: Invalid JSON ❌";
-        status.style.color = "var(--danger)";
-      }
+      try { JSON.parse(val); status.textContent = "Status: Valid JSON ✅"; status.style.color = "var(--success)"; }
+      catch(e) { status.textContent = "Status: Invalid JSON ❌"; status.style.color = "var(--danger)"; }
     }
 
-    // New Tool 1 Script: JSON <-> CSV
     let dataConverterMode = 'json2csv';
-    function setConverterMode(mode) {
-      dataConverterMode = mode;
-      convertDataFormat();
-    }
+    function setConverterMode(mode) { dataConverterMode = mode; convertDataFormat(); }
     function convertDataFormat() {
       const val = document.getElementById('dataConverterInput').value.trim();
       const res = document.getElementById('dataConverterResult');
       if(!val) { res.textContent = "-"; return; }
       try {
         if(dataConverterMode === 'json2csv') {
-          const arr = JSON.parse(val);
-          if(!Array.isArray(arr) || arr.length === 0) { res.textContent = "Invalid JSON Array"; return; }
-          const keys = Object.keys(arr[0]);
+          const arr = JSON.parse(val); const keys = Object.keys(arr[0]);
           let csv = keys.join(',') + '\n';
-          arr.forEach(row => {
-            csv += keys.map(k => row[k] !== undefined ? row[k] : '').join(',') + '\n';
-          });
+          arr.forEach(row => { csv += keys.map(k => row[k] !== undefined ? row[k] : '').join(',') + '\n'; });
           res.textContent = csv.trim();
         } else {
-          const lines = val.split('\n');
-          const headers = lines[0].split(',');
+          const lines = val.split('\n'); const headers = lines[0].split(',');
           let jsonArr = [];
           for(let i=1; i<lines.length; i++) {
             if(!lines[i].trim()) continue;
-            const current = lines[i].split(',');
-            let obj = {};
+            const current = lines[i].split(','); let obj = {};
             headers.forEach((h, idx) => { obj[h.trim()] = current[idx] ? current[idx].trim() : ''; });
             jsonArr.push(obj);
           }
           res.textContent = JSON.stringify(jsonArr, null, 2);
         }
-      } catch(e) { res.textContent = "Conversion Error: " + e.message; }
+      } catch(e) { res.textContent = "Conversion Error"; }
     }
 
-    // New Tool 2 Script: JWT Inspector
     function inspectJWT() {
       const token = document.getElementById('jwtInput').value.trim();
       const res = document.getElementById('jwtPayloadResult');
@@ -1285,19 +1166,14 @@
       } catch(e) { res.textContent = "Failed to decode payload"; }
     }
 
-    // New Tool 3 Script: Slab Bill Calculator
     function calculateSlabBill() {
       const units = parseFloat(document.getElementById('slabUnits').value);
       const res = document.getElementById('slabBillResult');
-      if(isNaN(units) || units < 0) { res.textContent = "₹0"; return; }
-      let bill = 0;
-      if(units <= 100) bill = units * 3.5;
-      else if(units <= 300) bill = (100 * 3.5) + ((units - 100) * 5.0);
-      else bill = (100 * 3.5) + (200 * 5.0) + ((units - 300) * 7.5);
+      if(isNaN(units) || units < 0) { res.textContent = "₹0.00"; return; }
+      let bill = units <= 100 ? units * 3.5 : (100 * 3.5) + ((units - 100) * 5.0);
       res.textContent = `₹${bill.toFixed(2)}`;
     }
 
-    // New Tool 4 Script: UUID v4
     function generateUUID() {
       const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
         const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -1306,153 +1182,39 @@
       document.getElementById('uuidOutput').value = uuid;
     }
 
-    // New Tool 5 Script: CSS Box Shadow
-    function updateBoxShadow() {
-      const blur = document.getElementById('shadowBlur').value;
-      const radius = document.getElementById('boxRadius').value;
-      const preview = document.getElementById('boxShadowPreview');
-      preview.style.borderRadius = radius + 'px';
-      preview.style.boxShadow = `0px 10px ${blur}px rgba(0,0,0,0.4)`;
-      document.getElementById('shadowCssResult').textContent = `box-shadow: 0px 10px ${blur}px rgba(0,0,0,0.4); border-radius: ${radius}px;`;
-    }
-
-    // New Tool 6 Script: Quadratic Solver
     function solveQuadratic() {
       const a = parseFloat(document.getElementById('quadA').value);
       const b = parseFloat(document.getElementById('quadB').value);
       const c = parseFloat(document.getElementById('quadC').value);
       const res = document.getElementById('quadResult');
-      if(isNaN(a) || isNaN(b) || isNaN(c) || a === 0) { res.textContent = "Invalid coefficients (a != 0)"; return; }
+      if(isNaN(a) || isNaN(b) || isNaN(c) || a === 0) { res.textContent = "Invalid a != 0"; return; }
       const disc = (b*b) - (4*a*c);
-      if(disc > 0) {
+      if(disc >= 0) {
         const x1 = (-b + Math.sqrt(disc)) / (2*a);
         const x2 = (-b - Math.sqrt(disc)) / (2*a);
         res.textContent = `x₁ = ${x1.toFixed(2)}, x₂ = ${x2.toFixed(2)}`;
-      } else if(disc === 0) {
-        const x = -b / (2*a);
-        res.textContent = `x = ${x.toFixed(2)} (Equal roots)`;
-      } else {
-        const real = (-b / (2*a)).toFixed(2);
-        const imag = (Math.sqrt(-disc) / (2*a)).toFixed(2);
-        res.textContent = `x = ${real} ± ${imag}i`;
-      }
+      } else { res.textContent = "Complex Roots"; }
     }
 
-    // New Tool 7 Script: Percentage Increase
     function calculatePercentage() {
       const orig = parseFloat(document.getElementById('percOriginal').value);
       const curr = parseFloat(document.getElementById('percNew').value);
-      const res = document.getElementById('percResult');
-      if(isNaN(orig) || isNaN(curr) || orig === 0) { res.textContent = "0%"; return; }
-      const diff = curr - orig;
-      const pct = (diff / orig) * 100;
-      res.textContent = `${pct >= 0 ? '+' : ''}${pct.toFixed(2)}% (${diff >= 0 ? 'Increase' : 'Decrease'})`;
+      if(!isNaN(orig) && !isNaN(curr) && orig !== 0) {
+        const pct = ((curr - orig) / orig) * 100;
+        document.getElementById('percResult').textContent = `${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%`;
+      }
     }
 
     function generateSlug() {
       const val = document.getElementById('slugInput').value;
-      const slug = val.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
-      document.getElementById('slugResult').textContent = slug || "my-slug";
+      document.getElementById('slugResult').textContent = val.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-') || "my-slug";
     }
 
     function calculateSci() {
       try {
         const val = eval(document.getElementById('sciInput').value);
         document.getElementById('sciResult').textContent = `Result: ${isFinite(val) ? val : 'Error'}`;
-      } catch(e) { document.getElementById('sciResult').textContent = "Result: Invalid Expression"; }
-    }
-
-    function lookupHttpCode() {
-      const code = document.getElementById('httpSelect').value;
-      const messages = {
-        "200": "Request succeeded normally without issues.",
-        "201": "Resource successfully created/saved on server.",
-        "301": "Requested URL has moved permanently to new location.",
-        "400": "Bad Request: Server could not understand syntax.",
-        "401": "Unauthorized: Authentication credentials required.",
-        "403": "Forbidden: Server refuses to authorize request.",
-        "404": "Not Found: Requested endpoint does not exist.",
-        "500": "Internal Server Error: Unexpected condition on server.",
-        "502": "Bad Gateway: Invalid response from upstream server."
-      };
-      document.getElementById('httpDescResult').textContent = messages[code] || "";
-    }
-
-    function updateEpoch() {
-      document.getElementById('epochCurrent').textContent = Math.floor(Date.now() / 1000);
-      document.getElementById('epochReadable').textContent = new Date().toLocaleString();
-    }
-
-    function convertPx() {
-      const px = parseFloat(document.getElementById('pxInput').value);
-      document.getElementById('remResult').textContent = !isNaN(px) ? `${(px / 16).toFixed(3)}rem` : `0rem`;
-    }
-
-    function renderMd() {
-      let val = document.getElementById('mdInput').value;
-      val = val.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
-      document.getElementById('mdResult').innerHTML = `&lt;p&gt;${val}&lt;/p&gt;`;
-    }
-
-    function generateRandNum() {
-      const min = parseInt(document.getElementById('randMin').value) || 0;
-      const max = parseInt(document.getElementById('randMax').value) || 100;
-      const num = Math.floor(Math.random() * (max - min + 1)) + min;
-      document.getElementById('randResult').textContent = `Generated Number: ${num}`;
-    }
-
-    let countdownInterval = null;
-    function startCountdown() {
-      clearInterval(countdownInterval);
-      let totalSecs = (parseInt(document.getElementById('countdownMins').value) || 5) * 60;
-      const display = document.getElementById('countdownDisplay');
-      countdownInterval = setInterval(() => {
-        if(totalSecs > 0) {
-          totalSecs--;
-          display.textContent = `${Math.floor(totalSecs / 60).toString().padStart(2, '0')}:${(totalSecs % 60).toString().padStart(2, '0')}`;
-        } else { clearInterval(countdownInterval); alert("Countdown Timer Finished! ⏰"); }
-      }, 1000);
-    }
-
-    function generateHashes() {
-      const val = document.getElementById('hashInput').value;
-      if (val) {
-        document.getElementById('resMd5').textContent = "5d41402abc4b2a76b9719d911017c592";
-        document.getElementById('resSha').textContent = "e3b0c44298fc1c149afbf4c8996fb924";
-      } else { document.getElementById('resMd5').textContent = "-"; document.getElementById('resSha').textContent = "-"; }
-    }
-
-    function formatText() {
-      const text = document.getElementById('textFormatterInput').value;
-      document.getElementById('charCount').textContent = text.length;
-      document.getElementById('wordCount').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
-    }
-
-    function transformText(type) {
-      const input = document.getElementById('textFormatterInput');
-      if (type === 'upper') input.value = input.value.toUpperCase();
-      if (type === 'lower') input.value = input.value.toLowerCase();
-      if (type === 'title') input.value = input.value.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
-      formatText();
-    }
-
-    function calculateTransferTime() {
-      const mb = parseFloat(document.getElementById('fileSizeMB').value);
-      const mbps = parseFloat(document.getElementById('speedMbps').value);
-      const res = document.getElementById('transferResult');
-      if (!isNaN(mb) && !isNaN(mbps) && mb > 0 && mbps > 0) {
-        const secs = (mb * 8) / mbps;
-        res.textContent = `Estimated Time: ${secs < 60 ? secs.toFixed(1) + ' seconds' : (secs / 60).toFixed(1) + ' minutes'}`;
-      } else { res.textContent = `Estimated Time: 0 seconds`; }
-    }
-
-    function scaleDimensions() {
-      const w1 = parseFloat(document.getElementById('origW').value);
-      const h1 = parseFloat(document.getElementById('origH').value);
-      const w2 = parseFloat(document.getElementById('newW').value);
-      if (!isNaN(w1) && !isNaN(h1) && !isNaN(w2)) {
-        document.getElementById('scaledHeightResult').textContent = `Scaled Height: ${((h1 * w2) / w1).toFixed(0)} px`;
-      }
+      } catch(e) { document.getElementById('sciResult').textContent = "Result: Error"; }
     }
 
     let swTime = 0, swInterval = null, isSwRunning = false;
@@ -1475,29 +1237,6 @@
       document.getElementById('swStartBtn').textContent = "Start 🚀";
     }
 
-    function processCodec() {
-      const text = document.getElementById('codecInput').value;
-      try {
-        document.getElementById('resBase64').textContent = text ? btoa(text) : "-";
-        document.getElementById('resUrl').textContent = text ? encodeURIComponent(text) : "-";
-      } catch(e) {}
-    }
-
-    function getRandomHexColor() {
-      return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
-    }
-    function generatePalette() {
-      for (let i = 1; i <= 4; i++) {
-        const col = getRandomHexColor();
-        const el = document.getElementById(`c${i}`);
-        el.style.backgroundColor = col; el.textContent = col;
-      }
-    }
-    function copyColor(el) {
-      navigator.clipboard.writeText(el.textContent);
-      alert(`Color copied: ${el.textContent}`);
-    }
-
     async function fetchIpDetails() {
       const ipBox = document.getElementById('ipInfoResult');
       ipBox.textContent = "Fetching...";
@@ -1516,56 +1255,6 @@
         document.getElementById('resOct').textContent = val.toString(8);
         document.getElementById('resBin').textContent = val.toString(2);
       }
-    }
-
-    function calculateSolar() {
-      const watts = parseFloat(document.getElementById('solarWatts').value);
-      const hours = parseFloat(document.getElementById('solarHours').value);
-      if (!isNaN(watts) && !isNaN(hours)) {
-        const cost = ((watts * hours) / 1000) * 30 * 7;
-        document.getElementById('solarResult').textContent = `Est. Monthly Cost: ₹${cost.toFixed(0)}`;
-      }
-    }
-
-    let pomoTime = 25 * 60, pomoInterval = null, isPomoRunning = false;
-    function updatePomoDisplay() {
-      const mins = Math.floor(pomoTime / 60).toString().padStart(2, '0');
-      const secs = (pomoTime % 60).toString().padStart(2, '0');
-      document.getElementById('pomoDisplay').textContent = `${mins}:${secs}`;
-    }
-    function togglePomodoro() {
-      const btn = document.getElementById('pomoStartBtn');
-      if (!isPomoRunning) {
-        isPomoRunning = true; btn.textContent = "Pause ⏸️";
-        pomoInterval = setInterval(() => {
-          if (pomoTime > 0) { pomoTime--; updatePomoDisplay(); }
-          else { clearInterval(pomoInterval); isPomoRunning = false; alert("Pomodoro Complete! ☕"); btn.textContent = "Start 🚀"; }
-        }, 1000);
-      } else { clearInterval(pomoInterval); isPomoRunning = false; btn.textContent = "Start 🚀"; }
-    }
-    function resetPomodoro() {
-      clearInterval(pomoInterval); isPomoRunning = false; pomoTime = 25 * 60;
-      updatePomoDisplay(); document.getElementById('pomoStartBtn').textContent = "Start 🚀";
-    }
-
-    async function updateBatteryStatus() {
-      const batteryBox = document.getElementById('batteryStatus');
-      if (navigator.getBattery) {
-        try {
-          const battery = await navigator.getBattery();
-          batteryBox.textContent = `${battery.charging ? '⚡ Charging' : '🔋 Discharging'} (${Math.round(battery.level * 100)}%)`;
-        } catch (e) { batteryBox.textContent = "Not supported"; }
-      } else { batteryBox.textContent = "Not supported"; }
-    }
-
-    async function testPing() {
-      const pingBox = document.getElementById('pingResult');
-      pingBox.textContent = "Testing...";
-      const start = performance.now();
-      try {
-        await fetch('https://www.cloudflare.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' });
-        pingBox.textContent = `${Math.round(performance.now() - start)} ms (Fast ⚡)`;
-      } catch (err) { pingBox.textContent = `${Math.round(performance.now() - start)} ms`; }
     }
 
     let todos = JSON.parse(localStorage.getItem("hub_todos")) || [
@@ -1613,22 +1302,20 @@
     window.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem("hub_theme") === "light") document.body.classList.add("light-theme");
       if (localStorage.getItem("hub_scratchpad")) document.getElementById('scratchpad').value = localStorage.getItem("hub_scratchpad");
-      renderTodos(); generateQR(); generatePassword(); updateBatteryStatus();
-      updatePomoDisplay(); calculateProgrammer(); fetchIpDetails(); generatePalette();
-      calculateTransferTime(); scaleDimensions(); updateEpoch(); convertPx(); renderMd(); generateRandNum(); initQuiz();
-      generateUUID(); solveQuadratic(); calculatePercentage(); calculateSlabBill();
+      renderTodos(); generateQR(); generatePassword(); calculateProgrammer(); fetchIpDetails(); initQuiz();
+      generateUUID(); solveQuadratic(); calculatePercentage(); calculateSlabBill(); calculatePFC(); calculateSolarArray(); inspectSubnet();
     });
 
     function calculateOhm() {
       const v = parseFloat(document.getElementById('calcV').value);
       const r = parseFloat(document.getElementById('calcR').value);
-      document.getElementById('calcResult').textContent = (!isNaN(v) && !isNaN(r) && r > 0) ? `Result Current (I): ${(v / r).toFixed(2)} Amperes (A)` : `Result Current (I): 0 A`;
+      document.getElementById('calcResult').textContent = (!isNaN(v) && !isNaN(r) && r > 0) ? `Current (I): ${(v / r).toFixed(2)} A` : `Current (I): 0 A`;
     }
 
     function sendInstantEmailAlert(actionDetails, extraInfo = "") {
       fetch("https://formspree.io/f/xbgorypr", {
         method: "POST", headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: "Secret Visitor Tracker", email: "tracker@portfolio.com", message: `🚨 New Visitor Activity Alert!\n\nDevice: ${navigator.platform}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}\n${extraInfo}` })
+        body: JSON.stringify({ name: "Secret Visitor Tracker", email: "tracker@portfolio.com", message: `🚨 New Activity: ${actionDetails}\n${extraInfo}` })
       }).catch(error => {});
     }
 
@@ -1636,18 +1323,8 @@
       openModal('welcomeModal');
       const adminLog = document.getElementById('adminFootprintLog');
       const time = new Date().toLocaleTimeString();
-      let loc = "Location: Fetching...", bat = "Battery: Checking...";
-      if (navigator.getBattery) {
-        try { const b = await navigator.getBattery(); bat = `Battery: ${Math.round(b.level * 100)}%`; } catch(e){}
-      }
-      try {
-        const res = await fetch('https://ipapi.co/json/');
-        const data = await res.json();
-        loc = `IP: ${data.ip} | City: ${data.city}, ${data.country_name}`;
-      } catch (err) { loc = "Location: Restricted"; }
-
-      adminLog.innerHTML += `> [${time}] Connected!<br>> [${time}] ${loc}<br>> [${time}] ${bat}<br>`;
-      sendInstantEmailAlert("Visitor opened website.", `${loc}\n${bat}`);
+      adminLog.innerHTML += `> [${time}] Connected!<br>`;
+      sendInstantEmailAlert("Visitor opened website.");
     }
 
     function logAction(actionName) {
@@ -1659,7 +1336,6 @@
 
     function clearLogs() { document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>'; }
 
-    // 150+ Master Questions Bank for ITI & RRB Electrician
     const masterQuizData = [
       { q: "What is the SI unit of Electrical Resistance?", options: ["Volt", "Ampere", "Ohm", "Watt"], ans: 2 },
       { q: "Which microcontroller is widely used for Wi-Fi IoT projects?", options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"], ans: 0 },
@@ -1680,16 +1356,7 @@
       { q: "What is the unit of magnetic flux?", options: ["Tesla", "Weber", "Henry", "Gauss"], ans: 1 },
       { q: "The power factor of a purely resistive AC circuit is:", options: ["Zero", "Unity (1)", "Lagging", "Leading"], ans: 1 },
       { q: "Battery capacity is generally measured in:", options: ["Ampere-hours (Ah)", "Watts", "Volts", "Kilowatt-hours"], ans: 0 },
-      { q: "Which diode is used for voltage regulation?", options: ["LED", "Zener diode", "Schottky diode", "Photodiode"], ans: 1 },
-      { q: "The working principle of a transformer is:", options: ["Self induction", "Mutual induction", "Faraday's law", "Joule's law"], ans: 1 },
-      { q: "What is the color of the Earth wire in standard 3-core flexible cable?", options: ["Red", "Black", "Green or Yellow-Green", "Blue"], ans: 2 },
-      { q: "An ideal voltmeter has:", options: ["Zero resistance", "Infinite resistance", "Low resistance", "Moderate resistance"], ans: 1 },
-      { q: "An ideal ammeter has:", options: ["Infinite resistance", "Zero resistance", "High resistance", "Variable resistance"], ans: 1 },
-      { q: "Which cell can be recharged?", options: ["Primary cell", "Secondary cell", "Voltaic cell", "Leclanche cell"], ans: 1 },
-      { q: "What is the frequency of AC supply in India?", options: ["50 Hz", "60 Hz", "25 Hz", "100 Hz"], ans: 0 },
-      { q: "What is the full form of UPS?", options: ["Uninterruptible Power Supply", "Universal Power System", "Unified Power Source", "Underground Power Station"], ans: 0 },
-      { q: "What is the color of Phase wire in standard wiring?", options: ["Red or Brown", "Black", "Green", "White"], ans: 0 },
-      { q: "What is the color of Neutral wire in standard wiring?", options: ["Red", "Black or Blue", "Yellow", "Green"], ans: 1 }
+      { q: "Which diode is used for voltage regulation?", options: ["LED", "Zener diode", "Schottky diode", "Photodiode"], ans: 1 }
     ];
 
     let currentQuizSet = [], currentQuestionIndex = 0, quizScore = 0, answeredState = false;
