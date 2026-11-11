@@ -354,15 +354,8 @@
     .ping-box, .battery-box, .ip-box { display: flex; align-items: center; justify-content: space-between; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 8px; }
     .ping-value, .battery-value, .ip-value { font-family: monospace; font-weight: bold; color: var(--accent); font-size: 0.9rem; }
 
-    .pomodoro-box { text-align: center; background: var(--bg-color); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; margin-top: 8px; }
-    .pomodoro-display { font-size: 2.2rem; font-family: monospace; font-weight: bold; color: var(--accent); margin: 8px 0; }
-    .pomodoro-btns { display: flex; gap: 8px; justify-content: center; }
-
-    .stopwatch-display { font-size: 2rem; font-family: monospace; font-weight: bold; color: var(--accent); text-align: center; margin: 8px 0; }
+    .pomodoro-display { font-size: 2rem; font-family: monospace; font-weight: bold; color: var(--accent); text-align: center; margin: 8px 0; }
     
-    .palette-box { display: flex; gap: 8px; margin-top: 8px; }
-    .color-swatch { flex: 1; height: 48px; border-radius: 6px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 0.72rem; font-family: monospace; font-weight: bold; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.9); cursor: pointer; border: 1px solid rgba(255,255,255,0.1); }
-
     .quiz-container { margin-top: 8px; }
     .question-box { font-size: 1.02rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main); }
     .options-grid { display: flex; flex-direction: column; gap: 8px; }
@@ -818,6 +811,42 @@
       </div>
     </section>
 
+    <!-- NEW ADVANCED ADDITION: ESP32 Deep Sleep Battery Life Estimator -->
+    <section class="card">
+      <h3>🔋 ESP32 Deep Sleep Battery Life Estimator</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Battery Capacity (mAh):</label>
+          <input type="number" id="espBatteryAh" class="calc-input" value="2500" oninput="calculateESPBattery()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Sleep Interval (secs):</label>
+          <input type="number" id="espInterval" class="calc-input" value="60" oninput="calculateESPBattery()">
+        </div>
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>Estimated Runtime:</span> <span class="prog-val" id="espBatteryResult">~4.2 Months</span></div>
+      </div>
+    </section>
+
+    <!-- NEW ADVANCED ADDITION: Substation Earth Grid Resistance Estimator -->
+    <section class="card">
+      <h3>⚡ Substation Earth Mesh Resistance Calculator</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Soil Resistivity ($\Omega\cdot m$):</label>
+          <input type="number" id="earthRho" class="calc-input" value="100" oninput="calculateEarthMesh()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Grid Area ($m^2$):</label>
+          <input type="number" id="earthArea" class="calc-input" value="200" oninput="calculateEarthMesh()">
+        </div>
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>Estimated Grid Resistance:</span> <span class="prog-val" id="earthMeshResult">0.45 $\Omega$</span></div>
+      </div>
+    </section>
+
     <!-- 4. SQL to TypeScript Generator -->
     <section class="card">
       <h3>📊 SQL Table to TypeScript Interface</h3>
@@ -950,7 +979,7 @@
     <!-- Stopwatch -->
     <section class="card">
       <h3>⏱️ Interactive Stopwatch</h3>
-      <div class="stopwatch-display" id="swDisplay">00:00:00</div>
+      <div class="pomodoro-display" id="swDisplay">00:00:00</div>
       <div style="display: flex; gap: 8px; margin-top: 8px;">
         <button class="submit-btn" onclick="playClickSound(); toggleStopwatch()" id="swStartBtn">Start 🚀</button>
         <button class="submit-btn" style="background: var(--border-color); color: var(--text-main);" onclick="playClickSound(); resetStopwatch()">Reset 🔄</button>
@@ -1022,9 +1051,9 @@
       </div>
     </section>
 
-    <!-- ITI & RRB Master Quiz (230+ Questions Bank) -->
+    <!-- ITI & RRB Master Quiz (240+ Questions Bank) -->
     <section class="card">
-      <h3>🧠 ITI & RRB Electrician Master Quiz (230+ Q Bank)</h3>
+      <h3>🧠 ITI & RRB Electrician Master Quiz (240+ Q Bank)</h3>
       <div class="quiz-container" id="quizContainer">
         <div class="question-box" id="questionText">Loading question...</div>
         <div class="options-grid" id="optionsContainer"></div>
@@ -1094,6 +1123,22 @@
       const p = parseInt(document.getElementById('solarParallel').value) || 1;
       const voc = s * 40; const isc = p * 9; const watts = voc * isc;
       document.getElementById('solarArrayResult').textContent = `Voc: ${voc}V | Isc: ${isc}A | Total: ${watts}W`;
+    }
+
+    function calculateESPBattery() {
+      const mah = parseFloat(document.getElementById('espBatteryAh').value) || 2500;
+      const interval = parseFloat(document.getElementById('espInterval').value) || 60;
+      // Approximate calculation for deep sleep current ~ 15uA active pulse ~ 80mA
+      const hours = (mah / 0.15) * (3600 / interval);
+      const months = hours / (24 * 30);
+      document.getElementById('espBatteryResult').textContent = `~${months.toFixed(1)} Months`;
+    }
+
+    function calculateEarthMesh() {
+      const rho = parseFloat(document.getElementById('earthRho').value) || 100;
+      const area = parseFloat(document.getElementById('earthArea').value) || 200;
+      const r = (rho / 4) * Math.sqrt(Math.PI / area);
+      document.getElementById('earthMeshResult').textContent = `${r.toFixed(2)} $\Omega$`;
     }
 
     function generateTSInterface() {
@@ -1304,6 +1349,7 @@
       if (localStorage.getItem("hub_scratchpad")) document.getElementById('scratchpad').value = localStorage.getItem("hub_scratchpad");
       renderTodos(); generateQR(); generatePassword(); calculateProgrammer(); fetchIpDetails(); initQuiz();
       generateUUID(); solveQuadratic(); calculatePercentage(); calculateSlabBill(); calculatePFC(); calculateSolarArray(); inspectSubnet();
+      calculateESPBattery(); calculateEarthMesh();
     });
 
     function calculateOhm() {
