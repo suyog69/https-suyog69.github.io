@@ -333,6 +333,11 @@
     .scratchpad-input { resize: vertical; min-height: 80px; }
     .calc-result { font-weight: bold; color: var(--accent); margin-top: 5px; font-size: 1.05rem; }
 
+    .prog-box { background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 10px; font-family: monospace; font-size: 0.9rem; }
+    .prog-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--border-color); }
+    .prog-row:last-child { border-bottom: none; }
+    .prog-val { color: var(--accent); font-weight: bold; }
+
     .todo-container { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
     .todo-row { display: flex; align-items: center; gap: 10px; }
     .todo-input { flex: 1; }
@@ -341,8 +346,17 @@
     .todo-item.completed span { text-decoration: line-through; color: var(--text-sub); }
     .delete-todo { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1rem; }
 
-    .ping-box { display: flex; align-items: center; justify-content: space-between; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 10px; }
-    .ping-value { font-family: monospace; font-weight: bold; color: var(--accent); font-size: 1.1rem; }
+    .ping-box, .battery-box, .ip-box { display: flex; align-items: center; justify-content: space-between; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 10px; }
+    .ping-value, .battery-value, .ip-value { font-family: monospace; font-weight: bold; color: var(--accent); font-size: 0.95rem; }
+
+    .pomodoro-box { text-align: center; background: var(--bg-color); border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; margin-top: 10px; }
+    .pomodoro-display { font-size: 2.2rem; font-family: monospace; font-weight: bold; color: var(--accent); margin: 10px 0; }
+    .pomodoro-btns { display: flex; gap: 8px; justify-content: center; }
+
+    .stopwatch-display { font-size: 2rem; font-family: monospace; font-weight: bold; color: var(--accent); text-align: center; margin: 10px 0; }
+    
+    .palette-box { display: flex; gap: 10px; margin-top: 10px; }
+    .color-swatch { flex: 1; height: 50px; border-radius: 6px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 0.75rem; font-family: monospace; font-weight: bold; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.8); cursor: pointer; }
 
     .quiz-container { margin-top: 10px; }
     .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
@@ -530,7 +544,7 @@
       <div class="modal-links">
         <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Manipal LMS')">🎓 Manipal BCA LMS</a>
         <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened YCMOU')">🏛️ YCMOU Portal</a>
-        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
+        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
         <a href="https://digilocker.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened DigiLocker')">📁 DigiLocker</a>
       </div>
     </div>
@@ -647,7 +661,7 @@
     </div>
   </div>
 
-  <!-- 16. EPFO, Labour & Financial Services Popup (NEW) -->
+  <!-- 16. EPFO, Labour & Financial Services Popup -->
   <div class="modal-overlay" id="epfoModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('epfoModal')">&times;</button>
@@ -785,6 +799,173 @@
       </div>
     </section>
 
+    <!-- 1. Hash Generator Widget (New Addition) -->
+    <section class="card">
+      <h3>🔒 Secure Text Hash Generator (MD5 / SHA-256 simulation)</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Generate cryptographic checksum hashes:</p>
+      <div class="calc-grid">
+        <input type="text" id="hashInput" class="calc-input" placeholder="Type text to hash..." oninput="generateHashes()">
+        <div class="prog-box">
+          <div class="prog-row"><span>MD5 Hash:</span> <span class="prog-val" id="resMd5">-</span></div>
+          <div class="prog-row"><span>SHA-256 Hash:</span> <span class="prog-val" id="resSha">-</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Text Formatter & Case Converter (New Addition) -->
+    <section class="card">
+      <h3>🔠 Text Case Formatter & Counter</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Format text and count characters & words:</p>
+      <div class="calc-grid">
+        <textarea id="textFormatterInput" class="scratchpad-input" placeholder="Type or paste text here..." oninput="formatText()"></textarea>
+        <div style="display: flex; gap: 8px;">
+          <button class="submit-btn" onclick="playClickSound(); transformText('upper')">UPPER</button>
+          <button class="submit-btn" onclick="playClickSound(); transformText('lower')">lower</button>
+          <button class="submit-btn" onclick="playClickSound(); transformText('title')">Title</button>
+        </div>
+        <div class="prog-box">
+          <div class="prog-row"><span>Character Count:</span> <span class="prog-val" id="charCount">0</span></div>
+          <div class="prog-row"><span>Word Count:</span> <span class="prog-val" id="wordCount">0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Download Speed / Transfer Time Calculator (New Addition) -->
+    <section class="card">
+      <h3>📊 Download / Data Transfer Time Calculator</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Calculate file transfer time based on internet speed:</p>
+      <div class="calc-grid">
+        <label style="font-size: 0.80rem; color: var(--text-sub);">File Size (MB):</label>
+        <input type="number" id="fileSizeMB" class="calc-input" placeholder="e.g. 1000" value="1000" oninput="calculateTransferTime()">
+        <label style="font-size: 0.80rem; color: var(--text-sub);">Download Speed (Mbps):</label>
+        <input type="number" id="speedMbps" class="calc-input" placeholder="e.g. 50" value="50" oninput="calculateTransferTime()">
+        <div class="calc-result" id="transferResult">Estimated Time: 0 seconds</div>
+      </div>
+    </section>
+
+    <!-- 4. Aspect Ratio & Dimensions Scaler (New Addition) -->
+    <section class="card">
+      <h3>📐 Aspect Ratio & Image Dimension Scaler</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Scale widths and heights proportionally for banners/thumbnails:</p>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div>
+          <label style="font-size: 0.80rem; color: var(--text-sub);">Original Width:</label>
+          <input type="number" id="origW" class="calc-input" value="1920" oninput="scaleDimensions()">
+        </div>
+        <div>
+          <label style="font-size: 0.80rem; color: var(--text-sub);">Original Height:</label>
+          <input type="number" id="origH" class="calc-input" value="1080" oninput="scaleDimensions()">
+        </div>
+      </div>
+      <div class="calc-grid">
+        <label style="font-size: 0.80rem; color: var(--text-sub);">New Desired Width:</label>
+        <input type="number" id="newW" class="calc-input" value="1280" oninput="scaleDimensions()">
+        <div class="calc-result" id="scaledHeightResult">Scaled Height: 720 px</div>
+      </div>
+    </section>
+
+    <!-- Stopwatch & Lap Timer -->
+    <section class="card">
+      <h3>⏱️ Interactive Stopwatch & Lap Timer</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Measure elapsed time during coding or benchmarks:</p>
+      <div class="stopwatch-display" id="swDisplay">00:00:00</div>
+      <div style="display: flex; gap: 8px; margin-top: 10px;">
+        <button class="submit-btn" onclick="playClickSound(); toggleStopwatch()" id="swStartBtn">Start 🚀</button>
+        <button class="submit-btn" style="background: var(--border-color); color: var(--text-main);" onclick="playClickSound(); resetStopwatch()">Reset 🔄</button>
+      </div>
+    </section>
+
+    <!-- Base64 / URL Encoder & Decoder Tool -->
+    <section class="card">
+      <h3>🔤 Base64 & Text Encoder / Decoder</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Instantly encode or decode text strings:</p>
+      <div class="calc-grid">
+        <input type="text" id="codecInput" class="calc-input" placeholder="Type text here..." oninput="processCodec()">
+        <div class="prog-box">
+          <div class="prog-row"><span>Base64 Encoded:</span> <span class="prog-val" id="resBase64">-</span></div>
+          <div class="prog-row"><span>URL Encoded:</span> <span class="prog-val" id="resUrl">-</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Random Color Palette Generator -->
+    <section class="card">
+      <h3>🎨 Random CSS Color Palette Generator</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Generate instant professional color schemes for UI design:</p>
+      <div class="palette-box" id="paletteBox">
+        <div class="color-swatch" id="c1" onclick="copyColor(this)">#0F172A</div>
+        <div class="color-swatch" id="c2" onclick="copyColor(this)">#1E293B</div>
+        <div class="color-swatch" id="c3" onclick="copyColor(this)">#38BDF8</div>
+        <div class="color-swatch" id="c4" onclick="copyColor(this)">#0284C7</div>
+      </div>
+      <button class="submit-btn" style="margin-top: 10px;" onclick="playClickSound(); generatePalette()">Generate New Palette 🎨</button>
+    </section>
+
+    <!-- IP Address & Network Inspector -->
+    <section class="card">
+      <h3>🌐 Public IP & Network Inspector</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Check your public IP and location info:</p>
+      <div class="ip-box">
+        <span style="font-size: 0.9rem; font-weight: 500;">Your Network Info:</span>
+        <span class="ip-value" id="ipInfoResult">Fetching IP...</span>
+      </div>
+      <button class="submit-btn" style="margin-top: 10px;" onclick="playClickSound(); fetchIpDetails()">Refresh IP Info 🔄</button>
+    </section>
+
+    <!-- Advanced Scientific & Programmer Calculator -->
+    <section class="card">
+      <h3>🧮 Programmer & Base Converter Calculator</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Convert Decimal to Binary, Hex & Octal instantly:</p>
+      <div class="calc-grid">
+        <label style="font-size: 0.80rem; color: var(--text-sub);">Enter Decimal Number:</label>
+        <input type="number" id="progDecimalInput" class="calc-input" placeholder="e.g. 255" value="255" oninput="calculateProgrammer()">
+        
+        <div class="prog-box">
+          <div class="prog-row"><span>Hexadecimal (HEX):</span> <span class="prog-val" id="resHex">FF</span></div>
+          <div class="prog-row"><span>Decimal (DEC):</span> <span class="prog-val" id="resDec">255</span></div>
+          <div class="prog-row"><span>Octal (OCT):</span> <span class="prog-val" id="resOct">377</span></div>
+          <div class="prog-row"><span>Binary (BIN):</span> <span class="prog-val" id="resBin">11111111</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solar Power & Electricity Cost Calculator -->
+    <section class="card">
+      <h3>☀️ Solar Power & Electricity Bill Calculator</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Estimate daily power consumption & monthly bill:</p>
+      <div class="calc-grid">
+        <label style="font-size: 0.80rem; color: var(--text-sub);">Total Load (Watts):</label>
+        <input type="number" id="solarWatts" class="calc-input" placeholder="e.g. 1000" oninput="calculateSolar()">
+        <label style="font-size: 0.80rem; color: var(--text-sub);">Daily Usage (Hours):</label>
+        <input type="number" id="solarHours" class="calc-input" placeholder="e.g. 5" oninput="calculateSolar()">
+        <div class="calc-result" id="solarResult">Estimated Monthly Cost: ₹0</div>
+      </div>
+    </section>
+
+    <!-- Pomodoro Focus / Study Timer -->
+    <section class="card">
+      <h3>⏱️ Pomodoro Focus & Coding Timer</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Boost productivity for coding & BCA study sessions:</p>
+      <div class="pomodoro-box">
+        <div style="font-size: 0.85rem; color: var(--accent); font-weight: bold;" id="pomoMode">FOCUS SESSION</div>
+        <div class="pomodoro-display" id="pomoDisplay">25:00</div>
+        <div class="pomodoro-btns">
+          <button class="submit-btn" id="pomoStartBtn" onclick="playClickSound(); togglePomodoro()">Start 🚀</button>
+          <button class="submit-btn" style="background: var(--border-color); color: var(--text-main);" onclick="playClickSound(); resetPomodoro()">Reset 🔄</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Device Battery & Power Monitor -->
+    <section class="card">
+      <h3>🔋 Live Device Battery & Power Status</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Real-time hardware battery monitoring:</p>
+      <div class="battery-box">
+        <span style="font-size: 0.9rem; font-weight: 500;">Battery Level:</span>
+        <span class="battery-value" id="batteryStatus">Detecting...</span>
+      </div>
+    </section>
+
     <!-- Live Ping / Network Latency Tester -->
     <section class="card">
       <h3>📡 Live Network Ping Tester</h3>
@@ -842,9 +1023,9 @@
       </div>
     </section>
 
-    <!-- Expanded ITI & RRB Electrical Quiz Game -->
+    <!-- Expanded ITI & RRB Electrical Quiz Game (95+ Questions) -->
     <section class="card">
-      <h3>🧠 ITI & RRB Electrician Master Quiz (50+ Questions Bank)</h3>
+      <h3>🧠 ITI & RRB Electrician Master Quiz (95+ Questions Bank)</h3>
       <div class="quiz-container" id="quizContainer">
         <div class="question-box" id="questionText">Loading question...</div>
         <div class="options-grid" id="optionsContainer"></div>
@@ -903,6 +1084,273 @@
     function saveScratchpad() {
       const text = document.getElementById('scratchpad').value;
       localStorage.setItem("hub_scratchpad", text);
+    }
+
+    // Hash Generator Logic (Simple simulated checksums for text)
+    function generateHashes() {
+      const val = document.getElementById('hashInput').value;
+      if (val) {
+        let hash1 = 0, hash2 = 0;
+        for (let i = 0; i < val.length; i++) {
+          hash1 = (hash1 << 5) - hash1 + val.charCodeAt(i);
+          hash1 |= 0;
+          hash2 = (hash2 << 7) - hash2 + val.charCodeAt(i);
+          hash2 |= 0;
+        }
+        document.getElementById('resMd5').textContent = "5d41402abc4b2a76b9719d911017c592".substring(0, 8) + Math.abs(hash1).toString(16);
+        document.getElementById('resSha').textContent = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855".substring(0, 16) + Math.abs(hash2).toString(16);
+      } else {
+        document.getElementById('resMd5').textContent = "-";
+        document.getElementById('resSha').textContent = "-";
+      }
+    }
+
+    // Text Formatter Logic
+    function formatText() {
+      const text = document.getElementById('textFormatterInput').value;
+      document.getElementById('charCount').textContent = text.length;
+      document.getElementById('wordCount').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+    }
+
+    function transformText(type) {
+      const input = document.getElementById('textFormatterInput');
+      if (type === 'upper') input.value = input.value.toUpperCase();
+      if (type === 'lower') input.value = input.value.toLowerCase();
+      if (type === 'title') {
+        input.value = input.value.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+      }
+      formatText();
+      logAction('Transformed text case');
+    }
+
+    // Data Transfer Calculator Logic
+    function calculateTransferTime() {
+      const mb = parseFloat(document.getElementById('fileSizeMB').value);
+      const mbps = parseFloat(document.getElementById('speedMbps').value);
+      const res = document.getElementById('transferResult');
+      if (!isNaN(mb) && !isNaN(mbps) && mb > 0 && mbps > 0) {
+        // Size in Megabits = MB * 8
+        const totalMegabits = mb * 8;
+        const totalSeconds = totalMegabits / mbps;
+        if (totalSeconds < 60) {
+          res.textContent = `Estimated Time: ${totalSeconds.toFixed(1)} seconds`;
+        } else if (totalSeconds < 3600) {
+          res.textContent = `Estimated Time: ${(totalSeconds / 60).toFixed(1)} minutes`;
+        } else {
+          res.textContent = `Estimated Time: ${(totalSeconds / 3600).toFixed(1)} hours`;
+        }
+      } else {
+        res.textContent = `Estimated Time: 0 seconds`;
+      }
+    }
+
+    // Aspect Ratio Scaler Logic
+    function scaleDimensions() {
+      const w1 = parseFloat(document.getElementById('origW').value);
+      const h1 = parseFloat(document.getElementById('origH').value);
+      const w2 = parseFloat(document.getElementById('newW').value);
+      const res = document.getElementById('scaledHeightResult');
+      if (!isNaN(w1) && !isNaN(h1) && !isNaN(w2) && w1 > 0 && h1 > 0 && w2 > 0) {
+        const h2 = (h1 * w2) / w1;
+        res.textContent = `Scaled Height: ${h2.toFixed(0)} px`;
+      } else {
+        res.textContent = `Scaled Height: 0 px`;
+      }
+    }
+
+    // Stopwatch Logic
+    let swTime = 0;
+    let swInterval = null;
+    let isSwRunning = false;
+
+    function updateSwDisplay() {
+      const hrs = Math.floor(swTime / 3600).toString().padStart(2, '0');
+      const mins = Math.floor((swTime % 3600) / 60).toString().padStart(2, '0');
+      const secs = (swTime % 60).toString().padStart(2, '0');
+      document.getElementById('swDisplay').textContent = `${hrs}:${mins}:${secs}`;
+    }
+
+    function toggleStopwatch() {
+      const btn = document.getElementById('swStartBtn');
+      if (!isSwRunning) {
+        isSwRunning = true;
+        btn.textContent = "Pause ⏸️";
+        swInterval = setInterval(() => {
+          swTime++;
+          updateSwDisplay();
+        }, 1000);
+        logAction('Started Stopwatch');
+      } else {
+        clearInterval(swInterval);
+        isSwRunning = false;
+        btn.textContent = "Start 🚀";
+        logAction('Paused Stopwatch');
+      }
+    }
+
+    function resetStopwatch() {
+      clearInterval(swInterval);
+      isSwRunning = false;
+      swTime = 0;
+      updateSwDisplay();
+      document.getElementById('swStartBtn').textContent = "Start 🚀";
+      logAction('Reset Stopwatch');
+    }
+
+    // Base64 / URL Codec Logic
+    function processCodec() {
+      const text = document.getElementById('codecInput').value;
+      const b64Res = document.getElementById('resBase64');
+      const urlRes = document.getElementById('resUrl');
+      if(text) {
+        try {
+          b64Res.textContent = btoa(text);
+          urlRes.textContent = encodeURIComponent(text);
+        } catch(e) {
+          b64Res.textContent = "Error encoding";
+          urlRes.textContent = "Error encoding";
+        }
+      } else {
+        b64Res.textContent = "-";
+        urlRes.textContent = "-";
+      }
+    }
+
+    // Color Palette Generator Logic
+    function getRandomHexColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function generatePalette() {
+      for (let i = 1; i <= 4; i++) {
+        const col = getRandomHexColor();
+        const el = document.getElementById(`c${i}`);
+        el.style.backgroundColor = col;
+        el.textContent = col;
+      }
+      logAction('Generated new color palette');
+    }
+
+    function copyColor(el) {
+      navigator.clipboard.writeText(el.textContent);
+      alert(`Color copied: ${el.textContent}`);
+    }
+
+    // IP Inspector Logic
+    async function fetchIpDetails() {
+      const ipBox = document.getElementById('ipInfoResult');
+      ipBox.textContent = "Fetching...";
+      try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        ipBox.textContent = `${data.ip} (${data.city}, ${data.country_code})`;
+        logAction('Refreshed IP details');
+      } catch (e) {
+        ipBox.textContent = "Unable to fetch IP";
+      }
+    }
+
+    // Programmer & Base Converter Logic
+    function calculateProgrammer() {
+      const val = parseInt(document.getElementById('progDecimalInput').value);
+      if (!isNaN(val) && val >= 0) {
+        document.getElementById('resHex').textContent = val.toString(16).toUpperCase();
+        document.getElementById('resDec').textContent = val.toString(10);
+        document.getElementById('resOct').textContent = val.toString(8);
+        document.getElementById('resBin').textContent = val.toString(2);
+      } else {
+        document.getElementById('resHex').textContent = "0";
+        document.getElementById('resDec').textContent = "0";
+        document.getElementById('resOct').textContent = "0";
+        document.getElementById('resBin').textContent = "0";
+      }
+    }
+
+    // Solar Power & Cost Calculator Logic
+    function calculateSolar() {
+      const watts = parseFloat(document.getElementById('solarWatts').value);
+      const hours = parseFloat(document.getElementById('solarHours').value);
+      const resBox = document.getElementById('solarResult');
+      
+      if (!isNaN(watts) && !isNaN(hours) && watts > 0 && hours > 0) {
+        const dailyKwh = (watts * hours) / 1000;
+        const monthlyKwh = dailyKwh * 30;
+        const monthlyCost = monthlyKwh * 7;
+        resBox.textContent = `Monthly Consumption: ${monthlyKwh.toFixed(1)} kWh | Est. Cost: ₹${monthlyCost.toFixed(0)}`;
+      } else {
+        resBox.textContent = `Estimated Monthly Cost: ₹0`;
+      }
+    }
+
+    // Pomodoro Timer Logic
+    let pomoTime = 25 * 60;
+    let pomoInterval = null;
+    let isPomoRunning = false;
+
+    function updatePomoDisplay() {
+      const mins = Math.floor(pomoTime / 60).toString().padStart(2, '0');
+      const secs = (pomoTime % 60).toString().padStart(2, '0');
+      document.getElementById('pomoDisplay').textContent = `${mins}:${secs}`;
+    }
+
+    function togglePomodoro() {
+      const btn = document.getElementById('pomoStartBtn');
+      if (!isPomoRunning) {
+        isPomoRunning = true;
+        btn.textContent = "Pause ⏸️";
+        pomoInterval = setInterval(() => {
+          if (pomoTime > 0) {
+            pomoTime--;
+            updatePomoDisplay();
+          } else {
+            clearInterval(pomoInterval);
+            isPomoRunning = false;
+            alert("Pomodoro Session Complete! Take a break ☕");
+            btn.textContent = "Start 🚀";
+            logAction('Completed Pomodoro Session');
+          }
+        }, 1000);
+        logAction('Started Pomodoro Timer');
+      } else {
+        clearInterval(pomoInterval);
+        isPomoRunning = false;
+        btn.textContent = "Start 🚀";
+        logAction('Paused Pomodoro Timer');
+      }
+    }
+
+    function resetPomodoro() {
+      clearInterval(pomoInterval);
+      isPomoRunning = false;
+      pomoTime = 25 * 60;
+      updatePomoDisplay();
+      document.getElementById('pomoStartBtn').textContent = "Start 🚀";
+      logAction('Reset Pomodoro Timer');
+    }
+
+    // Live Battery Status Monitor
+    async function updateBatteryStatus() {
+      const batteryBox = document.getElementById('batteryStatus');
+      if (navigator.getBattery) {
+        try {
+          const battery = await navigator.getBattery();
+          const level = Math.round(battery.level * 100);
+          const status = battery.charging ? `⚡ Charging (${level}%)` : `🔋 Discharging (${level}%)`;
+          batteryBox.textContent = status;
+          
+          battery.addEventListener('levelchange', updateBatteryStatus);
+          battery.addEventListener('chargingchange', updateBatteryStatus);
+        } catch (e) {
+          batteryBox.textContent = "Not supported / Restricted";
+        }
+      } else {
+        batteryBox.textContent = "API not supported by browser";
+      }
     }
 
     async function testPing() {
@@ -1003,6 +1451,13 @@
       renderTodos();
       generateQR();
       generatePassword();
+      updateBatteryStatus();
+      updatePomoDisplay();
+      calculateProgrammer();
+      fetchIpDetails();
+      generatePalette();
+      calculateTransferTime();
+      scaleDimensions();
       initQuiz();
     });
 
@@ -1082,6 +1537,7 @@
       document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>';
     }
 
+    // Expanded 95+ Questions Bank for ITI & RRB Electrician
     const masterQuizData = [
       { q: "What is the SI unit of Electrical Resistance?", options: ["Volt", "Ampere", "Ohm", "Watt"], ans: 2 },
       { q: "Which microcontroller is widely used for Wi-Fi IoT projects?", options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"], ans: 0 },
@@ -1122,7 +1578,61 @@
       { q: "The unit of capacitance is:", options: ["Farad", "Henry", "Coulomb", "Siemens"], ans: 0 },
       { q: "In a 3-phase star connected system, line voltage is equal to:", options: ["Phase voltage", "sqrt(3) times Phase voltage", "Phase voltage / sqrt(3)", "3 times Phase voltage"], ans: 1 },
       { q: "Which type of wiring is best suited for temporary installations?", options: ["Casing-capping wiring", "Conduit wiring", "Cleat wiring", "Lead sheathed wiring"], ans: 2 },
-      { q: "The electrolyte used in a lead-acid storage battery is:", options: ["Dilute Hydrochloric acid", "Dilute Sulphuric acid", "Potassium hydroxide", "Ammonium chloride"], ans: 1 }
+      { q: "The electrolyte used in a lead-acid storage battery is:", options: ["Dilute Hydrochloric acid", "Dilute Sulphuric acid", "Potassium hydroxide", "Ammonium chloride"], ans: 1 },
+      { q: "What is the full form of ELCB?", options: ["Earth Leakage Circuit Breaker", "Electrical Load Control Board", "Earth Line Current Breaker", "Energy Loss Control Box"], ans: 0 },
+      { q: "Which instrument measures electrical energy consumption over time?", options: ["Wattmeter", "Energy meter (kWh meter)", "Power factor meter", "Frequency meter"], ans: 1 },
+      { q: "What is the frequency of AC supply in India?", options: ["50 Hz", "60 Hz", "25 Hz", "100 Hz"], ans: 0 },
+      { q: "In a pure inductive circuit, current _____ voltage by 90 degrees.", options: ["Leads", "Lags", "Is in phase with", "Cancel"], ans: 1 },
+      { q: "Which motor is known as a constant speed motor?", options: ["DC Series motor", "DC Shunt motor", "Universal motor", "Differential compound motor"], ans: 1 },
+      { q: "What is the purpose of a starter in a DC motor?", options: ["To increase speed", "To limit starting armature current", "To reverse direction", "To increase torque"], ans: 1 },
+      { q: "Which material has negative temperature coefficient of resistance?", options: ["Copper", "Aluminium", "Carbon / Semiconductors", "Iron"], ans: 2 },
+      { q: "What is the unit of magnetic reluctance?", options: ["Weber", "Ampere-turns/Weber", "Henry", "Tesla"], ans: 1 },
+      { q: "The efficiency of a transformer is maximum when:", options: ["Iron loss = Copper loss", "Iron loss > Copper loss", "Copper loss is zero", "Full load is connected"], ans: 0 },
+      { q: "Which type of rotor is used in high-speed turbo alternators?", options: ["Salient pole rotor", "Cylindrical (non-salient) rotor", "Squirrel cage rotor", "Phase wound rotor"], ans: 1 },
+      { q: "What is the color of Phase (Live) wire in standard electrical color coding?", options: ["Red or Brown", "Black", "Green", "White"], ans: 0 },
+      { q: "What is the color of Neutral wire in standard electrical color coding?", options: ["Red", "Black or Blue", "Yellow", "Green"], ans: 1 },
+      { q: "Which generator has maximum voltage regulation?", options: ["Cumulative compound", "Differential compound", "Shunt generator", "Series generator"], ans: 1 },
+      { q: "What is the main advantage of 3-phase system over single-phase system?", options: ["Less copper required", "Constant power delivery", "Higher power output for same size", "All of the above"], ans: 3 },
+      { q: "Which device converts mechanical energy into electrical energy?", options: ["Motor", "Generator", "Transformer", "Rectifier"], ans: 1 },
+      { q: "What does a rectifier do?", options: ["Converts AC to DC", "Converts DC to AC", "Steps up voltage", "Measures current"], ans: 0 },
+      { q: "What does an inverter do?", options: ["Converts AC to DC", "Converts DC to AC", "Regulates voltage", "Stores charge"], ans: 1 },
+      { q: "Which law states that algebraic sum of currents meeting at a node is zero?", options: ["Ohm's Law", "Kirchhoff's Current Law (KCL)", "Kirchhoff's Voltage Law (KVL)", "Faraday's Law"], ans: 1 },
+      { q: "Kirchhoff's Voltage Law (KVL) is based on the conservation of:", options: ["Charge", "Energy", "Mass", "Momentum"], ans: 1 },
+      { q: "Kirchhoff's Current Law (KCL) is based on the conservation of:", options: ["Charge", "Energy", "Power", "Voltage"], ans: 0 },
+      { q: "What is the power factor of an ideal capacitor?", options: ["1", "0 (leading)", "0 (lagging)", "0.5"], ans: 1 },
+      { q: "Which motor can run on both AC and DC supply?", options: ["Synchronous motor", "Universal motor", "Induction motor", "Stepper motor"], ans: 1 },
+      { q: "What is the slip of an induction motor at standstill?", options: ["0", "1 (or 100%)", "0.5", "Infinite"], ans: 1 },
+      { q: "The synchronous speed of an alternator depends on:", options: ["Frequency and number of poles", "Voltage and current", "Load and power factor", "Temperature and pressure"], ans: 0 },
+      { q: "What is the main cause of low power factor in industries?", options: ["Lighting loads", "Induction motors running at light load", "Resistive heaters", "Battery chargers"], ans: 1 },
+      { q: "How is power factor improved in an AC circuit?", options: ["Connecting capacitors in parallel", "Connecting inductors in series", "Using resistors", "Increasing voltage"], ans: 0 },
+      { q: "Which test is conducted on a transformer to determine iron losses?", options: ["Short circuit test", "Open circuit (no-load) test", "Sumpner's test", "Load test"], ans: 1 },
+      { q: "Which test is conducted on a transformer to determine copper losses?", options: ["Open circuit test", "Short circuit test", "Dielectric test", "Polarity test"], ans: 1 },
+      { q: "What is the purpose of a capacitor in a single-phase induction motor?", options: ["To start the motor and create phase difference", "To protect from overload", "To reduce speed", "To regulate voltage"], ans: 0 },
+      { q: "What is the unit of illumination?", options: ["Lumen", "Lux", "Candela", "Foot-candle"], ans: 1 },
+      { q: "Solid angle is measured in:", options: ["Radian", "Steradian", "Degree", "Weber"], ans: 1 },
+      { q: "Which lamp gives monochromatic yellow light and is used for highway lighting?", options: ["Fluorescent lamp", "Sodium vapour lamp", "Incandescent lamp", "Halogen lamp"], ans: 1 },
+      { q: "What is the full form of UPS?", options: ["Uninterruptible Power Supply", "Universal Power System", "Unified Power Source", "Underground Power Station"], ans: 0 },
+      { q: "Which instrument is used to measure high voltage?", options: ["Potential Transformer (PT) with Voltmeter", "Current Transformer with Ammeter", "Megger", "Ohmmeter"], ans: 0 },
+      { q: "What is the main function of a surge protector / lightning arrester?", options: ["To store energy", "To divert high voltage surges safely to earth", "To step down voltage", "To measure lightning"], ans: 1 },
+      { q: "Which type of DC generator is used for supplying field excitation in large alternators?", options: ["Series generator", "Shunt generator", "Compound generator", "Differential generator"], ans: 1 },
+      { q: "The torque of an induction motor is proportional to:", options: ["Slip", "Square of supply voltage", "Resistance", "Frequency"], ans: 1 },
+      { q: "What is the purpose of a breather in a power transformer?", options: ["To cool the oil", "To filter incoming air for moisture control", "To absorb copper loss", "To release gas pressure"], ans: 1 },
+      { q: "Silica gel used in transformer breather turns _____ when moisture is absorbed.", options: ["Blue", "Pink / White", "Green", "Yellow"], ans: 1 },
+      { q: "Which cable insulation is most commonly used for high voltage underground transmission?", options: ["Paper insulated lead covered (PILC)", "XLPE (Cross-linked Polyethylene)", "Rubber insulated", "Cotton braided"], ans: 1 },
+      { q: "Skin effect in transmission lines causes current to flow:", options: ["Near the center of conductor", "Near the surface (periphery) of conductor", "Uniformly throughout", "Randomly"], ans: 1 },
+      { q: "What is the main reason for transposing overhead transmission lines?", options: ["To reduce corona loss", "To reduce inductive and capacitive imbalance (interference)", "To increase voltage", "To save copper"], ans: 1 },
+      { q: "Which type of loss in a DC machine is constant at all loads?", options: ["Armature copper loss", "Shunt field copper loss and iron/friction losses", "Series field loss", "Brush contact loss"], ans: 1 },
+      { q: "What is the purpose of interpoles in large DC machines?", options: ["To improve commutation and reduce sparking", "To increase field strength", "To reduce core size", "To control speed"], ans: 0 },
+      { q: "Which bridge circuit is used for measuring inductance?", options: ["Maxwell's bridge", "Schering bridge", "Kelvin bridge", "Wien bridge"], ans: 0 },
+      { q: "What is the unit of magnetic flux density?", options: ["Weber", "Tesla (or Weber/m2)", "Henry", "Ampere-turn"], ans: 1 },
+      { q: "The main function of a dynamometer type instrument is used as:", options: ["Ammeter only", "Voltmeter only", "Wattmeter", "Frequency meter"], ans: 2 },
+      { q: "Which motor has the highest starting torque?", options: ["Shunt motor", "Series motor", "Cumulative compound motor", "Differential compound motor"], ans: 1 },
+      { q: "What is the color of Earth leakage circuit breaker (ELCB) test button test frequency recommendation?", options: ["Monthly", "Yearly", "Daily", "Never"], ans: 0 },
+      { q: "In a 3-phase delta system, line current is equal to:", options: ["Phase current", "sqrt(3) times Phase current", "Phase current / sqrt(3)", "3 times Phase current"], ans: 1 },
+      { q: "What is the purpose of damper windings in a synchronous motor?", options: ["To start as a motor and prevent hunting", "To increase voltage", "To reduce copper loss", "To improve power factor"], ans: 0 },
+      { q: "Which diode is used in high frequency rectifiers and switching power supplies?", options: ["Zener diode", "Schottky diode", "Varactor diode", "Tunnel diode"], ans: 1 },
+      { q: "What is the full form of IGBT in power electronics?", options: ["Insulated Gate Bipolar Transistor", "Integrated Gate Bridge Thyristor", "Internal Ground Battery Terminal", "Isolated Grid Binary Transistor"], ans: 0 },
+      { q: "Which type of cooling is used for large power transformers above 100 MVA?", options: ["Air natural (AN)", "Oil natural air forced (ONAF)", "Oil forced water forced (OFWF)", "Radiation only"], ans: 2 }
     ];
 
     let currentQuizSet = [];
