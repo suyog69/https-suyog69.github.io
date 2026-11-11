@@ -196,6 +196,19 @@
       margin: 0;
     }
 
+    /* Live Session Timer Badge */
+    .session-badge {
+      display: inline-block;
+      margin-top: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-family: monospace;
+    }
+
     .container {
       width: 100%;
       max-width: 680px;
@@ -483,7 +496,7 @@
       <div class="modal-links">
         <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Manipal LMS')">🎓 Manipal BCA LMS</a>
         <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened YCMOU')">🏛️ YCMOU Portal</a>
-        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
+        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
         <a href="https://digilocker.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened DigiLocker')">📁 DigiLocker</a>
       </div>
     </div>
@@ -633,6 +646,7 @@
     <div class="avatar">SC</div>
     <h2>Suyog Chaudhari</h2>
     <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
+    <div class="session-badge" id="sessionTimer">Session Time: 00:00</div>
   </header>
 
   <main class="container">
@@ -670,7 +684,7 @@
           <span>🌐 Mega Web Directories (10,000+ Tools)</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Degree & Portals Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('degreeModal'); logAction('Opened Degree & Portals Hub');">
           <span>🎓 Degree & Official Portals</span> <span>➔</span>
         </button>
 
@@ -682,7 +696,7 @@
           <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Microcontrollers Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('microModal'); logAction('Opened Microcontrollers Hub');">
           <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
         </button>
 
@@ -753,6 +767,15 @@
   </main>
 
   <script>
+    // Live Session Timer / Uptime Counter
+    let secondsElapsed = 0;
+    setInterval(() => {
+      secondsElapsed++;
+      const mins = Math.floor(secondsElapsed / 60).toString().padStart(2, '0');
+      const secs = (secondsElapsed % 60).toString().padStart(2, '0');
+      document.getElementById('sessionTimer').textContent = `Session Time: ${mins}:${secs}`;
+    }, 1000);
+
     // Futuristic UI Click Sound Generator using Web Audio API
     function playClickSound() {
       try {
@@ -761,8 +784,8 @@
         const gainNode = audioCtx.createGain();
         
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(600, audioCtx.currentTime); // Start frequency
-        osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05); // Pitch drop
+        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05);
         
         gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
@@ -772,9 +795,7 @@
         
         osc.start();
         osc.stop(audioCtx.currentTime + 0.05);
-      } catch (e) {
-        // Fallback if audio context is restricted
-      }
+      } catch (e) {}
     }
 
     function openModal(modalId) {
@@ -785,7 +806,6 @@
       document.getElementById(modalId).classList.remove("active");
     }
 
-    // Auto Theme Saving & Persistence via LocalStorage
     function toggleTheme() {
       document.body.classList.toggle("light-theme");
       const isLight = document.body.classList.contains("light-theme");
@@ -793,13 +813,11 @@
       logAction('Toggled and Saved Theme mode');
     }
 
-    // Scratchpad Auto-save
     function saveScratchpad() {
       const text = document.getElementById('scratchpad').value;
       localStorage.setItem("hub_scratchpad", text);
     }
 
-    // Load saved settings & theme on startup
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem("hub_theme");
       if (savedTheme === "light") {
@@ -819,7 +837,6 @@
       }
     });
 
-    // Ohm's Law Calculator Logic
     function calculateOhm() {
       const v = parseFloat(document.getElementById('calcV').value);
       const r = parseFloat(document.getElementById('calcR').value);
@@ -832,7 +849,6 @@
       }
     }
 
-    // 🚀 ADVANCED TRACKING: IP LOCATION + BATTERY + NETWORK SPEED + EMAIL ALERT
     function sendInstantEmailAlert(actionDetails, extraInfo = "") {
       const formspreeEndpoint = "https://formspree.io/f/xbgorypr"; 
       const visitorInfo = `Device/OS: ${navigator.platform}\nBrowser: ${navigator.userAgent}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}\n${extraInfo}`;
@@ -848,9 +864,7 @@
           email: "tracker@portfolio.com",
           message: `🚨 New Visitor Activity Alert!\n\n${visitorInfo}`
         })
-      }).catch(error => {
-        console.log("Email alert error:", error);
-      });
+      }).catch(error => {});
     }
 
     async function initTracker() {
@@ -899,7 +913,6 @@
       document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>';
     }
 
-    // Quiz JavaScript
     const quizData = [
       {
         question: "Q1. What is the SI unit of Electrical Resistance?",
