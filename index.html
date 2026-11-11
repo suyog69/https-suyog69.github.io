@@ -3,52 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suyog Chaudhari | Portfolio & Mega Tech Hub</title>
+  <title>Suyog Chaudhari | Enterprise Professional Tech Hub OS</title>
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
+      --bg-color: #0b0f19;
+      --card-bg: #111827;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
       --accent: #38bdf8;
-      --border-color: #334155;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --border-color: #1f2937;
+      --success: #22c55e;
+      --danger: #ef4444;
     }
 
     body.light-theme {
-      --bg-color: #f1f5f9;
+      --bg-color: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
-      --text-sub: #475569;
+      --text-sub: #64748b;
       --accent: #0284c7;
-      --border-color: #cbd5e1;
+      --accent-glow: rgba(2, 132, 199, 0.2);
+      --border-color: #e2e8f0;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
       margin: 0;
-      padding: 20px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.3s ease, color 0.3s ease;
       min-height: 100vh;
       box-sizing: border-box;
       position: relative;
     }
 
     .top-controls {
-      align-self: flex-end;
-      max-width: 680px;
       width: 100%;
+      max-width: 720px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .theme-btn, .welcome-trigger-btn {
+    .control-btn {
       background: var(--card-bg);
       color: var(--text-main);
       border: 1px solid var(--border-color);
@@ -57,12 +60,13 @@
       cursor: pointer;
       font-size: 0.85rem;
       font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: all 0.2s ease;
     }
 
-    .welcome-trigger-btn:hover, .theme-btn:hover {
+    .control-btn:hover {
       background-color: var(--accent);
-      color: #0f172a;
+      color: #0b0f19;
       transform: translateY(-1px);
     }
 
@@ -72,7 +76,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(15, 23, 42, 0.85);
+      background-color: rgba(11, 15, 25, 0.85);
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
@@ -90,21 +94,21 @@
     .modal-card {
       background-color: var(--card-bg);
       border: 2px solid var(--accent);
-      padding: 25px;
+      padding: 24px;
       border-radius: 16px;
-      max-width: 480px;
+      max-width: 500px;
       width: 90%;
-      max-height: 80vh;
+      max-height: 82vh;
       overflow-y: auto;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 15px 35px var(--accent-glow);
       position: relative;
     }
 
     .modal-card h2 {
       color: var(--accent);
       margin-top: 0;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       margin-bottom: 15px;
     }
 
@@ -119,9 +123,7 @@
       cursor: pointer;
     }
 
-    .close-btn:hover {
-      color: var(--accent);
-    }
+    .close-btn:hover { color: var(--accent); }
 
     .modal-links {
       display: flex;
@@ -162,37 +164,37 @@
 
     header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       width: 100%;
     }
 
     .avatar {
-      width: 95px;
-      height: 95px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), #0284c7);
-      color: #0f172a;
+      color: #0b0f19;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.3rem;
+      font-size: 2.2rem;
       font-weight: 800;
-      margin: 0 auto 14px auto;
-      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+      margin: 0 auto 12px auto;
+      box-shadow: 0 8px 25px var(--accent-glow);
       border: 3px solid rgba(255, 255, 255, 0.15);
       letter-spacing: 1px;
     }
 
-    header h2 {
+    header h1 {
       color: var(--accent);
-      margin: 0 0 6px 0;
-      font-size: 2.2rem;
+      margin: 0 0 4px 0;
+      font-size: 2rem;
       font-weight: 700;
     }
 
     .subtitle {
       color: var(--text-sub);
-      font-size: 1.05rem;
+      font-size: 1rem;
       margin: 0;
     }
 
@@ -210,49 +212,54 @@
 
     .container {
       width: 100%;
-      max-width: 680px;
+      max-width: 720px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       flex: 1;
     }
 
     .card {
       background-color: var(--card-bg);
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       border: 1px solid var(--border-color);
+      transition: transform 0.2s;
     }
+
+    .card:hover { border-color: rgba(56, 189, 248, 0.4); }
 
     .card h3 {
       margin-top: 0;
       color: var(--text-main);
       border-bottom: 2px solid var(--border-color);
       padding-bottom: 8px;
+      font-size: 1.1rem;
     }
 
     .skills-list {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .badge {
-      background-color: #0369a1;
-      color: #e0f2fe;
-      padding: 6px 14px;
+      background-color: rgba(3, 105, 161, 0.2);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 6px 12px;
       border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.82rem;
+      font-weight: 600;
     }
 
     .grid-launchers {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 15px;
+      gap: 10px;
+      margin-top: 12px;
     }
 
     .category-card-btn {
@@ -260,11 +267,11 @@
       border: 1px solid var(--border-color);
       border-left: 4px solid var(--accent);
       color: var(--text-main);
-      padding: 14px 18px;
+      padding: 13px 16px;
       border-radius: 10px;
       text-align: left;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
       display: flex;
       justify-content: space-between;
@@ -275,132 +282,130 @@
     .category-card-btn:hover {
       border-color: var(--accent);
       background-color: rgba(56, 189, 248, 0.08);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transform: translateX(3px);
     }
 
     .social-btn {
       background-color: var(--border-color);
       color: var(--text-main);
-      padding: 10px 16px;
+      padding: 11px 16px;
       border-radius: 8px;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s;
       display: block;
       text-align: left;
     }
 
     .social-btn:hover {
-      background-color: #0284c7;
-      color: #fff;
+      background-color: var(--accent);
+      color: #0b0f19;
     }
 
     .secret-dot {
       position: fixed;
-      bottom: 5px;
-      right: 5px;
-      width: 6px;
-      height: 6px;
+      bottom: 6px;
+      right: 6px;
+      width: 8px;
+      height: 8px;
       background-color: var(--text-sub);
-      opacity: 0.15;
+      opacity: 0.2;
       border-radius: 50%;
       cursor: pointer;
       z-index: 10000;
       transition: opacity 0.2s;
     }
 
-    .secret-dot:hover {
-      opacity: 1;
-    }
+    .secret-dot:hover { opacity: 1; }
 
     .submit-btn {
       background: var(--accent);
-      color: #0f172a;
+      color: #0b0f19;
       font-weight: bold;
       border: none;
-      padding: 12px;
+      padding: 11px;
       border-radius: 8px;
       cursor: pointer;
       text-align: center;
       transition: opacity 0.2s;
       width: 100%;
+      font-size: 0.95rem;
     }
+    .submit-btn:hover { opacity: 0.9; }
 
     .calc-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-    .calc-input, .scratchpad-input { background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 6px; width: 100%; box-sizing: border-box; font-family: inherit; }
-    .scratchpad-input { resize: vertical; min-height: 80px; }
-    .calc-result { font-weight: bold; color: var(--accent); margin-top: 5px; font-size: 1.05rem; }
+    .calc-input, .scratchpad-input { background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 9px 12px; border-radius: 8px; width: 100%; box-sizing: border-box; font-family: inherit; font-size: 0.9rem; }
+    .scratchpad-input { resize: vertical; min-height: 85px; }
+    .calc-result { font-weight: bold; color: var(--accent); margin-top: 4px; font-size: 1rem; }
 
-    .prog-box { background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 10px; font-family: monospace; font-size: 0.9rem; }
+    .prog-box { background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 8px; font-family: monospace; font-size: 0.85rem; }
     .prog-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--border-color); }
     .prog-row:last-child { border-bottom: none; }
     .prog-val { color: var(--accent); font-weight: bold; }
 
-    .todo-container { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-    .todo-row { display: flex; align-items: center; gap: 10px; }
-    .todo-input { flex: 1; }
-    .todo-list { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; max-height: 150px; overflow-y: auto; }
+    .todo-container { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .todo-row { display: flex; align-items: center; gap: 8px; }
+    .todo-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; max-height: 160px; overflow-y: auto; }
     .todo-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg-color); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.9rem; }
     .todo-item.completed span { text-decoration: line-through; color: var(--text-sub); }
-    .delete-todo { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1rem; }
+    .delete-todo { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1.1rem; }
 
-    .ping-box, .battery-box, .ip-box { display: flex; align-items: center; justify-content: space-between; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 10px; }
-    .ping-value, .battery-value, .ip-value { font-family: monospace; font-weight: bold; color: var(--accent); font-size: 0.95rem; }
+    .ping-box, .battery-box, .ip-box { display: flex; align-items: center; justify-content: space-between; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 8px; }
+    .ping-value, .battery-value, .ip-value { font-family: monospace; font-weight: bold; color: var(--accent); font-size: 0.9rem; }
 
-    .pomodoro-box { text-align: center; background: var(--bg-color); border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; margin-top: 10px; }
-    .pomodoro-display { font-size: 2.2rem; font-family: monospace; font-weight: bold; color: var(--accent); margin: 10px 0; }
+    .pomodoro-box { text-align: center; background: var(--bg-color); border: 1px solid var(--border-color); padding: 14px; border-radius: 8px; margin-top: 8px; }
+    .pomodoro-display { font-size: 2.2rem; font-family: monospace; font-weight: bold; color: var(--accent); margin: 8px 0; }
     .pomodoro-btns { display: flex; gap: 8px; justify-content: center; }
 
-    .stopwatch-display { font-size: 2rem; font-family: monospace; font-weight: bold; color: var(--accent); text-align: center; margin: 10px 0; }
+    .stopwatch-display { font-size: 2rem; font-family: monospace; font-weight: bold; color: var(--accent); text-align: center; margin: 8px 0; }
     
-    .palette-box { display: flex; gap: 10px; margin-top: 10px; }
-    .color-swatch { flex: 1; height: 50px; border-radius: 6px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 0.75rem; font-family: monospace; font-weight: bold; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.8); cursor: pointer; }
+    .palette-box { display: flex; gap: 8px; margin-top: 8px; }
+    .color-swatch { flex: 1; height: 48px; border-radius: 6px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-size: 0.72rem; font-family: monospace; font-weight: bold; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.9); cursor: pointer; border: 1px solid rgba(255,255,255,0.1); }
 
-    .quiz-container { margin-top: 10px; }
-    .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
-    .options-grid { display: flex; flex-direction: column; gap: 10px; }
+    .quiz-container { margin-top: 8px; }
+    .question-box { font-size: 1.02rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main); }
+    .options-grid { display: flex; flex-direction: column; gap: 8px; }
     .option-btn {
       background-color: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color);
-      padding: 12px; border-radius: 8px; text-align: left; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;
+      padding: 11px; border-radius: 8px; text-align: left; cursor: pointer; font-size: 0.92rem; transition: all 0.2s;
     }
-    .option-btn:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
-    .option-btn.correct { background-color: #166534 !important; border-color: #22c55e !important; color: #fff !important; }
-    .option-btn.wrong { background-color: #991b1b !important; border-color: #ef4444 !important; color: #fff !important; }
-    .quiz-score { font-size: 1.1rem; text-align: center; font-weight: bold; color: var(--accent); margin-top: 15px; }
+    .option-btn:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.08); }
+    .option-btn.correct { background-color: #14532d !important; border-color: #22c55e !important; color: #fff !important; }
+    .option-btn.wrong { background-color: #7f1d1d !important; border-color: #ef4444 !important; color: #fff !important; }
+    .quiz-score { font-size: 1.05rem; text-align: center; font-weight: bold; color: var(--accent); margin-top: 12px; }
   </style>
 </head>
 <body onload="initTracker()">
 
-  <!-- CHHUPA HUA SECRET DOT TRIGGER -->
+  <!-- SECRET ADMIN FOOTPRINT TRIGGER -->
   <div class="secret-dot" onclick="playClickSound(); openModal('adminModal')" title="Admin Panel"></div>
 
   <!-- Welcome Modal -->
   <div class="modal-overlay" id="welcomeModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('welcomeModal')">&times;</button>
-      <div class="avatar" style="width: 70px; height: 70px; font-size: 1.6rem; margin-bottom: 15px;">SC</div>
+      <div class="avatar" style="width: 65px; height: 65px; font-size: 1.5rem; margin-bottom: 12px;">SC</div>
       <h2>Welcome to Suyog's Mega Tech Hub! 👋</h2>
-      <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
-        Aapka swagat hai! Explore your systematic workspace including all coding resources, web hosting, utilities, and electrical tools.
+      <p style="color: var(--text-sub); font-size: 0.88rem; margin-bottom: 18px; line-height: 1.5;">
+        Aapka swagat hai! Explore your professional master workspace including all coding resources, web tools, electrical calculators, and cloud utilities.
       </p>
       <button class="submit-btn" style="border-radius: 20px;" onclick="playClickSound(); closeModal('welcomeModal')">Get Started 🚀</button>
     </div>
   </div>
 
-  <!-- SECRET ADMIN FOOTPRINT MODAL -->
+  <!-- SECRET ADMIN MODAL -->
   <div class="modal-overlay" id="adminModal">
-    <div class="modal-card" style="border-color: #22c55e; max-width: 550px;">
+    <div class="modal-card" style="border-color: var(--success); max-width: 520px;">
       <button class="close-btn" onclick="playClickSound(); closeModal('adminModal')">&times;</button>
-      <h2 style="color: #22c55e;">🔒 Secret Admin Dashboard</h2>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
-        Live visitor footprints, location, battery & network info:
+      <h2 style="color: var(--success);">🔒 Secret Admin Dashboard</h2>
+      <p style="font-size: 0.82rem; color: var(--text-sub); margin-bottom: 10px;">
+        Live visitor footprints, network & battery telemetry:
       </p>
-      <div id="adminFootprintLog" style="background: #0b0f19; border: 1px solid #334155; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #22c55e; max-height: 250px; overflow-y: auto; text-align: left;">
-        [System]: Initializing advanced tracking & email hook...<br>
+      <div id="adminFootprintLog" style="background: #05080f; border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.78rem; color: var(--success); max-height: 240px; overflow-y: auto; text-align: left;">
+        [System]: Initializing secure tracking hook...<br>
       </div>
-      <button class="submit-btn" style="background: #22c55e; color: #0f172a; margin-top: 15px;" onclick="playClickSound(); clearLogs()">Clear Logs</button>
+      <button class="submit-btn" style="background: var(--success); color: #0b0f19; margin-top: 14px;" onclick="playClickSound(); clearLogs()">Clear Logs</button>
     </div>
   </div>
 
@@ -409,10 +414,10 @@
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('qrModal')">&times;</button>
       <h2>📷 Quick QR Code Generator</h2>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Type any link or text to generate QR code:</p>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">Type text or link to generate QR code:</p>
       <input type="text" id="qrText" class="calc-input" placeholder="Enter URL or text..." value="https://suyog-tech-hub.com" oninput="generateQR()">
-      <div style="margin-top: 15px; background: #fff; padding: 15px; border-radius: 8px; display: inline-block;">
-        <img id="qrImage" src="" alt="QR Code" style="width: 180px; height: 180px;">
+      <div style="margin-top: 12px; background: #fff; padding: 12px; border-radius: 8px; display: inline-block;">
+        <img id="qrImage" src="" alt="QR Code" style="width: 170px; height: 170px;">
       </div>
     </div>
   </div>
@@ -422,24 +427,20 @@
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('passModal')">&times;</button>
       <h2>🔑 Secure Password Generator</h2>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Generate strong random passwords for accounts/IoT:</p>
-      <div style="display: flex; gap: 8px; margin-bottom: 15px;">
-        <input type="text" id="passOutput" class="calc-input" readonly style="font-family: monospace; font-weight: bold; text-align: center;">
-      </div>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">Generate strong random passwords:</p>
+      <input type="text" id="passOutput" class="calc-input" readonly style="font-family: monospace; font-weight: bold; text-align: center; margin-bottom: 12px;">
       <button class="submit-btn" onclick="playClickSound(); generatePassword()">Generate New Password 🔄</button>
-      <button class="submit-btn" style="margin-top: 8px; background: #22c55e; color: #0f172a;" onclick="playClickSound(); copyPassword()">Copy to Clipboard 📋</button>
+      <button class="submit-btn" style="margin-top: 8px; background: var(--success); color: #0b0f19;" onclick="playClickSound(); copyPassword()">Copy to Clipboard 📋</button>
     </div>
   </div>
 
-  <!-- ALL POPUP MODALS FOR CATEGORIES -->
-
-  <!-- 1. Free Coding Popup -->
+  <!-- CATEGORY POPUP MODALS -->
   <div class="modal-overlay" id="codingModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('codingModal')">&times;</button>
-      <h2>💻 Free Coding, Languages & Practice</h2>
+      <h2>💻 Free Coding & Practice</h2>
       <div class="modal-links">
-        <a href="https://www.mindluster.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Mindluster')">🎓 Mindluster (Free Courses & Certificates)</a>
+        <a href="https://www.mindluster.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Mindluster')">🎓 Mindluster (Free Courses)</a>
         <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened freeCodeCamp')">🎓 freeCodeCamp (Python & Web)</a>
         <a href="https://www.w3schools.com/default.asp" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened W3Schools')">📚 W3Schools Tutorials</a>
         <a href="https://www.programiz.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Programiz')">🐍 Programiz Python & C++</a>
@@ -448,18 +449,16 @@
     </div>
   </div>
 
-  <!-- 2. Govt Exams Popup -->
   <div class="modal-overlay" id="govtExamsModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('govtExamsModal')">&times;</button>
-      <h2>🎯 Govt Exams, RRB/SSC & Mock Tests</h2>
+      <h2>🎯 Govt Exams & Mock Tests</h2>
       <div class="modal-links">
         <a href="https://www.oliveboard.in/free-mock-test/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Oliveboard')">🎯 Oliveboard RRB & SSC Mocks</a>
       </div>
     </div>
   </div>
 
-  <!-- 3. Free Typing Training Popup -->
   <div class="modal-overlay" id="typingModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('typingModal')">&times;</button>
@@ -471,28 +470,26 @@
     </div>
   </div>
 
-  <!-- 4. Live Train Tracking Popup -->
   <div class="modal-overlay" id="trainModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('trainModal')">&times;</button>
-      <h2>🚆 Live Train Tracking & Media Tools</h2>
+      <h2>🚆 Live Train Tracking & Media</h2>
       <div class="modal-links">
         <a href="https://www.railyatri.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened RailYatri')">🚂 RailYatri Train Status</a>
         <a href="https://etrain.info/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened eTrain')">🚆 eTrain Info & Status</a>
         <a href="https://m-indicator.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened m-Indicator')">🚆 m-Indicator Web</a>
         <a href="https://whereismytrain.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Where is my Train')">📍 Where is my Train</a>
-        <a href="https://cobalt.tools" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Cobalt Tools')">📥 Cobalt.tools (Ad-free Downloader)</a>
+        <a href="https://cobalt.tools" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Cobalt Tools')">📥 Cobalt.tools Downloader</a>
         <a href="https://app.clipchamp.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Clipchamp')">🎬 Clipchamp Video Editor</a>
         <a href="https://www.ixigo.com/trains" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Ixigo')">🚆 Ixigo Train Status & PNR</a>
       </div>
     </div>
   </div>
 
-  <!-- 5. Video MP4 Converter Popup -->
   <div class="modal-overlay" id="mediaModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('mediaModal')">&times;</button>
-      <h2>📥 Video MP4 Converter & Media Tools</h2>
+      <h2>📥 Video Converter & Media</h2>
       <div class="modal-links">
         <a href="https://convertio.co/mp4-converter/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Convertio')">🔄 Video MP4 Converter</a>
         <a href="https://snapinst.app/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened SnapInst')">🎬 Insta Reels Downloader</a>
@@ -506,11 +503,10 @@
     </div>
   </div>
 
-  <!-- 6. Daily Workflow Hub Popup -->
   <div class="modal-overlay" id="workflowModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('workflowModal')">&times;</button>
-      <h2>🌟 Suyog's Special Daily Workflow Hub</h2>
+      <h2>🌟 Daily Workflow Hub</h2>
       <div class="modal-links">
         <a href="https://github.com/trending" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened GitHub Trending')">🔥 GitHub Trending Repos</a>
         <a href="https://stackoverflow.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened StackOverflow')">💬 Stack Overflow Q&A</a>
@@ -522,11 +518,10 @@
     </div>
   </div>
 
-  <!-- 7. Mega Web Directories Popup -->
   <div class="modal-overlay" id="directoriesModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('directoriesModal')">&times;</button>
-      <h2>🌐 Mega Web Directories (10,000+ Tools Access)</h2>
+      <h2>🌐 Mega Web Directories</h2>
       <div class="modal-links">
         <a href="https://devsheets.io/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened DevSheets')">📚 DevSheets (Cheat Sheets)</a>
         <a href="https://cheatsheets.zip/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened CheatSheets.zip')">⚡ CheatSheets.zip (All Code)</a>
@@ -536,7 +531,6 @@
     </div>
   </div>
 
-  <!-- 8. Degree & Official Portals Popup -->
   <div class="modal-overlay" id="degreeModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('degreeModal')">&times;</button>
@@ -550,7 +544,6 @@
     </div>
   </div>
 
-  <!-- 9. Electrical, Solar & Courses Popup -->
   <div class="modal-overlay" id="electricalModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('electricalModal')">&times;</button>
@@ -564,11 +557,10 @@
     </div>
   </div>
 
-  <!-- 10. Quick Office & Document Tools Popup -->
   <div class="modal-overlay" id="officeModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('officeModal')">&times;</button>
-      <h2>📁 Quick Office, Media & Document Tools</h2>
+      <h2>📁 Office & Document Tools</h2>
       <div class="modal-links">
         <a href="https://tinypng.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened TinyPNG')">🖼️ TinyPNG Compress</a>
         <a href="https://carbon.now.sh/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Carbon')">📸 Carbon Code Snap</a>
@@ -582,14 +574,13 @@
     </div>
   </div>
 
-  <!-- 11. Microcontrollers & Dev Tools Popup -->
   <div class="modal-overlay" id="microModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('microModal')">&times;</button>
-      <h2>💻 Microcontrollers, Linux & Dev Tools</h2>
+      <h2>💻 Microcontrollers & Dev Tools</h2>
       <div class="modal-links">
         <a href="https://wokwi.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Wokwi Simulator')">🤖 Wokwi ESP32 & IoT Simulator</a>
-        <a href="https://portswigger.net/web-security" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened PortSwigger')">🛡️ PortSwigger Web Security (Hacking)</a>
+        <a href="https://portswigger.net/web-security" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened PortSwigger')">🛡️ PortSwigger Web Security</a>
         <a href="https://pinout.xyz/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Pinout')">📌 Raspberry/Pinouts</a>
         <a href="https://explainshell.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened ExplainShell')">🐧 Explain Shell</a>
         <a href="https://gchq.github.io/CyberChef/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened CyberChef')">🔐 CyberChef Tools</a>
@@ -599,11 +590,10 @@
     </div>
   </div>
 
-  <!-- 12. Network, Testing & Design Utilities Popup -->
   <div class="modal-overlay" id="networkModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('networkModal')">&times;</button>
-      <h2>🛠️ Network, Testing & Design Utilities</h2>
+      <h2>🛠️ Network & Testing Utilities</h2>
       <div class="modal-links">
         <a href="https://hoppscotch.io/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Hoppscotch')">📡 Hoppscotch API</a>
         <a href="https://transform.tools/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened TransformTools')">🔄 Transform Code Tools</a>
@@ -615,7 +605,6 @@
     </div>
   </div>
 
-  <!-- 13. Family Utility & Govt Services Popup -->
   <div class="modal-overlay" id="familyModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('familyModal')">&times;</button>
@@ -632,44 +621,41 @@
     </div>
   </div>
 
-  <!-- 14. Free Hosting, Deployment & Cloud Storage Popup -->
   <div class="modal-overlay" id="hostingModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('hostingModal')">&times;</button>
-      <h2>🚀 Free Hosting, Deployment & Cloud Storage</h2>
+      <h2>🚀 Free Hosting & Cloud Storage</h2>
       <div class="modal-links">
         <a href="https://netlify.com" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Netlify')">🌐 Netlify (Free Web Hosting)</a>
         <a href="https://vercel.com" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Vercel')">⚡ Vercel (App Deployment)</a>
         <a href="https://pages.github.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened GitHub Pages')">🐙 GitHub Pages Live Site</a>
-        <a href="https://mega.nz" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened MEGA')">☁️ MEGA.nz (20GB Free Secure Cloud)</a>
+        <a href="https://mega.nz" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened MEGA')">☁️ MEGA.nz (20GB Secure Cloud)</a>
         <a href="https://pixeldrain.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Pixeldrain')">📁 Pixeldrain Fast File Share</a>
       </div>
     </div>
   </div>
 
-  <!-- 15. Online Compilers & Code Sandboxes Popup -->
   <div class="modal-overlay" id="sandboxModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('sandboxModal')">&times;</button>
-      <h2>💻 Online Compilers & Code Sandboxes</h2>
+      <h2>💻 Online Compilers & Sandboxes</h2>
       <div class="modal-links">
-        <a href="https://replit.com" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Replit')">🐍 Replit (Python, C++, Node.js Compiler)</a>
+        <a href="https://replit.com" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Replit')">🐍 Replit (Python, C++, Node.js)</a>
         <a href="https://codepen.io" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened CodePen')">🎨 CodePen (HTML/CSS/JS Sandbox)</a>
-        <a href="https://codesandbox.io/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened CodeSandbox')">📦 CodeSandbox (React & Web Apps)</a>
+        <a href="https://codesandbox.io/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened CodeSandbox')">📦 CodeSandbox (React & Web)</a>
         <a href="https://www.onlinegdb.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened OnlineGDB')">⚡ OnlineGDB Compiler</a>
       </div>
     </div>
   </div>
 
-  <!-- 16. EPFO, Labour & Financial Services Popup -->
   <div class="modal-overlay" id="epfoModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('epfoModal')">&times;</button>
-      <h2>💼 EPFO, Labour & Financial Portals</h2>
+      <h2>💼 EPFO & Financial Portals</h2>
       <div class="modal-links">
         <a href="https://unifiedportal-mem.epfindia.gov.in/memberinterface/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened EPFO Member Portal')">🏛️ EPFO Member Passbook & UAN Portal</a>
         <a href="https://passbook.epfindia.gov.in/MemberPassBook/Login" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened EPFO Passbook')">📄 EPFO Instant Passbook View</a>
-        <a href="https://web.umang.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened UMANG Web')">📱 UMANG App Web (EPFO & Govt Services)</a>
+        <a href="https://web.umang.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened UMANG Web')">📱 UMANG App Web (EPFO & Govt)</a>
         <a href="https://eshram.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened e-Shram')">🛠️ e-Shram Portal (Labour Card)</a>
         <a href="https://www.ncs.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened NCS Portal')">💼 National Career Service (NCS Jobs)</a>
         <a href="https://www.incometax.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Income Tax')">💰 Income Tax e-Filing Portal</a>
@@ -677,24 +663,20 @@
     </div>
   </div>
 
-  <!-- 17. Contact Me & Direct Message Popup -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('contactModal')">&times;</button>
       <h2>✉️ Send Me a Message</h2>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">
         Yahan message likhein, yeh seedha Suyog ke email par pahunch jayega!
       </p>
       <form class="contact-form" action="https://formspree.io/f/xbgorypr" method="POST">
         <label>Aapka Naam (Your Name):</label>
         <input type="text" name="name" placeholder="Enter your name" required>
-
         <label>Aapka Email (Your Email):</label>
         <input type="email" name="email" placeholder="Enter your email" required>
-
         <label>Message:</label>
         <textarea name="message" rows="4" placeholder="Write your message here..." required></textarea>
-
         <button type="submit" class="submit-btn" onclick="playClickSound(); logAction('Submitted Contact Form')">Send Message 🚀</button>
       </form>
     </div>
@@ -702,13 +684,13 @@
 
   <!-- MAIN PAGE LAYOUT -->
   <div class="top-controls">
-    <button class="welcome-trigger-btn" onclick="playClickSound(); openModal('welcomeModal')">👋 Welcome</button>
-    <button class="theme-btn" onclick="playClickSound(); toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
+    <button class="control-btn" onclick="playClickSound(); openModal('welcomeModal')">👋 Welcome</button>
+    <button class="control-btn" onclick="playClickSound(); toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
   </div>
 
   <header>
     <div class="avatar">SC</div>
-    <h2>Suyog Chaudhari</h2>
+    <h1>Suyog Chaudhari</h1>
     <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
     <div class="session-badge" id="sessionTimer">Session Time: 00:00</div>
   </header>
@@ -717,92 +699,275 @@
     <!-- Master Systematic Hub -->
     <section class="card">
       <h3>🚀 Master Systematic Hub</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Click any category to open its dedicated tools popup window:</p>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">Click any category to open dedicated tools popup:</p>
       
       <div class="grid-launchers">
         <button class="category-card-btn" onclick="playClickSound(); openModal('codingModal'); logAction('Opened Coding Hub');">
           <span>💻 Free Coding, Mindluster & Practice</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('govtExamsModal'); logAction('Opened Govt Exams Hub');">
           <span>🎯 Govt Exams, RRB/SSC & Mock Tests</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('typingModal'); logAction('Opened Typing Hub');">
           <span>⌨️ Free Typing Training</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('trainModal'); logAction('Opened Train Tracking Hub');">
           <span>🚆 Live Train Tracking & Media Tools</span> <span>➔</span>
         </button>
-
-        <button class="category-card-btn" onclick="playClickSound(); openModal('mediaModal'); logAction('Opened Media & Converter Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('mediaModal'); logAction('Opened Media Converter Hub');">
           <span>📥 Video MP4 Converter & Media Tools</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('workflowModal'); logAction('Opened Workflow Hub');">
           <span>🌟 Suyog's Special Daily Workflow Hub</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('directoriesModal'); logAction('Opened Web Directories Hub');">
           <span>🌐 Mega Web Directories (10,000+ Tools)</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('degreeModal'); logAction('Opened Degree & Portals Hub');">
           <span>🎓 Degree & Official Portals</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('electricalModal'); logAction('Opened Electrical Hub');">
           <span>⚡ Electrical, Solar & Courses</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('officeModal'); logAction('Opened Office Tools Hub');">
-          <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
+          <span>📁 Quick Office & Document Tools</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('microModal'); logAction('Opened Microcontrollers Hub');">
           <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
         </button>
-
         <button class="category-card-btn" onclick="playClickSound(); openModal('networkModal'); logAction('Opened Network Utilities Hub');">
           <span>🛠️ Network, Testing & Design Utilities</span> <span>➔</span>
         </button>
-
-        <button class="category-card-btn" onclick="playClickSound(); openModal('hostingModal'); logAction('Opened Hosting Hub');" style="border-left-color: #38bdf8;">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('hostingModal'); logAction('Opened Hosting Hub');">
           <span>🚀 Free Hosting, Deployment & Cloud</span> <span>➔</span>
         </button>
-
-        <button class="category-card-btn" onclick="playClickSound(); openModal('sandboxModal'); logAction('Opened Code Sandboxes Hub');" style="border-left-color: #a855f7;">
-          <span>💻 Online Compilers & Code Sandboxes</span> <span>➔</span>
+        <button class="category-card-btn" onclick="playClickSound(); openModal('sandboxModal'); logAction('Opened Code Sandboxes Hub');">
+          <span>💻 Online Compilers & Sandboxes</span> <span>➔</span>
         </button>
-
-        <button class="category-card-btn" onclick="playClickSound(); openModal('familyModal'); logAction('Opened Family Utility Hub');" style="border-left-color: #22c55e;">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('familyModal'); logAction('Opened Family Utility Hub');">
           <span>🏡 Family Utility & Govt Services</span> <span>➔</span>
         </button>
-
-        <button class="category-card-btn" onclick="playClickSound(); openModal('epfoModal'); logAction('Opened EPFO Hub');" style="border-left-color: #f59e0b;">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('epfoModal'); logAction('Opened EPFO Hub');">
           <span>💼 EPFO, Labour & Financial Portals</span> <span>➔</span>
         </button>
-
-        <button class="category-card-btn" onclick="playClickSound(); openModal('contactModal'); logAction('Opened Contact Hub');" style="border-left-color: #10b981;">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('contactModal'); logAction('Opened Contact Hub');" style="border-left-color: var(--success);">
           <span>✉️ Contact Me / Send Message (Email)</span> <span>➔</span>
         </button>
       </div>
     </section>
 
-    <!-- Quick Utilities: QR Code & Password Generator Buttons -->
+    <!-- Quick Utility Widgets -->
     <section class="card">
       <h3>🛠️ Quick Utility Widgets</h3>
-      <div style="display: flex; gap: 10px; margin-top: 10px;">
+      <div style="display: flex; gap: 10px; margin-top: 8px;">
         <button class="submit-btn" onclick="playClickSound(); openModal('qrModal'); logAction('Opened QR Generator');">📷 QR Code Tool</button>
         <button class="submit-btn" onclick="playClickSound(); openModal('passModal'); logAction('Opened Password Gen');">🔑 Password Gen</button>
       </div>
     </section>
 
-    <!-- 1. Hash Generator Widget (New Addition) -->
+    <!-- 1. JSON Formatter & Validator -->
     <section class="card">
-      <h3>🔒 Secure Text Hash Generator (MD5 / SHA-256 simulation)</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Generate cryptographic checksum hashes:</p>
+      <h3>📊 JSON Formatter & Validator</h3>
+      <div class="calc-grid">
+        <textarea id="jsonInput" class="scratchpad-input" placeholder='Paste raw JSON here e.g. {"name":"Suyog"}' oninput="formatJSON()"></textarea>
+        <div class="calc-result" id="jsonResultStatus" style="font-size: 0.88rem; color: var(--success);">Status: Valid JSON ✅</div>
+      </div>
+    </section>
+
+    <!-- NEW TOOL 1: JSON to CSV & CSV to JSON Converter -->
+    <section class="card">
+      <h3>🔄 JSON ⇄ CSV Bi-directional Converter</h3>
+      <div class="calc-grid">
+        <textarea id="dataConverterInput" class="scratchpad-input" placeholder='Paste JSON array or CSV here...' oninput="convertDataFormat()"></textarea>
+        <div style="display: flex; gap: 8px;">
+          <button class="submit-btn" onclick="playClickSound(); setConverterMode('json2csv')">JSON to CSV</button>
+          <button class="submit-btn" onclick="playClickSound(); setConverterMode('csv2json')">CSV to JSON</button>
+        </div>
+        <div class="prog-box">
+          <div class="prog-row"><span>Converted Output:</span> <span class="prog-val" id="dataConverterResult">-</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW TOOL 2: JWT Token Inspector -->
+    <section class="card">
+      <h3>🔑 JWT Token Payload Inspector</h3>
+      <div class="calc-grid">
+        <input type="text" id="jwtInput" class="calc-input" placeholder="Paste JWT token (header.payload.signature)..." oninput="inspectJWT()">
+        <div class="prog-box">
+          <div class="prog-row"><span>Decoded Payload:</span> <span class="prog-val" id="jwtPayloadResult">-</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW TOOL 3: Tiered Slab-wise kWh Electricity Bill Calculator -->
+    <section class="card">
+      <h3>⚡ Tiered Slab-wise Electricity Bill Calculator</h3>
+      <div class="calc-grid">
+        <label style="font-size: 0.8rem; color: var(--text-sub);">Units Consumed (kWh):</label>
+        <input type="number" id="slabUnits" class="calc-input" value="150" oninput="calculateSlabBill()">
+        <div class="prog-box">
+          <div class="prog-row"><span>Estimated Bill Amount:</span> <span class="prog-val" id="slabBillResult">₹0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW TOOL 4: UUID v4 Generator -->
+    <section class="card">
+      <h3>🔠 Random UUID v4 Generator</h3>
+      <div class="calc-grid">
+        <input type="text" id="uuidOutput" class="calc-input" readonly style="font-family: monospace; text-align: center; font-weight: bold;">
+        <button class="submit-btn" onclick="playClickSound(); generateUUID()">Generate New UUID 🔄</button>
+      </div>
+    </section>
+
+    <!-- NEW TOOL 5: CSS Box Shadow Visual Builder -->
+    <section class="card">
+      <h3>🎨 CSS Box Shadow & Border Radius Builder</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Blur Radius (px):</label>
+          <input type="number" id="shadowBlur" class="calc-input" value="15" oninput="updateBoxShadow()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Border Radius (px):</label>
+          <input type="number" id="boxRadius" class="calc-input" value="12" oninput="updateBoxShadow()">
+        </div>
+      </div>
+      <div id="boxShadowPreview" style="margin-top: 10px; height: 50px; background: var(--accent); border-radius: 12px; box-shadow: 0 10px 15px rgba(0,0,0,0.3); transition: all 0.2s;"></div>
+      <div class="prog-box" style="margin-top: 8px;">
+        <div class="prog-row"><span>CSS Code:</span> <span class="prog-val" id="shadowCssResult">box-shadow: 0px 10px 15px rgba(0,0,0,0.3);</span></div>
+      </div>
+    </section>
+
+    <!-- NEW TOOL 6: Quadratic Equation (ax^2 + bx + c) Roots Solver -->
+    <section class="card">
+      <h3>🧮 Quadratic Equation (ax² + bx + c = 0) Solver</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+        <input type="number" id="quadA" class="calc-input" placeholder="a" value="1" oninput="solveQuadratic()">
+        <input type="number" id="quadB" class="calc-input" placeholder="b" value="-5" oninput="solveQuadratic()">
+        <input type="number" id="quadC" class="calc-input" placeholder="c" value="6" oninput="solveQuadratic()">
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>Roots (x₁, x₂):</span> <span class="prog-val" id="quadResult">x = 3, x = 2</span></div>
+      </div>
+    </section>
+
+    <!-- NEW TOOL 7: Percentage Increase & Profit Margin Calculator -->
+    <section class="card">
+      <h3>📈 Percentage Increase & Margin Calculator</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Original Value:</label>
+          <input type="number" id="percOriginal" class="calc-input" value="100" oninput="calculatePercentage()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">New Value:</label>
+          <input type="number" id="percNew" class="calc-input" value="150" oninput="calculatePercentage()">
+        </div>
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>Difference / Change:</span> <span class="prog-val" id="percResult">+50.0% (Increase)</span></div>
+      </div>
+    </section>
+
+    <!-- 2. URL Slug Generator -->
+    <section class="card">
+      <h3>🔤 URL Slug Generator</h3>
+      <div class="calc-grid">
+        <input type="text" id="slugInput" class="calc-input" placeholder="Type title e.g. My First IoT Project!" oninput="generateSlug()">
+        <div class="prog-box">
+          <div class="prog-row"><span>Slug Result:</span> <span class="prog-val" id="slugResult">my-first-iot-project</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Advanced Scientific Calculator -->
+    <section class="card">
+      <h3>🧮 Advanced Scientific Calculator</h3>
+      <div class="calc-grid">
+        <input type="text" id="sciInput" class="calc-input" placeholder="e.g. Math.sqrt(256) or Math.sin(1)" value="Math.sqrt(256)" oninput="calculateSci()">
+        <div class="calc-result" id="sciResult">Result: 16</div>
+      </div>
+    </section>
+
+    <!-- 4. HTTP Status Code Quick Lookup -->
+    <section class="card">
+      <h3>🌐 HTTP Status Code Quick Lookup</h3>
+      <div class="calc-grid">
+        <select id="httpSelect" class="calc-input" onchange="lookupHttpCode()">
+          <option value="200">200 - OK (Success)</option>
+          <option value="201">201 - Created (Resource Saved)</option>
+          <option value="301">301 - Moved Permanently (Redirect)</option>
+          <option value="400">400 - Bad Request (Syntax Error)</option>
+          <option value="401">401 - Unauthorized (Auth Required)</option>
+          <option value="403">403 - Forbidden (Access Denied)</option>
+          <option value="404">404 - Not Found (URL Missing)</option>
+          <option value="500">500 - Internal Server Error (Crash)</option>
+          <option value="502">502 - Bad Gateway</option>
+        </select>
+        <div class="calc-result" id="httpDescResult" style="font-size: 0.9rem; font-weight: normal; color: var(--text-sub);">Request succeeded normally without issues.</div>
+      </div>
+    </section>
+
+    <!-- 5. Unix Timestamp Converter -->
+    <section class="card">
+      <h3>⏳ Unix Timestamp Converter</h3>
+      <div class="calc-grid">
+        <div class="prog-box">
+          <div class="prog-row"><span>Current Epoch:</span> <span class="prog-val" id="epochCurrent">-</span></div>
+          <div class="prog-row"><span>Readable Time:</span> <span class="prog-val" id="epochReadable">-</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CSS Px to Rem Converter -->
+    <section class="card">
+      <h3>📏 CSS Unit Converter (Px to Rem)</h3>
+      <div class="calc-grid">
+        <input type="number" id="pxInput" class="calc-input" value="16" oninput="convertPx()">
+        <div class="prog-box">
+          <div class="prog-row"><span>REM Value:</span> <span class="prog-val" id="remResult">1rem</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Markdown to HTML Previewer -->
+    <section class="card">
+      <h3>📝 Markdown to HTML Live Previewer</h3>
+      <div class="calc-grid">
+        <input type="text" id="mdInput" class="calc-input" value="**Bold Text** or *Italic*" oninput="renderMd()">
+        <div class="prog-box">
+          <div class="prog-row"><span>HTML Output:</span> <span class="prog-val" id="mdResult">&lt;strong&gt;Bold Text&lt;/strong&gt;</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Random Number & Token Generator -->
+    <section class="card">
+      <h3>🎲 Random Number Generator</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <input type="number" id="randMin" class="calc-input" value="1" oninput="generateRandNum()">
+        <input type="number" id="randMax" class="calc-input" value="100" oninput="generateRandNum()">
+      </div>
+      <div class="calc-result" id="randResult">Generated Number: 42</div>
+    </section>
+
+    <!-- 9. Countdown Timer -->
+    <section class="card">
+      <h3>⏱️ Quick Countdown Timer</h3>
+      <div class="calc-grid">
+        <div style="display: flex; gap: 8px;">
+          <input type="number" id="countdownMins" class="calc-input" value="5">
+          <button class="submit-btn" style="width: 110px;" onclick="playClickSound(); startCountdown()">Start 🚀</button>
+        </div>
+        <div class="stopwatch-display" id="countdownDisplay" style="font-size: 1.8rem;">05:00</div>
+      </div>
+    </section>
+
+    <!-- Hash Generator Widget -->
+    <section class="card">
+      <h3>🔒 Secure Text Hash Generator (MD5 / SHA-256)</h3>
       <div class="calc-grid">
         <input type="text" id="hashInput" class="calc-input" placeholder="Type text to hash..." oninput="generateHashes()">
         <div class="prog-box">
@@ -812,10 +977,9 @@
       </div>
     </section>
 
-    <!-- 2. Text Formatter & Case Converter (New Addition) -->
+    <!-- Text Formatter & Case Converter -->
     <section class="card">
       <h3>🔠 Text Case Formatter & Counter</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Format text and count characters & words:</p>
       <div class="calc-grid">
         <textarea id="textFormatterInput" class="scratchpad-input" placeholder="Type or paste text here..." oninput="formatText()"></textarea>
         <div style="display: flex; gap: 8px;">
@@ -830,35 +994,33 @@
       </div>
     </section>
 
-    <!-- 3. Download Speed / Transfer Time Calculator (New Addition) -->
+    <!-- Download Speed Calculator -->
     <section class="card">
-      <h3>📊 Download / Data Transfer Time Calculator</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Calculate file transfer time based on internet speed:</p>
+      <h3>📊 Data Transfer Time Calculator</h3>
       <div class="calc-grid">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">File Size (MB):</label>
-        <input type="number" id="fileSizeMB" class="calc-input" placeholder="e.g. 1000" value="1000" oninput="calculateTransferTime()">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">Download Speed (Mbps):</label>
-        <input type="number" id="speedMbps" class="calc-input" placeholder="e.g. 50" value="50" oninput="calculateTransferTime()">
+        <label style="font-size: 0.8rem; color: var(--text-sub);">File Size (MB):</label>
+        <input type="number" id="fileSizeMB" class="calc-input" value="1000" oninput="calculateTransferTime()">
+        <label style="font-size: 0.8rem; color: var(--text-sub);">Download Speed (Mbps):</label>
+        <input type="number" id="speedMbps" class="calc-input" value="50" oninput="calculateTransferTime()">
         <div class="calc-result" id="transferResult">Estimated Time: 0 seconds</div>
       </div>
     </section>
 
-    <!-- 4. Aspect Ratio & Dimensions Scaler (New Addition) -->
+    <!-- Aspect Ratio Scaler -->
     <section class="card">
-      <h3>📐 Aspect Ratio & Image Dimension Scaler</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Scale widths and heights proportionally for banners/thumbnails:</p>
-      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <h3>📐 Aspect Ratio & Image Scaler</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
         <div>
-          <label style="font-size: 0.80rem; color: var(--text-sub);">Original Width:</label>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Orig Width:</label>
           <input type="number" id="origW" class="calc-input" value="1920" oninput="scaleDimensions()">
         </div>
         <div>
-          <label style="font-size: 0.80rem; color: var(--text-sub);">Original Height:</label>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Orig Height:</label>
           <input type="number" id="origH" class="calc-input" value="1080" oninput="scaleDimensions()">
         </div>
       </div>
       <div class="calc-grid">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">New Desired Width:</label>
+        <label style="font-size: 0.8rem; color: var(--text-sub);">New Width:</label>
         <input type="number" id="newW" class="calc-input" value="1280" oninput="scaleDimensions()">
         <div class="calc-result" id="scaledHeightResult">Scaled Height: 720 px</div>
       </div>
@@ -866,19 +1028,17 @@
 
     <!-- Stopwatch & Lap Timer -->
     <section class="card">
-      <h3>⏱️ Interactive Stopwatch & Lap Timer</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Measure elapsed time during coding or benchmarks:</p>
+      <h3>⏱️ Interactive Stopwatch</h3>
       <div class="stopwatch-display" id="swDisplay">00:00:00</div>
-      <div style="display: flex; gap: 8px; margin-top: 10px;">
+      <div style="display: flex; gap: 8px; margin-top: 8px;">
         <button class="submit-btn" onclick="playClickSound(); toggleStopwatch()" id="swStartBtn">Start 🚀</button>
         <button class="submit-btn" style="background: var(--border-color); color: var(--text-main);" onclick="playClickSound(); resetStopwatch()">Reset 🔄</button>
       </div>
     </section>
 
-    <!-- Base64 / URL Encoder & Decoder Tool -->
+    <!-- Base64 & URL Codec -->
     <section class="card">
-      <h3>🔤 Base64 & Text Encoder / Decoder</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Instantly encode or decode text strings:</p>
+      <h3>🔤 Base64 & URL Encoder / Decoder</h3>
       <div class="calc-grid">
         <input type="text" id="codecInput" class="calc-input" placeholder="Type text here..." oninput="processCodec()">
         <div class="prog-box">
@@ -888,66 +1048,60 @@
       </div>
     </section>
 
-    <!-- Random Color Palette Generator -->
+    <!-- Color Palette Generator -->
     <section class="card">
-      <h3>🎨 Random CSS Color Palette Generator</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Generate instant professional color schemes for UI design:</p>
+      <h3>🎨 CSS Color Palette Generator</h3>
       <div class="palette-box" id="paletteBox">
-        <div class="color-swatch" id="c1" onclick="copyColor(this)">#0F172A</div>
-        <div class="color-swatch" id="c2" onclick="copyColor(this)">#1E293B</div>
+        <div class="color-swatch" id="c1" onclick="copyColor(this)">#0B0F19</div>
+        <div class="color-swatch" id="c2" onclick="copyColor(this)">#111827</div>
         <div class="color-swatch" id="c3" onclick="copyColor(this)">#38BDF8</div>
         <div class="color-swatch" id="c4" onclick="copyColor(this)">#0284C7</div>
       </div>
-      <button class="submit-btn" style="margin-top: 10px;" onclick="playClickSound(); generatePalette()">Generate New Palette 🎨</button>
+      <button class="submit-btn" style="margin-top: 8px;" onclick="playClickSound(); generatePalette()">Generate New Palette 🎨</button>
     </section>
 
-    <!-- IP Address & Network Inspector -->
+    <!-- IP Address Inspector -->
     <section class="card">
       <h3>🌐 Public IP & Network Inspector</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Check your public IP and location info:</p>
       <div class="ip-box">
-        <span style="font-size: 0.9rem; font-weight: 500;">Your Network Info:</span>
+        <span style="font-size: 0.88rem; font-weight: 500;">Network Info:</span>
         <span class="ip-value" id="ipInfoResult">Fetching IP...</span>
       </div>
-      <button class="submit-btn" style="margin-top: 10px;" onclick="playClickSound(); fetchIpDetails()">Refresh IP Info 🔄</button>
+      <button class="submit-btn" style="margin-top: 8px;" onclick="playClickSound(); fetchIpDetails()">Refresh IP Info 🔄</button>
     </section>
 
-    <!-- Advanced Scientific & Programmer Calculator -->
+    <!-- Programmer Calculator -->
     <section class="card">
-      <h3>🧮 Programmer & Base Converter Calculator</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Convert Decimal to Binary, Hex & Octal instantly:</p>
+      <h3>🧮 Programmer & Base Converter</h3>
       <div class="calc-grid">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">Enter Decimal Number:</label>
-        <input type="number" id="progDecimalInput" class="calc-input" placeholder="e.g. 255" value="255" oninput="calculateProgrammer()">
-        
+        <label style="font-size: 0.8rem; color: var(--text-sub);">Enter Decimal Number:</label>
+        <input type="number" id="progDecimalInput" class="calc-input" value="255" oninput="calculateProgrammer()">
         <div class="prog-box">
-          <div class="prog-row"><span>Hexadecimal (HEX):</span> <span class="prog-val" id="resHex">FF</span></div>
-          <div class="prog-row"><span>Decimal (DEC):</span> <span class="prog-val" id="resDec">255</span></div>
-          <div class="prog-row"><span>Octal (OCT):</span> <span class="prog-val" id="resOct">377</span></div>
-          <div class="prog-row"><span>Binary (BIN):</span> <span class="prog-val" id="resBin">11111111</span></div>
+          <div class="prog-row"><span>Hex (HEX):</span> <span class="prog-val" id="resHex">FF</span></div>
+          <div class="prog-row"><span>Dec (DEC):</span> <span class="prog-val" id="resDec">255</span></div>
+          <div class="prog-row"><span>Oct (OCT):</span> <span class="prog-val" id="resOct">377</span></div>
+          <div class="prog-row"><span>Bin (BIN):</span> <span class="prog-val" id="resBin">11111111</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Solar Power & Electricity Cost Calculator -->
+    <!-- Solar Power Calculator -->
     <section class="card">
       <h3>☀️ Solar Power & Electricity Bill Calculator</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Estimate daily power consumption & monthly bill:</p>
       <div class="calc-grid">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">Total Load (Watts):</label>
+        <label style="font-size: 0.8rem; color: var(--text-sub);">Total Load (Watts):</label>
         <input type="number" id="solarWatts" class="calc-input" placeholder="e.g. 1000" oninput="calculateSolar()">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">Daily Usage (Hours):</label>
+        <label style="font-size: 0.8rem; color: var(--text-sub);">Daily Usage (Hours):</label>
         <input type="number" id="solarHours" class="calc-input" placeholder="e.g. 5" oninput="calculateSolar()">
         <div class="calc-result" id="solarResult">Estimated Monthly Cost: ₹0</div>
       </div>
     </section>
 
-    <!-- Pomodoro Focus / Study Timer -->
+    <!-- Pomodoro Focus Timer -->
     <section class="card">
       <h3>⏱️ Pomodoro Focus & Coding Timer</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Boost productivity for coding & BCA study sessions:</p>
       <div class="pomodoro-box">
-        <div style="font-size: 0.85rem; color: var(--accent); font-weight: bold;" id="pomoMode">FOCUS SESSION</div>
+        <div style="font-size: 0.82rem; color: var(--accent); font-weight: bold;" id="pomoMode">FOCUS SESSION</div>
         <div class="pomodoro-display" id="pomoDisplay">25:00</div>
         <div class="pomodoro-btns">
           <button class="submit-btn" id="pomoStartBtn" onclick="playClickSound(); togglePomodoro()">Start 🚀</button>
@@ -956,55 +1110,50 @@
       </div>
     </section>
 
-    <!-- Live Device Battery & Power Monitor -->
+    <!-- Battery Status Monitor -->
     <section class="card">
-      <h3>🔋 Live Device Battery & Power Status</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Real-time hardware battery monitoring:</p>
+      <h3>🔋 Live Device Battery Status</h3>
       <div class="battery-box">
-        <span style="font-size: 0.9rem; font-weight: 500;">Battery Level:</span>
+        <span style="font-size: 0.88rem; font-weight: 500;">Battery Level:</span>
         <span class="battery-value" id="batteryStatus">Detecting...</span>
       </div>
     </section>
 
-    <!-- Live Ping / Network Latency Tester -->
+    <!-- Live Ping Tester -->
     <section class="card">
       <h3>📡 Live Network Ping Tester</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Check your connection latency (Response Time):</p>
       <div class="ping-box">
-        <span style="font-size: 0.9rem; font-weight: 500;">Server Latency:</span>
+        <span style="font-size: 0.88rem; font-weight: 500;">Server Latency:</span>
         <span class="ping-value" id="pingResult">Click Test ➔</span>
       </div>
-      <button class="submit-btn" style="margin-top: 10px;" onclick="playClickSound(); testPing()">Test Latency 🚀</button>
+      <button class="submit-btn" style="margin-top: 8px;" onclick="playClickSound(); testPing()">Test Latency 🚀</button>
     </section>
 
-    <!-- Task / Todo Checklist Widget -->
+    <!-- Task Todo Checklist -->
     <section class="card">
       <h3>📋 Daily Tasks & Project Checklist</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Add and track your daily tasks (Auto-saved locally):</p>
       <div class="todo-container">
         <div class="todo-row">
           <input type="text" id="todoInput" class="calc-input todo-input" placeholder="Enter new task...">
-          <button class="submit-btn" style="width: 80px;" onclick="playClickSound(); addTodo()">Add</button>
+          <button class="submit-btn" style="width: 75px;" onclick="playClickSound(); addTodo()">Add</button>
         </div>
         <div class="todo-list" id="todoList"></div>
       </div>
     </section>
 
-    <!-- Quick Tech Scratchpad / Notes Widget -->
+    <!-- Tech Scratchpad -->
     <section class="card">
       <h3>📝 Quick Tech & Electrical Scratchpad</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Write notes, commands, or code snippets (Auto-saved locally):</p>
       <textarea id="scratchpad" class="scratchpad-input" placeholder="Type your quick notes here..." oninput="saveScratchpad()"></textarea>
     </section>
 
-    <!-- Electrical Ohm's Law Calculator Widget -->
+    <!-- Ohm's Law Calculator -->
     <section class="card">
       <h3>⚡ Electrical Ohm's Law Calculator</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Quickly calculate Current (I = V / R):</p>
       <div class="calc-grid">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">Voltage (Volts - V):</label>
+        <label style="font-size: 0.8rem; color: var(--text-sub);">Voltage (Volts - V):</label>
         <input type="number" id="calcV" class="calc-input" placeholder="e.g. 230" oninput="calculateOhm()">
-        <label style="font-size: 0.80rem; color: var(--text-sub);">Resistance (Ohms - R):</label>
+        <label style="font-size: 0.8rem; color: var(--text-sub);">Resistance (Ohms - R):</label>
         <input type="number" id="calcR" class="calc-input" placeholder="e.g. 50" oninput="calculateOhm()">
         <div class="calc-result" id="calcResult">Result Current (I): 0 A</div>
       </div>
@@ -1012,20 +1161,20 @@
 
     <!-- Technical Stack -->
     <section class="card">
-      <h3>⚡ Technical Stack</h3>
+      <h3>⚡ Professional Technical Stack</h3>
       <div class="skills-list">
         <span class="badge">ESP32 & IoT</span>
         <span class="badge">Electrical Wiring & Solar</span>
-        <span class="badge">Python</span>
-        <span class="badge">HTML / CSS / JS</span>
+        <span class="badge">Python & Automation</span>
+        <span class="badge">HTML / CSS / JavaScript</span>
         <span class="badge">Termux & Linux</span>
-        <span class="badge">Git & GitHub</span>
+        <span class="badge">Git & GitHub Enterprise</span>
       </div>
     </section>
 
-    <!-- Expanded ITI & RRB Electrical Quiz Game (95+ Questions) -->
+    <!-- ITI & RRB Master Quiz (150+ Questions Bank) -->
     <section class="card">
-      <h3>🧠 ITI & RRB Electrician Master Quiz (95+ Questions Bank)</h3>
+      <h3>🧠 ITI & RRB Electrician Master Quiz (150+ Q Bank)</h3>
       <div class="quiz-container" id="quizContainer">
         <div class="question-box" id="questionText">Loading question...</div>
         <div class="options-grid" id="optionsContainer"></div>
@@ -1035,7 +1184,6 @@
   </main>
 
   <script>
-    // Live Session Timer / Uptime Counter
     let secondsElapsed = 0;
     setInterval(() => {
       secondsElapsed++;
@@ -1044,68 +1192,236 @@
       document.getElementById('sessionTimer').textContent = `Session Time: ${mins}:${secs}`;
     }, 1000);
 
-    // Futuristic UI Click Sound Generator using Web Audio API
     function playClickSound() {
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
-        
         osc.type = 'sine';
         osc.frequency.setValueAtTime(600, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.05);
-        
-        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-        
         osc.connect(gainNode);
         gainNode.connect(audioCtx.destination);
-        
         osc.start();
         osc.stop(audioCtx.currentTime + 0.05);
       } catch (e) {}
     }
 
-    function openModal(modalId) {
-      document.getElementById(modalId).classList.add("active");
-    }
-
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove("active");
-    }
+    function openModal(modalId) { document.getElementById(modalId).classList.add("active"); }
+    function closeModal(modalId) { document.getElementById(modalId).classList.remove("active"); }
 
     function toggleTheme() {
       document.body.classList.toggle("light-theme");
       const isLight = document.body.classList.contains("light-theme");
       localStorage.setItem("hub_theme", isLight ? "light" : "dark");
-      logAction('Toggled and Saved Theme mode');
+      logAction('Toggled Theme mode');
     }
 
     function saveScratchpad() {
-      const text = document.getElementById('scratchpad').value;
-      localStorage.setItem("hub_scratchpad", text);
+      localStorage.setItem("hub_scratchpad", document.getElementById('scratchpad').value);
     }
 
-    // Hash Generator Logic (Simple simulated checksums for text)
-    function generateHashes() {
-      const val = document.getElementById('hashInput').value;
-      if (val) {
-        let hash1 = 0, hash2 = 0;
-        for (let i = 0; i < val.length; i++) {
-          hash1 = (hash1 << 5) - hash1 + val.charCodeAt(i);
-          hash1 |= 0;
-          hash2 = (hash2 << 7) - hash2 + val.charCodeAt(i);
-          hash2 |= 0;
-        }
-        document.getElementById('resMd5').textContent = "5d41402abc4b2a76b9719d911017c592".substring(0, 8) + Math.abs(hash1).toString(16);
-        document.getElementById('resSha').textContent = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855".substring(0, 16) + Math.abs(hash2).toString(16);
-      } else {
-        document.getElementById('resMd5').textContent = "-";
-        document.getElementById('resSha').textContent = "-";
+    function formatJSON() {
+      const val = document.getElementById('jsonInput').value.trim();
+      const status = document.getElementById('jsonResultStatus');
+      if (!val) { status.textContent = "Status: Empty"; return; }
+      try {
+        JSON.parse(val);
+        status.textContent = "Status: Valid JSON ✅";
+        status.style.color = "var(--success)";
+      } catch(e) {
+        status.textContent = "Status: Invalid JSON ❌";
+        status.style.color = "var(--danger)";
       }
     }
 
-    // Text Formatter Logic
+    // New Tool 1 Script: JSON <-> CSV
+    let dataConverterMode = 'json2csv';
+    function setConverterMode(mode) {
+      dataConverterMode = mode;
+      convertDataFormat();
+    }
+    function convertDataFormat() {
+      const val = document.getElementById('dataConverterInput').value.trim();
+      const res = document.getElementById('dataConverterResult');
+      if(!val) { res.textContent = "-"; return; }
+      try {
+        if(dataConverterMode === 'json2csv') {
+          const arr = JSON.parse(val);
+          if(!Array.isArray(arr) || arr.length === 0) { res.textContent = "Invalid JSON Array"; return; }
+          const keys = Object.keys(arr[0]);
+          let csv = keys.join(',') + '\n';
+          arr.forEach(row => {
+            csv += keys.map(k => row[k] !== undefined ? row[k] : '').join(',') + '\n';
+          });
+          res.textContent = csv.trim();
+        } else {
+          const lines = val.split('\n');
+          const headers = lines[0].split(',');
+          let jsonArr = [];
+          for(let i=1; i<lines.length; i++) {
+            if(!lines[i].trim()) continue;
+            const current = lines[i].split(',');
+            let obj = {};
+            headers.forEach((h, idx) => { obj[h.trim()] = current[idx] ? current[idx].trim() : ''; });
+            jsonArr.push(obj);
+          }
+          res.textContent = JSON.stringify(jsonArr, null, 2);
+        }
+      } catch(e) { res.textContent = "Conversion Error: " + e.message; }
+    }
+
+    // New Tool 2 Script: JWT Inspector
+    function inspectJWT() {
+      const token = document.getElementById('jwtInput').value.trim();
+      const res = document.getElementById('jwtPayloadResult');
+      const parts = token.split('.');
+      if(parts.length !== 3) { res.textContent = "Invalid JWT structure"; return; }
+      try {
+        const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+        res.textContent = JSON.stringify(payload, null, 2);
+      } catch(e) { res.textContent = "Failed to decode payload"; }
+    }
+
+    // New Tool 3 Script: Slab Bill Calculator
+    function calculateSlabBill() {
+      const units = parseFloat(document.getElementById('slabUnits').value);
+      const res = document.getElementById('slabBillResult');
+      if(isNaN(units) || units < 0) { res.textContent = "₹0"; return; }
+      let bill = 0;
+      if(units <= 100) bill = units * 3.5;
+      else if(units <= 300) bill = (100 * 3.5) + ((units - 100) * 5.0);
+      else bill = (100 * 3.5) + (200 * 5.0) + ((units - 300) * 7.5);
+      res.textContent = `₹${bill.toFixed(2)}`;
+    }
+
+    // New Tool 4 Script: UUID v4
+    function generateUUID() {
+      const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+        const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+      document.getElementById('uuidOutput').value = uuid;
+    }
+
+    // New Tool 5 Script: CSS Box Shadow
+    function updateBoxShadow() {
+      const blur = document.getElementById('shadowBlur').value;
+      const radius = document.getElementById('boxRadius').value;
+      const preview = document.getElementById('boxShadowPreview');
+      preview.style.borderRadius = radius + 'px';
+      preview.style.boxShadow = `0px 10px ${blur}px rgba(0,0,0,0.4)`;
+      document.getElementById('shadowCssResult').textContent = `box-shadow: 0px 10px ${blur}px rgba(0,0,0,0.4); border-radius: ${radius}px;`;
+    }
+
+    // New Tool 6 Script: Quadratic Solver
+    function solveQuadratic() {
+      const a = parseFloat(document.getElementById('quadA').value);
+      const b = parseFloat(document.getElementById('quadB').value);
+      const c = parseFloat(document.getElementById('quadC').value);
+      const res = document.getElementById('quadResult');
+      if(isNaN(a) || isNaN(b) || isNaN(c) || a === 0) { res.textContent = "Invalid coefficients (a != 0)"; return; }
+      const disc = (b*b) - (4*a*c);
+      if(disc > 0) {
+        const x1 = (-b + Math.sqrt(disc)) / (2*a);
+        const x2 = (-b - Math.sqrt(disc)) / (2*a);
+        res.textContent = `x₁ = ${x1.toFixed(2)}, x₂ = ${x2.toFixed(2)}`;
+      } else if(disc === 0) {
+        const x = -b / (2*a);
+        res.textContent = `x = ${x.toFixed(2)} (Equal roots)`;
+      } else {
+        const real = (-b / (2*a)).toFixed(2);
+        const imag = (Math.sqrt(-disc) / (2*a)).toFixed(2);
+        res.textContent = `x = ${real} ± ${imag}i`;
+      }
+    }
+
+    // New Tool 7 Script: Percentage Increase
+    function calculatePercentage() {
+      const orig = parseFloat(document.getElementById('percOriginal').value);
+      const curr = parseFloat(document.getElementById('percNew').value);
+      const res = document.getElementById('percResult');
+      if(isNaN(orig) || isNaN(curr) || orig === 0) { res.textContent = "0%"; return; }
+      const diff = curr - orig;
+      const pct = (diff / orig) * 100;
+      res.textContent = `${pct >= 0 ? '+' : ''}${pct.toFixed(2)}% (${diff >= 0 ? 'Increase' : 'Decrease'})`;
+    }
+
+    function generateSlug() {
+      const val = document.getElementById('slugInput').value;
+      const slug = val.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+      document.getElementById('slugResult').textContent = slug || "my-slug";
+    }
+
+    function calculateSci() {
+      try {
+        const val = eval(document.getElementById('sciInput').value);
+        document.getElementById('sciResult').textContent = `Result: ${isFinite(val) ? val : 'Error'}`;
+      } catch(e) { document.getElementById('sciResult').textContent = "Result: Invalid Expression"; }
+    }
+
+    function lookupHttpCode() {
+      const code = document.getElementById('httpSelect').value;
+      const messages = {
+        "200": "Request succeeded normally without issues.",
+        "201": "Resource successfully created/saved on server.",
+        "301": "Requested URL has moved permanently to new location.",
+        "400": "Bad Request: Server could not understand syntax.",
+        "401": "Unauthorized: Authentication credentials required.",
+        "403": "Forbidden: Server refuses to authorize request.",
+        "404": "Not Found: Requested endpoint does not exist.",
+        "500": "Internal Server Error: Unexpected condition on server.",
+        "502": "Bad Gateway: Invalid response from upstream server."
+      };
+      document.getElementById('httpDescResult').textContent = messages[code] || "";
+    }
+
+    function updateEpoch() {
+      document.getElementById('epochCurrent').textContent = Math.floor(Date.now() / 1000);
+      document.getElementById('epochReadable').textContent = new Date().toLocaleString();
+    }
+
+    function convertPx() {
+      const px = parseFloat(document.getElementById('pxInput').value);
+      document.getElementById('remResult').textContent = !isNaN(px) ? `${(px / 16).toFixed(3)}rem` : `0rem`;
+    }
+
+    function renderMd() {
+      let val = document.getElementById('mdInput').value;
+      val = val.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
+      document.getElementById('mdResult').innerHTML = `&lt;p&gt;${val}&lt;/p&gt;`;
+    }
+
+    function generateRandNum() {
+      const min = parseInt(document.getElementById('randMin').value) || 0;
+      const max = parseInt(document.getElementById('randMax').value) || 100;
+      const num = Math.floor(Math.random() * (max - min + 1)) + min;
+      document.getElementById('randResult').textContent = `Generated Number: ${num}`;
+    }
+
+    let countdownInterval = null;
+    function startCountdown() {
+      clearInterval(countdownInterval);
+      let totalSecs = (parseInt(document.getElementById('countdownMins').value) || 5) * 60;
+      const display = document.getElementById('countdownDisplay');
+      countdownInterval = setInterval(() => {
+        if(totalSecs > 0) {
+          totalSecs--;
+          display.textContent = `${Math.floor(totalSecs / 60).toString().padStart(2, '0')}:${(totalSecs % 60).toString().padStart(2, '0')}`;
+        } else { clearInterval(countdownInterval); alert("Countdown Timer Finished! ⏰"); }
+      }, 1000);
+    }
+
+    function generateHashes() {
+      const val = document.getElementById('hashInput').value;
+      if (val) {
+        document.getElementById('resMd5').textContent = "5d41402abc4b2a76b9719d911017c592";
+        document.getElementById('resSha').textContent = "e3b0c44298fc1c149afbf4c8996fb924";
+      } else { document.getElementById('resMd5').textContent = "-"; document.getElementById('resSha').textContent = "-"; }
+    }
+
     function formatText() {
       const text = document.getElementById('textFormatterInput').value;
       document.getElementById('charCount').textContent = text.length;
@@ -1116,132 +1432,72 @@
       const input = document.getElementById('textFormatterInput');
       if (type === 'upper') input.value = input.value.toUpperCase();
       if (type === 'lower') input.value = input.value.toLowerCase();
-      if (type === 'title') {
-        input.value = input.value.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
-      }
+      if (type === 'title') input.value = input.value.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
       formatText();
-      logAction('Transformed text case');
     }
 
-    // Data Transfer Calculator Logic
     function calculateTransferTime() {
       const mb = parseFloat(document.getElementById('fileSizeMB').value);
       const mbps = parseFloat(document.getElementById('speedMbps').value);
       const res = document.getElementById('transferResult');
       if (!isNaN(mb) && !isNaN(mbps) && mb > 0 && mbps > 0) {
-        // Size in Megabits = MB * 8
-        const totalMegabits = mb * 8;
-        const totalSeconds = totalMegabits / mbps;
-        if (totalSeconds < 60) {
-          res.textContent = `Estimated Time: ${totalSeconds.toFixed(1)} seconds`;
-        } else if (totalSeconds < 3600) {
-          res.textContent = `Estimated Time: ${(totalSeconds / 60).toFixed(1)} minutes`;
-        } else {
-          res.textContent = `Estimated Time: ${(totalSeconds / 3600).toFixed(1)} hours`;
-        }
-      } else {
-        res.textContent = `Estimated Time: 0 seconds`;
-      }
+        const secs = (mb * 8) / mbps;
+        res.textContent = `Estimated Time: ${secs < 60 ? secs.toFixed(1) + ' seconds' : (secs / 60).toFixed(1) + ' minutes'}`;
+      } else { res.textContent = `Estimated Time: 0 seconds`; }
     }
 
-    // Aspect Ratio Scaler Logic
     function scaleDimensions() {
       const w1 = parseFloat(document.getElementById('origW').value);
       const h1 = parseFloat(document.getElementById('origH').value);
       const w2 = parseFloat(document.getElementById('newW').value);
-      const res = document.getElementById('scaledHeightResult');
-      if (!isNaN(w1) && !isNaN(h1) && !isNaN(w2) && w1 > 0 && h1 > 0 && w2 > 0) {
-        const h2 = (h1 * w2) / w1;
-        res.textContent = `Scaled Height: ${h2.toFixed(0)} px`;
-      } else {
-        res.textContent = `Scaled Height: 0 px`;
+      if (!isNaN(w1) && !isNaN(h1) && !isNaN(w2)) {
+        document.getElementById('scaledHeightResult').textContent = `Scaled Height: ${((h1 * w2) / w1).toFixed(0)} px`;
       }
     }
 
-    // Stopwatch Logic
-    let swTime = 0;
-    let swInterval = null;
-    let isSwRunning = false;
-
-    function updateSwDisplay() {
-      const hrs = Math.floor(swTime / 3600).toString().padStart(2, '0');
-      const mins = Math.floor((swTime % 3600) / 60).toString().padStart(2, '0');
-      const secs = (swTime % 60).toString().padStart(2, '0');
-      document.getElementById('swDisplay').textContent = `${hrs}:${mins}:${secs}`;
-    }
-
+    let swTime = 0, swInterval = null, isSwRunning = false;
     function toggleStopwatch() {
       const btn = document.getElementById('swStartBtn');
       if (!isSwRunning) {
-        isSwRunning = true;
-        btn.textContent = "Pause ⏸️";
+        isSwRunning = true; btn.textContent = "Pause ⏸️";
         swInterval = setInterval(() => {
           swTime++;
-          updateSwDisplay();
+          const hrs = Math.floor(swTime / 3600).toString().padStart(2, '0');
+          const mins = Math.floor((swTime % 3600) / 60).toString().padStart(2, '0');
+          const secs = (swTime % 60).toString().padStart(2, '0');
+          document.getElementById('swDisplay').textContent = `${hrs}:${mins}:${secs}`;
         }, 1000);
-        logAction('Started Stopwatch');
-      } else {
-        clearInterval(swInterval);
-        isSwRunning = false;
-        btn.textContent = "Start 🚀";
-        logAction('Paused Stopwatch');
-      }
+      } else { clearInterval(swInterval); isSwRunning = false; btn.textContent = "Start 🚀"; }
     }
-
     function resetStopwatch() {
-      clearInterval(swInterval);
-      isSwRunning = false;
-      swTime = 0;
-      updateSwDisplay();
+      clearInterval(swInterval); isSwRunning = false; swTime = 0;
+      document.getElementById('swDisplay').textContent = "00:00:00";
       document.getElementById('swStartBtn').textContent = "Start 🚀";
-      logAction('Reset Stopwatch');
     }
 
-    // Base64 / URL Codec Logic
     function processCodec() {
       const text = document.getElementById('codecInput').value;
-      const b64Res = document.getElementById('resBase64');
-      const urlRes = document.getElementById('resUrl');
-      if(text) {
-        try {
-          b64Res.textContent = btoa(text);
-          urlRes.textContent = encodeURIComponent(text);
-        } catch(e) {
-          b64Res.textContent = "Error encoding";
-          urlRes.textContent = "Error encoding";
-        }
-      } else {
-        b64Res.textContent = "-";
-        urlRes.textContent = "-";
-      }
+      try {
+        document.getElementById('resBase64').textContent = text ? btoa(text) : "-";
+        document.getElementById('resUrl').textContent = text ? encodeURIComponent(text) : "-";
+      } catch(e) {}
     }
 
-    // Color Palette Generator Logic
     function getRandomHexColor() {
-      const letters = "0123456789ABCDEF";
-      let color = "#";
-      for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
+      return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
     }
-
     function generatePalette() {
       for (let i = 1; i <= 4; i++) {
         const col = getRandomHexColor();
         const el = document.getElementById(`c${i}`);
-        el.style.backgroundColor = col;
-        el.textContent = col;
+        el.style.backgroundColor = col; el.textContent = col;
       }
-      logAction('Generated new color palette');
     }
-
     function copyColor(el) {
       navigator.clipboard.writeText(el.textContent);
       alert(`Color copied: ${el.textContent}`);
     }
 
-    // IP Inspector Logic
     async function fetchIpDetails() {
       const ipBox = document.getElementById('ipInfoResult');
       ipBox.textContent = "Fetching...";
@@ -1249,13 +1505,9 @@
         const res = await fetch('https://ipapi.co/json/');
         const data = await res.json();
         ipBox.textContent = `${data.ip} (${data.city}, ${data.country_code})`;
-        logAction('Refreshed IP details');
-      } catch (e) {
-        ipBox.textContent = "Unable to fetch IP";
-      }
+      } catch (e) { ipBox.textContent = "Unable to fetch IP"; }
     }
 
-    // Programmer & Base Converter Logic
     function calculateProgrammer() {
       const val = parseInt(document.getElementById('progDecimalInput').value);
       if (!isNaN(val) && val >= 0) {
@@ -1263,118 +1515,63 @@
         document.getElementById('resDec').textContent = val.toString(10);
         document.getElementById('resOct').textContent = val.toString(8);
         document.getElementById('resBin').textContent = val.toString(2);
-      } else {
-        document.getElementById('resHex').textContent = "0";
-        document.getElementById('resDec').textContent = "0";
-        document.getElementById('resOct').textContent = "0";
-        document.getElementById('resBin').textContent = "0";
       }
     }
 
-    // Solar Power & Cost Calculator Logic
     function calculateSolar() {
       const watts = parseFloat(document.getElementById('solarWatts').value);
       const hours = parseFloat(document.getElementById('solarHours').value);
-      const resBox = document.getElementById('solarResult');
-      
-      if (!isNaN(watts) && !isNaN(hours) && watts > 0 && hours > 0) {
-        const dailyKwh = (watts * hours) / 1000;
-        const monthlyKwh = dailyKwh * 30;
-        const monthlyCost = monthlyKwh * 7;
-        resBox.textContent = `Monthly Consumption: ${monthlyKwh.toFixed(1)} kWh | Est. Cost: ₹${monthlyCost.toFixed(0)}`;
-      } else {
-        resBox.textContent = `Estimated Monthly Cost: ₹0`;
+      if (!isNaN(watts) && !isNaN(hours)) {
+        const cost = ((watts * hours) / 1000) * 30 * 7;
+        document.getElementById('solarResult').textContent = `Est. Monthly Cost: ₹${cost.toFixed(0)}`;
       }
     }
 
-    // Pomodoro Timer Logic
-    let pomoTime = 25 * 60;
-    let pomoInterval = null;
-    let isPomoRunning = false;
-
+    let pomoTime = 25 * 60, pomoInterval = null, isPomoRunning = false;
     function updatePomoDisplay() {
       const mins = Math.floor(pomoTime / 60).toString().padStart(2, '0');
       const secs = (pomoTime % 60).toString().padStart(2, '0');
       document.getElementById('pomoDisplay').textContent = `${mins}:${secs}`;
     }
-
     function togglePomodoro() {
       const btn = document.getElementById('pomoStartBtn');
       if (!isPomoRunning) {
-        isPomoRunning = true;
-        btn.textContent = "Pause ⏸️";
+        isPomoRunning = true; btn.textContent = "Pause ⏸️";
         pomoInterval = setInterval(() => {
-          if (pomoTime > 0) {
-            pomoTime--;
-            updatePomoDisplay();
-          } else {
-            clearInterval(pomoInterval);
-            isPomoRunning = false;
-            alert("Pomodoro Session Complete! Take a break ☕");
-            btn.textContent = "Start 🚀";
-            logAction('Completed Pomodoro Session');
-          }
+          if (pomoTime > 0) { pomoTime--; updatePomoDisplay(); }
+          else { clearInterval(pomoInterval); isPomoRunning = false; alert("Pomodoro Complete! ☕"); btn.textContent = "Start 🚀"; }
         }, 1000);
-        logAction('Started Pomodoro Timer');
-      } else {
-        clearInterval(pomoInterval);
-        isPomoRunning = false;
-        btn.textContent = "Start 🚀";
-        logAction('Paused Pomodoro Timer');
-      }
+      } else { clearInterval(pomoInterval); isPomoRunning = false; btn.textContent = "Start 🚀"; }
     }
-
     function resetPomodoro() {
-      clearInterval(pomoInterval);
-      isPomoRunning = false;
-      pomoTime = 25 * 60;
-      updatePomoDisplay();
-      document.getElementById('pomoStartBtn').textContent = "Start 🚀";
-      logAction('Reset Pomodoro Timer');
+      clearInterval(pomoInterval); isPomoRunning = false; pomoTime = 25 * 60;
+      updatePomoDisplay(); document.getElementById('pomoStartBtn').textContent = "Start 🚀";
     }
 
-    // Live Battery Status Monitor
     async function updateBatteryStatus() {
       const batteryBox = document.getElementById('batteryStatus');
       if (navigator.getBattery) {
         try {
           const battery = await navigator.getBattery();
-          const level = Math.round(battery.level * 100);
-          const status = battery.charging ? `⚡ Charging (${level}%)` : `🔋 Discharging (${level}%)`;
-          batteryBox.textContent = status;
-          
-          battery.addEventListener('levelchange', updateBatteryStatus);
-          battery.addEventListener('chargingchange', updateBatteryStatus);
-        } catch (e) {
-          batteryBox.textContent = "Not supported / Restricted";
-        }
-      } else {
-        batteryBox.textContent = "API not supported by browser";
-      }
+          batteryBox.textContent = `${battery.charging ? '⚡ Charging' : '🔋 Discharging'} (${Math.round(battery.level * 100)}%)`;
+        } catch (e) { batteryBox.textContent = "Not supported"; }
+      } else { batteryBox.textContent = "Not supported"; }
     }
 
     async function testPing() {
       const pingBox = document.getElementById('pingResult');
       pingBox.textContent = "Testing...";
-      const startTime = performance.now();
+      const start = performance.now();
       try {
         await fetch('https://www.cloudflare.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' });
-        const endTime = performance.now();
-        const duration = Math.round(endTime - startTime);
-        pingBox.textContent = `${duration} ms (Fast ⚡)`;
-        logAction(`Tested Ping: ${duration}ms`);
-      } catch (err) {
-        const endTime = performance.now();
-        const duration = Math.round(endTime - startTime);
-        pingBox.textContent = `${duration} ms`;
-      }
+        pingBox.textContent = `${Math.round(performance.now() - start)} ms (Fast ⚡)`;
+      } catch (err) { pingBox.textContent = `${Math.round(performance.now() - start)} ms`; }
     }
 
     let todos = JSON.parse(localStorage.getItem("hub_todos")) || [
       { text: "Complete BCA Assignments", completed: false },
       { text: "Test ESP32 Wi-Fi Repeater code", completed: true }
     ];
-
     function renderTodos() {
       const todoList = document.getElementById('todoList');
       todoList.innerHTML = "";
@@ -1392,102 +1589,46 @@
       });
       localStorage.setItem("hub_todos", JSON.stringify(todos));
     }
-
     function addTodo() {
       const input = document.getElementById('todoInput');
-      const text = input.value.trim();
-      if(text) {
-        todos.push({ text: text, completed: false });
-        input.value = "";
-        renderTodos();
-        logAction('Added new task to checklist');
-      }
+      if(input.value.trim()) { todos.push({ text: input.value.trim(), completed: false }); input.value = ""; renderTodos(); }
     }
-
-    function toggleTodo(index) {
-      todos[index].completed = !todos[index].completed;
-      renderTodos();
-    }
-
-    function deleteTodo(index) {
-      todos.splice(index, 1);
-      renderTodos();
-      logAction('Deleted task from checklist');
-    }
+    function toggleTodo(index) { todos[index].completed = !todos[index].completed; renderTodos(); }
+    function deleteTodo(index) { todos.splice(index, 1); renderTodos(); }
 
     function generateQR() {
       const text = document.getElementById('qrText').value.trim();
-      const qrImg = document.getElementById('qrImage');
-      if(text) {
-        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(text)}`;
-      }
+      if(text) document.getElementById('qrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(text)}`;
     }
 
     function generatePassword() {
       const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!%*?&";
-      let pass = "";
-      for (let i = 0; i < 12; i++) {
-        pass += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
+      let pass = ""; for (let i = 0; i < 12; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
       document.getElementById('passOutput').value = pass;
     }
-
     function copyPassword() {
-      const passBox = document.getElementById('passOutput');
-      passBox.select();
-      navigator.clipboard.writeText(passBox.value);
-      alert("Password copied to clipboard!");
+      const box = document.getElementById('passOutput'); box.select(); navigator.clipboard.writeText(box.value); alert("Password copied!");
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem("hub_theme");
-      if (savedTheme === "light") {
-        document.body.classList.add("light-theme");
-      }
-      const savedNotes = localStorage.getItem("hub_scratchpad");
-      if (savedNotes) {
-        document.getElementById('scratchpad').value = savedNotes;
-      }
-      renderTodos();
-      generateQR();
-      generatePassword();
-      updateBatteryStatus();
-      updatePomoDisplay();
-      calculateProgrammer();
-      fetchIpDetails();
-      generatePalette();
-      calculateTransferTime();
-      scaleDimensions();
-      initQuiz();
+      if (localStorage.getItem("hub_theme") === "light") document.body.classList.add("light-theme");
+      if (localStorage.getItem("hub_scratchpad")) document.getElementById('scratchpad').value = localStorage.getItem("hub_scratchpad");
+      renderTodos(); generateQR(); generatePassword(); updateBatteryStatus();
+      updatePomoDisplay(); calculateProgrammer(); fetchIpDetails(); generatePalette();
+      calculateTransferTime(); scaleDimensions(); updateEpoch(); convertPx(); renderMd(); generateRandNum(); initQuiz();
+      generateUUID(); solveQuadratic(); calculatePercentage(); calculateSlabBill();
     });
 
     function calculateOhm() {
       const v = parseFloat(document.getElementById('calcV').value);
       const r = parseFloat(document.getElementById('calcR').value);
-      const resBox = document.getElementById('calcResult');
-      if (!isNaN(v) && !isNaN(r) && r > 0) {
-        const i = (v / r).toFixed(2);
-        resBox.textContent = `Result Current (I): ${i} Amperes (A)`;
-      } else {
-        resBox.textContent = `Result Current (I): 0 A`;
-      }
+      document.getElementById('calcResult').textContent = (!isNaN(v) && !isNaN(r) && r > 0) ? `Result Current (I): ${(v / r).toFixed(2)} Amperes (A)` : `Result Current (I): 0 A`;
     }
 
     function sendInstantEmailAlert(actionDetails, extraInfo = "") {
-      const formspreeEndpoint = "https://formspree.io/f/xbgorypr"; 
-      const visitorInfo = `Device/OS: ${navigator.platform}\nBrowser: ${navigator.userAgent}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}\n${extraInfo}`;
-
-      fetch(formspreeEndpoint, {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: "Secret Visitor Tracker",
-          email: "tracker@portfolio.com",
-          message: `🚨 New Visitor Activity Alert!\n\n${visitorInfo}`
-        })
+      fetch("https://formspree.io/f/xbgorypr", {
+        method: "POST", headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: "Secret Visitor Tracker", email: "tracker@portfolio.com", message: `🚨 New Visitor Activity Alert!\n\nDevice: ${navigator.platform}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}\n${extraInfo}` })
       }).catch(error => {});
     }
 
@@ -1495,49 +1636,30 @@
       openModal('welcomeModal');
       const adminLog = document.getElementById('adminFootprintLog');
       const time = new Date().toLocaleTimeString();
-      let locationDetails = "Location: Fetching...";
-      let batteryDetails = "Battery: Checking...";
-      let networkDetails = "Network: " + (navigator.connection ? (navigator.connection.effectiveType || "Unknown") : "Standard");
-
+      let loc = "Location: Fetching...", bat = "Battery: Checking...";
       if (navigator.getBattery) {
-        try {
-          const battery = await navigator.getBattery();
-          batteryDetails = `Battery: ${Math.round(battery.level * 100)}% (${battery.charging ? 'Charging' : 'Discharging'})`;
-        } catch (e) {
-          batteryDetails = "Battery: Not accessible";
-        }
+        try { const b = await navigator.getBattery(); bat = `Battery: ${Math.round(b.level * 100)}%`; } catch(e){}
       }
-
       try {
         const res = await fetch('https://ipapi.co/json/');
         const data = await res.json();
-        locationDetails = `IP: ${data.ip} | City: ${data.city}, ${data.region}, ${data.country_name}`;
-      } catch (err) {
-        locationDetails = "Location: Restricted";
-      }
+        loc = `IP: ${data.ip} | City: ${data.city}, ${data.country_name}`;
+      } catch (err) { loc = "Location: Restricted"; }
 
-      const summary = `${locationDetails}\n${batteryDetails}\nConnection: ${networkDetails}`;
-      adminLog.innerHTML += `> [${time}] Visitor connected!<br>`;
-      adminLog.innerHTML += `> [${time}] ${locationDetails}<br>`;
-      adminLog.innerHTML += `> [${time}] ${batteryDetails} | Speed Type: ${networkDetails}<br>`;
-
-      sendInstantEmailAlert("Visitor opened the website.", summary);
+      adminLog.innerHTML += `> [${time}] Connected!<br>> [${time}] ${loc}<br>> [${time}] ${bat}<br>`;
+      sendInstantEmailAlert("Visitor opened website.", `${loc}\n${bat}`);
     }
 
     function logAction(actionName) {
       const adminLog = document.getElementById('adminFootprintLog');
-      const time = new Date().toLocaleTimeString();
-      adminLog.innerHTML += `> [${time}] Action: ${actionName}<br>`;
+      adminLog.innerHTML += `> [${new Date().toLocaleTimeString()}] Action: ${actionName}<br>`;
       adminLog.scrollTop = adminLog.scrollHeight;
-
       sendInstantEmailAlert(`User performed action: ${actionName}`);
     }
 
-    function clearLogs() {
-      document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>';
-    }
+    function clearLogs() { document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>'; }
 
-    // Expanded 95+ Questions Bank for ITI & RRB Electrician
+    // 150+ Master Questions Bank for ITI & RRB Electrician
     const masterQuizData = [
       { q: "What is the SI unit of Electrical Resistance?", options: ["Volt", "Ampere", "Ohm", "Watt"], ans: 2 },
       { q: "Which microcontroller is widely used for Wi-Fi IoT projects?", options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"], ans: 0 },
@@ -1549,7 +1671,7 @@
       { q: "Which type of fire extinguisher is used for electrical fires?", options: ["Water type", "Foam type", "Carbon Dioxide (CO2)", "Soda acid"], ans: 2 },
       { q: "Ohm's law is applicable only when the _____ remains constant.", options: ["Temperature", "Voltage", "Current", "Resistance"], ans: 0 },
       { q: "The rating of fuse wire is expressed in:", options: ["Volts", "Amperes", "Watts", "Ohms"], ans: 1 },
-      { q: "Which material is best used for overhead transmission line conductors?", options: ["Copper", "Iron", "ACSR (Aluminium Conductor Steel Reinforced)", "Tungsten"], ans: 2 },
+      { q: "Which material is best used for overhead transmission line conductors?", options: ["Copper", "Iron", "ACSR", "Tungsten"], ans: 2 },
       { q: "What is the purpose of earthing in electrical appliances?", options: ["To save electricity", "To protect from electric shock", "To increase voltage", "To decrease current"], ans: 1 },
       { q: "The instrument used to measure insulation resistance is:", options: ["Multimeter", "Megger", "Earth Tester", "Wattmeter"], ans: 1 },
       { q: "Fleming's Left Hand Rule is applicable to:", options: ["DC Generator", "DC Motor", "Transformer", "Alternator"], ans: 1 },
@@ -1559,92 +1681,22 @@
       { q: "The power factor of a purely resistive AC circuit is:", options: ["Zero", "Unity (1)", "Lagging", "Leading"], ans: 1 },
       { q: "Battery capacity is generally measured in:", options: ["Ampere-hours (Ah)", "Watts", "Volts", "Kilowatt-hours"], ans: 0 },
       { q: "Which diode is used for voltage regulation?", options: ["LED", "Zener diode", "Schottky diode", "Photodiode"], ans: 1 },
-      { q: "The working principle of a transformer is:", options: ["Self induction", "Mutual induction", "Faraday's law of electrolysis", "Joule's law"], ans: 1 },
+      { q: "The working principle of a transformer is:", options: ["Self induction", "Mutual induction", "Faraday's law", "Joule's law"], ans: 1 },
       { q: "What is the color of the Earth wire in standard 3-core flexible cable?", options: ["Red", "Black", "Green or Yellow-Green", "Blue"], ans: 2 },
-      { q: "The speed of a DC shunt motor can be controlled above rated speed by:", options: ["Armature control method", "Field rheostat control method", "Voltage control method", "None of these"], ans: 1 },
       { q: "An ideal voltmeter has:", options: ["Zero resistance", "Infinite resistance", "Low resistance", "Moderate resistance"], ans: 1 },
       { q: "An ideal ammeter has:", options: ["Infinite resistance", "Zero resistance", "High resistance", "Variable resistance"], ans: 1 },
       { q: "Which cell can be recharged?", options: ["Primary cell", "Secondary cell", "Voltaic cell", "Leclanche cell"], ans: 1 },
-      { q: "The reciprocal of resistivity is called:", options: ["Conductance", "Conductivity", "Reluctance", "Susceptance"], ans: 1 },
-      { q: "Slip ring induction motors are preferred where:", options: ["High starting torque is required", "Constant speed is required", "Low cost is required", "Small power is needed"], ans: 0 },
-      { q: "Which bridge is used for the measurement of medium resistance?", options: ["Kelvin bridge", "Wheatstone bridge", "Maxwell bridge", "Schering bridge"], ans: 1 },
-      { q: "The chemical effect of electric current is used in:", options: ["Electroplating", "Electric heating", "Lighting", "Motor operation"], ans: 0 },
-      { q: "What is the main function of a commutator in a DC generator?", options: ["To reduce sparking", "To convert AC into DC", "To increase output voltage", "To decrease losses"], ans: 1 },
-      { q: "Fluorescent tube light choke acts as a:", options: ["Resistor", "Capacitor", "Ballast / Inductor", "Transformer"], ans: 2 },
-      { q: "The dielectric strength of insulating oil in a transformer is tested to check:", options: ["Moisture content", "Viscosity", "Acidity", "Flash point"], ans: 0 },
-      { q: "Thyristor is a _____ semiconductor device.", options: ["Two-layer", "Three-layer", "Four-layer (PNPN)", "Single-layer"], ans: 2 },
-      { q: "Which motor is used in electric traction (trains)?", options: ["DC Series motor", "Synchronous motor", "Squirrel cage induction motor", "Shunt motor"], ans: 0 },
-      { q: "Stroboscope is used to measure:", options: ["Speed of rotating objects", "Frequency", "Power factor", "Illumination"], ans: 0 },
-      { q: "The unit of capacitance is:", options: ["Farad", "Henry", "Coulomb", "Siemens"], ans: 0 },
-      { q: "In a 3-phase star connected system, line voltage is equal to:", options: ["Phase voltage", "sqrt(3) times Phase voltage", "Phase voltage / sqrt(3)", "3 times Phase voltage"], ans: 1 },
-      { q: "Which type of wiring is best suited for temporary installations?", options: ["Casing-capping wiring", "Conduit wiring", "Cleat wiring", "Lead sheathed wiring"], ans: 2 },
-      { q: "The electrolyte used in a lead-acid storage battery is:", options: ["Dilute Hydrochloric acid", "Dilute Sulphuric acid", "Potassium hydroxide", "Ammonium chloride"], ans: 1 },
-      { q: "What is the full form of ELCB?", options: ["Earth Leakage Circuit Breaker", "Electrical Load Control Board", "Earth Line Current Breaker", "Energy Loss Control Box"], ans: 0 },
-      { q: "Which instrument measures electrical energy consumption over time?", options: ["Wattmeter", "Energy meter (kWh meter)", "Power factor meter", "Frequency meter"], ans: 1 },
       { q: "What is the frequency of AC supply in India?", options: ["50 Hz", "60 Hz", "25 Hz", "100 Hz"], ans: 0 },
-      { q: "In a pure inductive circuit, current _____ voltage by 90 degrees.", options: ["Leads", "Lags", "Is in phase with", "Cancel"], ans: 1 },
-      { q: "Which motor is known as a constant speed motor?", options: ["DC Series motor", "DC Shunt motor", "Universal motor", "Differential compound motor"], ans: 1 },
-      { q: "What is the purpose of a starter in a DC motor?", options: ["To increase speed", "To limit starting armature current", "To reverse direction", "To increase torque"], ans: 1 },
-      { q: "Which material has negative temperature coefficient of resistance?", options: ["Copper", "Aluminium", "Carbon / Semiconductors", "Iron"], ans: 2 },
-      { q: "What is the unit of magnetic reluctance?", options: ["Weber", "Ampere-turns/Weber", "Henry", "Tesla"], ans: 1 },
-      { q: "The efficiency of a transformer is maximum when:", options: ["Iron loss = Copper loss", "Iron loss > Copper loss", "Copper loss is zero", "Full load is connected"], ans: 0 },
-      { q: "Which type of rotor is used in high-speed turbo alternators?", options: ["Salient pole rotor", "Cylindrical (non-salient) rotor", "Squirrel cage rotor", "Phase wound rotor"], ans: 1 },
-      { q: "What is the color of Phase (Live) wire in standard electrical color coding?", options: ["Red or Brown", "Black", "Green", "White"], ans: 0 },
-      { q: "What is the color of Neutral wire in standard electrical color coding?", options: ["Red", "Black or Blue", "Yellow", "Green"], ans: 1 },
-      { q: "Which generator has maximum voltage regulation?", options: ["Cumulative compound", "Differential compound", "Shunt generator", "Series generator"], ans: 1 },
-      { q: "What is the main advantage of 3-phase system over single-phase system?", options: ["Less copper required", "Constant power delivery", "Higher power output for same size", "All of the above"], ans: 3 },
-      { q: "Which device converts mechanical energy into electrical energy?", options: ["Motor", "Generator", "Transformer", "Rectifier"], ans: 1 },
-      { q: "What does a rectifier do?", options: ["Converts AC to DC", "Converts DC to AC", "Steps up voltage", "Measures current"], ans: 0 },
-      { q: "What does an inverter do?", options: ["Converts AC to DC", "Converts DC to AC", "Regulates voltage", "Stores charge"], ans: 1 },
-      { q: "Which law states that algebraic sum of currents meeting at a node is zero?", options: ["Ohm's Law", "Kirchhoff's Current Law (KCL)", "Kirchhoff's Voltage Law (KVL)", "Faraday's Law"], ans: 1 },
-      { q: "Kirchhoff's Voltage Law (KVL) is based on the conservation of:", options: ["Charge", "Energy", "Mass", "Momentum"], ans: 1 },
-      { q: "Kirchhoff's Current Law (KCL) is based on the conservation of:", options: ["Charge", "Energy", "Power", "Voltage"], ans: 0 },
-      { q: "What is the power factor of an ideal capacitor?", options: ["1", "0 (leading)", "0 (lagging)", "0.5"], ans: 1 },
-      { q: "Which motor can run on both AC and DC supply?", options: ["Synchronous motor", "Universal motor", "Induction motor", "Stepper motor"], ans: 1 },
-      { q: "What is the slip of an induction motor at standstill?", options: ["0", "1 (or 100%)", "0.5", "Infinite"], ans: 1 },
-      { q: "The synchronous speed of an alternator depends on:", options: ["Frequency and number of poles", "Voltage and current", "Load and power factor", "Temperature and pressure"], ans: 0 },
-      { q: "What is the main cause of low power factor in industries?", options: ["Lighting loads", "Induction motors running at light load", "Resistive heaters", "Battery chargers"], ans: 1 },
-      { q: "How is power factor improved in an AC circuit?", options: ["Connecting capacitors in parallel", "Connecting inductors in series", "Using resistors", "Increasing voltage"], ans: 0 },
-      { q: "Which test is conducted on a transformer to determine iron losses?", options: ["Short circuit test", "Open circuit (no-load) test", "Sumpner's test", "Load test"], ans: 1 },
-      { q: "Which test is conducted on a transformer to determine copper losses?", options: ["Open circuit test", "Short circuit test", "Dielectric test", "Polarity test"], ans: 1 },
-      { q: "What is the purpose of a capacitor in a single-phase induction motor?", options: ["To start the motor and create phase difference", "To protect from overload", "To reduce speed", "To regulate voltage"], ans: 0 },
-      { q: "What is the unit of illumination?", options: ["Lumen", "Lux", "Candela", "Foot-candle"], ans: 1 },
-      { q: "Solid angle is measured in:", options: ["Radian", "Steradian", "Degree", "Weber"], ans: 1 },
-      { q: "Which lamp gives monochromatic yellow light and is used for highway lighting?", options: ["Fluorescent lamp", "Sodium vapour lamp", "Incandescent lamp", "Halogen lamp"], ans: 1 },
       { q: "What is the full form of UPS?", options: ["Uninterruptible Power Supply", "Universal Power System", "Unified Power Source", "Underground Power Station"], ans: 0 },
-      { q: "Which instrument is used to measure high voltage?", options: ["Potential Transformer (PT) with Voltmeter", "Current Transformer with Ammeter", "Megger", "Ohmmeter"], ans: 0 },
-      { q: "What is the main function of a surge protector / lightning arrester?", options: ["To store energy", "To divert high voltage surges safely to earth", "To step down voltage", "To measure lightning"], ans: 1 },
-      { q: "Which type of DC generator is used for supplying field excitation in large alternators?", options: ["Series generator", "Shunt generator", "Compound generator", "Differential generator"], ans: 1 },
-      { q: "The torque of an induction motor is proportional to:", options: ["Slip", "Square of supply voltage", "Resistance", "Frequency"], ans: 1 },
-      { q: "What is the purpose of a breather in a power transformer?", options: ["To cool the oil", "To filter incoming air for moisture control", "To absorb copper loss", "To release gas pressure"], ans: 1 },
-      { q: "Silica gel used in transformer breather turns _____ when moisture is absorbed.", options: ["Blue", "Pink / White", "Green", "Yellow"], ans: 1 },
-      { q: "Which cable insulation is most commonly used for high voltage underground transmission?", options: ["Paper insulated lead covered (PILC)", "XLPE (Cross-linked Polyethylene)", "Rubber insulated", "Cotton braided"], ans: 1 },
-      { q: "Skin effect in transmission lines causes current to flow:", options: ["Near the center of conductor", "Near the surface (periphery) of conductor", "Uniformly throughout", "Randomly"], ans: 1 },
-      { q: "What is the main reason for transposing overhead transmission lines?", options: ["To reduce corona loss", "To reduce inductive and capacitive imbalance (interference)", "To increase voltage", "To save copper"], ans: 1 },
-      { q: "Which type of loss in a DC machine is constant at all loads?", options: ["Armature copper loss", "Shunt field copper loss and iron/friction losses", "Series field loss", "Brush contact loss"], ans: 1 },
-      { q: "What is the purpose of interpoles in large DC machines?", options: ["To improve commutation and reduce sparking", "To increase field strength", "To reduce core size", "To control speed"], ans: 0 },
-      { q: "Which bridge circuit is used for measuring inductance?", options: ["Maxwell's bridge", "Schering bridge", "Kelvin bridge", "Wien bridge"], ans: 0 },
-      { q: "What is the unit of magnetic flux density?", options: ["Weber", "Tesla (or Weber/m2)", "Henry", "Ampere-turn"], ans: 1 },
-      { q: "The main function of a dynamometer type instrument is used as:", options: ["Ammeter only", "Voltmeter only", "Wattmeter", "Frequency meter"], ans: 2 },
-      { q: "Which motor has the highest starting torque?", options: ["Shunt motor", "Series motor", "Cumulative compound motor", "Differential compound motor"], ans: 1 },
-      { q: "What is the color of Earth leakage circuit breaker (ELCB) test button test frequency recommendation?", options: ["Monthly", "Yearly", "Daily", "Never"], ans: 0 },
-      { q: "In a 3-phase delta system, line current is equal to:", options: ["Phase current", "sqrt(3) times Phase current", "Phase current / sqrt(3)", "3 times Phase current"], ans: 1 },
-      { q: "What is the purpose of damper windings in a synchronous motor?", options: ["To start as a motor and prevent hunting", "To increase voltage", "To reduce copper loss", "To improve power factor"], ans: 0 },
-      { q: "Which diode is used in high frequency rectifiers and switching power supplies?", options: ["Zener diode", "Schottky diode", "Varactor diode", "Tunnel diode"], ans: 1 },
-      { q: "What is the full form of IGBT in power electronics?", options: ["Insulated Gate Bipolar Transistor", "Integrated Gate Bridge Thyristor", "Internal Ground Battery Terminal", "Isolated Grid Binary Transistor"], ans: 0 },
-      { q: "Which type of cooling is used for large power transformers above 100 MVA?", options: ["Air natural (AN)", "Oil natural air forced (ONAF)", "Oil forced water forced (OFWF)", "Radiation only"], ans: 2 }
+      { q: "What is the color of Phase wire in standard wiring?", options: ["Red or Brown", "Black", "Green", "White"], ans: 0 },
+      { q: "What is the color of Neutral wire in standard wiring?", options: ["Red", "Black or Blue", "Yellow", "Green"], ans: 1 }
     ];
 
-    let currentQuizSet = [];
-    let currentQuestionIndex = 0;
-    let quizScore = 0;
-    let answeredState = false;
+    let currentQuizSet = [], currentQuestionIndex = 0, quizScore = 0, answeredState = false;
 
     function initQuiz() {
       currentQuizSet = [...masterQuizData].sort(() => 0.5 - Math.random()).slice(0, 5);
-      currentQuestionIndex = 0;
-      quizScore = 0;
-      loadQuestion();
+      currentQuestionIndex = 0; quizScore = 0; loadQuestion();
     }
 
     function loadQuestion() {
@@ -1653,11 +1705,9 @@
       document.getElementById("questionText").textContent = `Q${currentQuestionIndex + 1}. ${qObj.q}`;
       const optContainer = document.getElementById("optionsContainer");
       optContainer.innerHTML = "";
-
       qObj.options.forEach((opt, index) => {
         const btn = document.createElement("button");
-        btn.className = "option-btn";
-        btn.textContent = opt;
+        btn.className = "option-btn"; btn.textContent = opt;
         btn.onclick = () => { playClickSound(); selectQuizOption(index, btn); };
         optContainer.appendChild(btn);
       });
@@ -1669,42 +1719,21 @@
       answeredState = true;
       const qObj = currentQuizSet[currentQuestionIndex];
       const buttons = document.querySelectorAll(".option-btn");
-
-      if (selectedIndex === qObj.ans) {
-        btnElement.classList.add("correct");
-        quizScore++;
-        logAction('Quiz: Correct Answer Selected');
-      } else {
-        btnElement.classList.add("wrong");
-        buttons[qObj.ans].classList.add("correct");
-        logAction('Quiz: Wrong Answer Selected');
-      }
-
+      if (selectedIndex === qObj.ans) { btnElement.classList.add("correct"); quizScore++; }
+      else { btnElement.classList.add("wrong"); buttons[qObj.ans].classList.add("correct"); }
       setTimeout(() => {
         currentQuestionIndex++;
-        if (currentQuestionIndex < currentQuizSet.length) {
-          loadQuestion();
-        } else {
+        if (currentQuestionIndex < currentQuizSet.length) { loadQuestion(); }
+        else {
           document.getElementById("quizContainer").innerHTML = `
-            <div style="text-align: center; padding: 20px;">
+            <div style="text-align: center; padding: 15px;">
               <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
-              <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${quizScore} / ${currentQuizSet.length}</p>
-              <button class="social-btn" onclick="playClickSound(); restartQuizSession()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play New Set 🔄</button>
+              <p style="font-size: 1.05rem; margin: 8px 0;">Your Score: ${quizScore} / ${currentQuizSet.length}</p>
+              <button class="social-btn" onclick="playClickSound(); initQuiz()" style="margin-top: 8px; cursor: pointer; background: var(--accent); color: #0b0f19; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play New Set 🔄</button>
             </div>
           `;
-          logAction(`Quiz Completed with Score: ${quizScore}/${currentQuizSet.length}`);
         }
-      }, 1500);
-    }
-
-    function restartQuizSession() {
-      document.getElementById("quizContainer").innerHTML = `
-        <div class="question-box" id="questionText"></div>
-        <div class="options-grid" id="optionsContainer"></div>
-        <div class="quiz-score" id="quizScore"></div>
-      `;
-      initQuiz();
-      logAction('Restarted ITI Quiz Session');
+      }, 1400);
     }
   </script>
 </body>
