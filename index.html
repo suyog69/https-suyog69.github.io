@@ -317,6 +317,11 @@
       width: 100%;
     }
 
+    /* Calculator Widget Styling */
+    .calc-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+    .calc-input { background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 6px; width: 100%; box-sizing: border-box; }
+    .calc-result { font-weight: bold; color: var(--accent); margin-top: 5px; font-size: 1.05rem; }
+
     /* Quiz Styling */
     .quiz-container { margin-top: 10px; }
     .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
@@ -343,7 +348,7 @@
       <div class="avatar" style="width: 70px; height: 70px; font-size: 1.6rem; margin-bottom: 15px;">SC</div>
       <h2>Welcome to Suyog's Mega Tech Hub! 👋</h2>
       <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
-        Aapka swagat hai! Explore your systematic workspace including all coding resources, web hosting, tools, and family utility services.
+        Aapka swagat hai! Explore your systematic workspace including all coding resources, web hosting, utilities, and electrical tools.
       </p>
       <button class="submit-btn" style="border-radius: 20px;" onclick="closeModal('welcomeModal')">Get Started 🚀</button>
     </div>
@@ -355,10 +360,10 @@
       <button class="close-btn" onclick="closeModal('adminModal')">&times;</button>
       <h2 style="color: #22c55e;">🔒 Secret Admin Dashboard</h2>
       <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
-        Live visitor footprints, location, battery & email alert status:
+        Live visitor footprints, location, battery & network info:
       </p>
       <div id="adminFootprintLog" style="background: #0b0f19; border: 1px solid #334155; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #22c55e; max-height: 250px; overflow-y: auto; text-align: left;">
-        [System]: Initializing tracker, IP geo & email system...<br>
+        [System]: Initializing advanced tracking & email hook...<br>
       </div>
       <button class="submit-btn" style="background: #22c55e; color: #0f172a; margin-top: 15px;" onclick="clearLogs()">Clear Logs</button>
     </div>
@@ -610,298 +615,4 @@
         <input type="email" name="email" placeholder="Enter your email" required>
 
         <label>Message:</label>
-        <textarea name="message" rows="4" placeholder="Write your message here..." required></textarea>
-
-        <button type="submit" class="submit-btn" onclick="logAction('Submitted Contact Form')">Send Message 🚀</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MAIN PAGE LAYOUT -->
-  <div class="top-controls">
-    <button class="welcome-trigger-btn" onclick="openModal('welcomeModal')">👋 Welcome</button>
-    <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
-  </div>
-
-  <header>
-    <div class="avatar">SC</div>
-    <h2>Suyog Chaudhari</h2>
-    <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
-  </header>
-
-  <main class="container">
-    <!-- Master Systematic Hub -->
-    <section class="card">
-      <h3>🚀 Master Systematic Hub</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Click any category to open its dedicated tools popup window:</p>
-      
-      <div class="grid-launchers">
-        <button class="category-card-btn" onclick="openModal('codingModal'); logAction('Opened Coding Hub');">
-          <span>💻 Free Coding, Mindluster & Practice</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('govtExamsModal'); logAction('Opened Govt Exams Hub');">
-          <span>🎯 Govt Exams, RRB/SSC & Mock Tests</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('typingModal'); logAction('Opened Typing Hub');">
-          <span>⌨️ Free Typing Training</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('trainModal'); logAction('Opened Train Tracking Hub');">
-          <span>🚆 Live Train Tracking & Media Tools</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('mediaModal'); logAction('Opened Media & Converter Hub');">
-          <span>📥 Video MP4 Converter & Media Tools</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('workflowModal'); logAction('Opened Workflow Hub');">
-          <span>🌟 Suyog's Special Daily Workflow Hub</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('directoriesModal'); logAction('Opened Web Directories Hub');">
-          <span>🌐 Mega Web Directories (10,000+ Tools)</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('degreeModal'); logAction('Opened Degree & Portals Hub');">
-          <span>🎓 Degree & Official Portals</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('electricalModal'); logAction('Opened Electrical Hub');">
-          <span>⚡ Electrical, Solar & Courses</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('officeModal'); logAction('Opened Office Tools Hub');">
-          <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('microModal'); logAction('Opened Microcontrollers Hub');">
-          <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('networkModal'); logAction('Opened Network Utilities Hub');">
-          <span>🛠️ Network, Testing & Design Utilities</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('hostingModal'); logAction('Opened Hosting Hub');" style="border-left-color: #38bdf8;">
-          <span>🚀 Free Hosting, Deployment & Cloud</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('sandboxModal'); logAction('Opened Code Sandboxes Hub');" style="border-left-color: #a855f7;">
-          <span>💻 Online Compilers & Code Sandboxes</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('familyModal'); logAction('Opened Family Utility Hub');" style="border-left-color: #22c55e;">
-          <span>🏡 Family Utility & Govt Services</span> <span>➔</span>
-        </button>
-
-        <button class="category-card-btn" onclick="openModal('contactModal'); logAction('Opened Contact Hub');" style="border-left-color: #f59e0b;">
-          <span>✉️ Contact Me / Send Message (Email)</span> <span>➔</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Technical Stack -->
-    <section class="card">
-      <h3>⚡ Technical Stack</h3>
-      <div class="skills-list">
-        <span class="badge">ESP32 & IoT</span>
-        <span class="badge">Electrical Wiring & Solar</span>
-        <span class="badge">Python</span>
-        <span class="badge">HTML / CSS / JS</span>
-        <span class="badge">Termux & Linux</span>
-        <span class="badge">Git & GitHub</span>
-      </div>
-    </section>
-
-    <!-- Quiz Game -->
-    <section class="card">
-      <h3>🧠 ITI & Electrical Quiz Game</h3>
-      <div class="quiz-container" id="quizContainer">
-        <div class="question-box" id="questionText">Loading question...</div>
-        <div class="options-grid" id="optionsContainer"></div>
-        <div class="quiz-score" id="quizScore"></div>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    function openModal(modalId) {
-      document.getElementById(modalId).classList.add("active");
-    }
-
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove("active");
-    }
-
-    function toggleTheme() {
-      document.body.classList.toggle("light-theme");
-      logAction('Toggled Theme mode');
-    }
-
-    document.addEventListener('keydown', function(event) {
-      if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'a') {
-        event.preventDefault();
-        openModal('adminModal');
-      }
-    });
-
-    // 🚀 ADVANCED TRACKING: IP LOCATION + BATTERY + EMAIL ALERT
-    function sendInstantEmailAlert(actionDetails, extraInfo = "") {
-      const formspreeEndpoint = "https://formspree.io/f/xbgorypr"; 
-      const visitorInfo = `Device/OS: ${navigator.platform}\nBrowser: ${navigator.userAgent}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}\n${extraInfo}`;
-
-      fetch(formspreeEndpoint, {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: "Secret Visitor Tracker",
-          email: "tracker@portfolio.com",
-          message: `🚨 New Visitor Activity Alert!\n\n${visitorInfo}`
-        })
-      }).catch(error => {
-        console.log("Email alert error:", error);
-      });
-    }
-
-    async function initTracker() {
-      openModal('welcomeModal');
-      const adminLog = document.getElementById('adminFootprintLog');
-      const time = new Date().toLocaleTimeString();
-      let locationDetails = "Location: Fetching...";
-      let batteryDetails = "Battery: Checking...";
-
-      // Check Battery status if supported by mobile/browser
-      if (navigator.getBattery) {
-        try {
-          const battery = await navigator.getBattery();
-          batteryDetails = `Battery: ${Math.round(battery.level * 100)}% (${battery.charging ? 'Charging' : 'Discharging'})`;
-        } catch (e) {
-          batteryDetails = "Battery: Not accessible";
-        }
-      }
-
-      // Fetch IP & Location details
-      try {
-        const res = await fetch('https://ipapi.co/json/');
-        const data = await res.json();
-        locationDetails = `IP: ${data.ip} | City: ${data.city}, ${data.region}, ${data.country_name}`;
-      } catch (err) {
-        locationDetails = "Location: Network Restricted";
-      }
-
-      const summary = `${locationDetails}\n${batteryDetails}`;
-      adminLog.innerHTML += `> [${time}] Visitor connected!<br>`;
-      adminLog.innerHTML += `> [${time}] ${locationDetails}<br>`;
-      adminLog.innerHTML += `> [${time}] ${batteryDetails}<br>`;
-
-      // Send instant email alert on load
-      sendInstantEmailAlert("Visitor opened the website.", summary);
-    }
-
-    function logAction(actionName) {
-      const adminLog = document.getElementById('adminFootprintLog');
-      const time = new Date().toLocaleTimeString();
-      adminLog.innerHTML += `> [${time}] Action: ${actionName}<br>`;
-      adminLog.scrollTop = adminLog.scrollHeight;
-
-      sendInstantEmailAlert(`User performed action: ${actionName}`);
-    }
-
-    function clearLogs() {
-      document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>';
-    }
-
-    // Quiz JavaScript
-    const quizData = [
-      {
-        question: "Q1. What is the SI unit of Electrical Resistance?",
-        options: ["Volt", "Ampere", "Ohm", "Watt"],
-        answer: 2
-      },
-      {
-        question: "Q2. Which microcontroller is widely used for Wi-Fi IoT projects?",
-        options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"],
-        answer: 0
-      },
-      {
-        question: "Q3. In a domestic electrical circuit, fuses are connected in:",
-        options: ["Parallel", "Series with Live wire", "Series with Neutral", "Earth wire"],
-        answer: 1
-      }
-    ];
-
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
-
-    function loadQuiz() {
-      answered = false;
-      const q = quizData[currentQuestion];
-      document.getElementById("questionText").textContent = q.question;
-      const optContainer = document.getElementById("optionsContainer");
-      optContainer.innerHTML = "";
-
-      q.options.forEach((opt, index) => {
-        const btn = document.createElement("button");
-        btn.className = "option-btn";
-        btn.textContent = opt;
-        btn.onclick = () => selectOption(index, btn);
-        optContainer.appendChild(btn);
-      });
-      document.getElementById("quizScore").textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
-    }
-
-    function selectOption(selectedIndex, btnElement) {
-      if (answered) return;
-      answered = true;
-      const q = quizData[currentQuestion];
-      const buttons = document.querySelectorAll(".option-btn");
-
-      if (selectedIndex === q.answer) {
-        btnElement.classList.add("correct");
-        score++;
-        logAction('Quiz: Correct Answer Selected');
-      } else {
-        btnElement.classList.add("wrong");
-        buttons[q.answer].classList.add("correct");
-        logAction('Quiz: Wrong Answer Selected');
-      }
-
-      setTimeout(() => {
-        currentQuestion++;
-        if (currentQuestion < quizData.length) {
-          loadQuiz();
-        } else {
-          document.getElementById("quizContainer").innerHTML = `
-            <div style="text-align: center; padding: 20px;">
-              <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
-              <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${score} / ${quizData.length}</p>
-              <button class="social-btn" onclick="restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play Again</button>
-            </div>
-          `;
-          logAction(`Quiz Completed with Score: ${score}/${quizData.length}`);
-        }
-      }, 1500);
-    }
-
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      document.getElementById("quizContainer").innerHTML = `
-        <div class="question-box" id="questionText"></div>
-        <div class="options-grid" id="optionsContainer"></div>
-        <div class="quiz-score" id="quizScore"></div>
-      `;
-      loadQuiz();
-      logAction('Restarted Quiz Game');
-    }
-
-    loadQuiz();
-  </script>
-</body>
-</html>
+        <textarea name="message" rows="4" placeholder="Write your message here..." required></textarea
