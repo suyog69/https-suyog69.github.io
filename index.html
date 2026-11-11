@@ -35,6 +35,7 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
+    /* Top Controls Bar */
     .top-controls {
       align-self: flex-end;
       max-width: 680px;
@@ -49,19 +50,21 @@
       background: var(--card-bg);
       color: var(--text-main);
       border: 1px solid var(--border-color);
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 20px;
       cursor: pointer;
       font-size: 0.85rem;
-      transition: background 0.2s;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
     .welcome-trigger-btn:hover, .theme-btn:hover {
       background-color: var(--accent);
       color: #0f172a;
+      transform: translateY(-1px);
     }
 
-    /* Welcome Modal Overlay */
+    /* Modal Overlay */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -88,21 +91,30 @@
       border: 2px solid var(--accent);
       padding: 25px;
       border-radius: 16px;
-      max-width: 420px;
+      max-width: 480px;
       width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
       text-align: center;
       box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
       position: relative;
     }
 
+    .modal-card h2 {
+      color: var(--accent);
+      margin-top: 0;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 14px;
+      top: 12px;
+      right: 16px;
       background: none;
       border: none;
       color: var(--text-sub);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       cursor: pointer;
     }
 
@@ -110,35 +122,48 @@
       color: var(--accent);
     }
 
+    .modal-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    /* Fixed & Polished Header & SC Logo */
     header {
       text-align: center;
       margin-bottom: 25px;
+      width: 100%;
     }
 
     .avatar {
-      width: 90px;
-      height: 90px;
+      width: 95px;
+      height: 95px;
       border-radius: 50%;
-      background-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent), #0284c7);
       color: #0f172a;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
-      font-weight: bold;
-      margin: 0 auto 12px auto;
-      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin: 0 auto 14px auto;
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      letter-spacing: 1px;
     }
 
     header h2 {
       color: var(--accent);
-      margin-bottom: 5px;
+      margin: 0 0 6px 0;
       font-size: 2.2rem;
+      font-weight: 700;
     }
 
     .subtitle {
       color: var(--text-sub);
       font-size: 1.05rem;
+      margin: 0;
     }
 
     .container {
@@ -178,30 +203,51 @@
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 500;
-      cursor: pointer;
     }
 
-    .badge:hover {
-      background-color: var(--accent);
-      color: #0f172a;
-    }
-
-    .social-links {
+    /* Category Launcher Buttons */
+    .grid-launchers {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .category-card-btn {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent);
+      color: var(--text-main);
+      padding: 14px 18px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .category-card-btn:hover {
+      border-color: var(--accent);
+      background-color: rgba(56, 189, 248, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .social-btn {
       background-color: var(--border-color);
       color: var(--text-main);
-      padding: 8px 14px;
-      border-radius: 6px;
+      padding: 10px 16px;
+      border-radius: 8px;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
+      display: block;
+      text-align: left;
     }
 
     .social-btn:hover {
@@ -209,67 +255,18 @@
       color: #fff;
     }
 
-    .cat-title {
-      font-size: 0.95rem;
-      font-weight: bold;
-      color: var(--accent);
-      margin: 15px 0 8px 0;
-    }
-
     /* Quiz Styling */
-    .quiz-container {
-      margin-top: 10px;
-    }
-
-    .question-box {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: var(--text-main);
-    }
-
-    .options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
+    .quiz-container { margin-top: 10px; }
+    .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
+    .options-grid { display: flex; flex-direction: column; gap: 10px; }
     .option-btn {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 12px;
-      border-radius: 8px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: all 0.2s;
+      background-color: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color);
+      padding: 12px; border-radius: 8px; text-align: left; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;
     }
-
-    .option-btn:hover {
-      border-color: var(--accent);
-      background-color: rgba(56, 189, 248, 0.1);
-    }
-
-    .option-btn.correct {
-      background-color: #166534 !important;
-      border-color: #22c55e !important;
-      color: #fff !important;
-    }
-
-    .option-btn.wrong {
-      background-color: #991b1b !important;
-      border-color: #ef4444 !important;
-      color: #fff !important;
-    }
-
-    .quiz-score {
-      font-size: 1.1rem;
-      text-align: center;
-      font-weight: bold;
-      color: var(--accent);
-      margin-top: 15px;
-    }
+    .option-btn:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
+    .option-btn.correct { background-color: #166534 !important; border-color: #22c55e !important; color: #fff !important; }
+    .option-btn.wrong { background-color: #991b1b !important; border-color: #ef4444 !important; color: #fff !important; }
+    .quiz-score { font-size: 1.1rem; text-align: center; font-weight: bold; color: var(--accent); margin-top: 15px; }
   </style>
 </head>
 <body>
@@ -277,54 +274,60 @@
   <!-- Welcome Modal / Popup -->
   <div class="modal-overlay" id="welcomeModal">
     <div class="modal-card">
-      <button class="close-btn" onclick="closeWelcome()">&times;</button>
-      <div class="avatar" style="width: 70px; height: 70px; font-size: 1.8rem; margin-bottom: 15px;">SC</div>
+      <button class="close-btn" onclick="closeModal('welcomeModal')">&times;</button>
+      <div class="avatar" style="width: 70px; height: 70px; font-size: 1.6rem; margin-bottom: 15px;">SC</div>
       <h2>Welcome to Mega Tech Hub! 👋</h2>
-      <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px;">
-        Explore your complete workspace including coding platforms, Govt exam mock tests, typing speed tools, electrical guides, IoT simulators, and live train status.
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;">
+        Explore your systematic workspace including free coding resources, Govt exam mock tests, typing speed training, media converters, and live railway tracking popups.
       </p>
-      <button class="social-btn" style="background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 24px; border-radius: 20px; cursor: pointer;" onclick="closeWelcome()">Get Started 🚀</button>
+      <button class="social-btn" style="background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 24px; border-radius: 20px; cursor: pointer; text-align: center;" onclick="closeModal('welcomeModal')">Get Started 🚀</button>
     </div>
   </div>
 
-  <div class="top-controls">
-    <button class="welcome-trigger-btn" onclick="openWelcome()">👋 Welcome</button>
-    <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
-  </div>
+  <!-- POPUP MODALS FOR ALL REQUESTED CATEGORIES -->
 
-  <header>
-    <div class="avatar">SC</div>
-    <h2>Suyog Chaudhari</h2>
-    <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
-  </header>
-
-  <main class="container">
-    <!-- Quick Launcher Hub -->
-    <section class="card">
-      <h3>🚀 Master Work Launcher</h3>
-      
-      <!-- Free Coding & Mock Tests (Naye Add kiye hue resources) -->
-      <div class="cat-title">💻 Free Coding, Languages & Practice</div>
-      <div class="social-links">
+  <!-- 1. Free Coding Popup -->
+  <div class="modal-overlay" id="codingModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('codingModal')">&times;</button>
+      <h2>💻 Free Coding, Languages & Practice</h2>
+      <div class="modal-links">
         <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn">🎓 freeCodeCamp (Python & Web)</a>
         <a href="https://www.w3schools.com/default.asp" target="_blank" class="social-btn">📚 W3Schools Tutorials</a>
         <a href="https://www.programiz.com/" target="_blank" class="social-btn">🐍 Programiz Python & C++</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">📝 Govt Exams, RRB/SSC & Mock Tests</div>
-      <div class="social-links">
+  <!-- 2. Govt Exams Popup -->
+  <div class="modal-overlay" id="govtExamsModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('govtExamsModal')">&times;</button>
+      <h2>🎯 Govt Exams, RRB/SSC & Mock Tests</h2>
+      <div class="modal-links">
         <a href="https://www.oliveboard.in/free-mock-test/" target="_blank" class="social-btn">🎯 Oliveboard RRB & SSC Mocks</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">⌨️ Free Typing Training</div>
-      <div class="social-links">
+  <!-- 3. Free Typing Training Popup -->
+  <div class="modal-overlay" id="typingModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('typingModal')">&times;</button>
+      <h2>⌨️ Free Typing Training</h2>
+      <div class="modal-links">
         <a href="https://monkeytype.com/" target="_blank" class="social-btn">⚡ Monkeytype Speed Test</a>
         <a href="https://www.typingclub.com/" target="_blank" class="social-btn">⌨️ TypingClub Touch Typing</a>
       </div>
+    </div>
+  </div>
 
-      <!-- Live Train Tracking & Media Tools -->
-      <div class="cat-title">🚆 Live Train Tracking & Media Tools</div>
-      <div class="social-links">
+  <!-- 4. Live Train Tracking Popup -->
+  <div class="modal-overlay" id="trainModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('trainModal')">&times;</button>
+      <h2>🚆 Live Train Tracking & Media Tools</h2>
+      <div class="modal-links">
         <a href="https://www.railyatri.in/" target="_blank" class="social-btn">🚂 RailYatri Train Status</a>
         <a href="https://etrain.info/" target="_blank" class="social-btn">🚆 eTrain Info & Status</a>
         <a href="https://m-indicator.in/" target="_blank" class="social-btn">🚆 m-Indicator Web</a>
@@ -333,10 +336,15 @@
         <a href="https://app.clipchamp.com/" target="_blank" class="social-btn">🎬 Clipchamp Video Editor</a>
         <a href="https://www.ixigo.com/trains" target="_blank" class="social-btn">🚆 Ixigo Train Status & PNR</a>
       </div>
+    </div>
+  </div>
 
-      <!-- Video MP4 Converter & Media Downloader Tools -->
-      <div class="cat-title">📥 Video MP4 Converter & Media Tools</div>
-      <div class="social-links">
+  <!-- 5. Video MP4 Converter Popup -->
+  <div class="modal-overlay" id="mediaModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('mediaModal')">&times;</button>
+      <h2>📥 Video MP4 Converter & Media Tools</h2>
+      <div class="modal-links">
         <a href="https://convertio.co/mp4-converter/" target="_blank" class="social-btn">🔄 Video MP4 Converter</a>
         <a href="https://snapinst.app/" target="_blank" class="social-btn">🎬 Insta Reels Downloader</a>
         <a href="https://instadp.io/" target="_blank" class="social-btn">🖼️ Insta HD DP Viewer</a>
@@ -352,9 +360,15 @@
         <a href="https://wetransfer.com/" target="_blank" class="social-btn">📦 WeTransfer (2GB Share)</a>
         <a href="https://file.io/" target="_blank" class="social-btn">📁 File.io (Temp Storage)</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">🌟 Suyog's Special Daily Workflow Hub</div>
-      <div class="social-links">
+  <!-- 6. Daily Workflow Hub Popup -->
+  <div class="modal-overlay" id="workflowModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('workflowModal')">&times;</button>
+      <h2>🌟 Suyog's Special Daily Workflow Hub</h2>
+      <div class="modal-links">
         <a href="https://github.com/trending" target="_blank" class="social-btn">🔥 GitHub Trending Repos</a>
         <a href="https://stackoverflow.com/" target="_blank" class="social-btn">💬 Stack Overflow Q&A</a>
         <a href="https://chatgpt.com/" target="_blank" class="social-btn">🤖 ChatGPT Assistant</a>
@@ -362,33 +376,57 @@
         <a href="https://www.youtube.com/" target="_blank" class="social-btn">▶️ YouTube Learning</a>
         <a href="https://web.whatsapp.com/" target="_blank" class="social-btn">💬 WhatsApp Web</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">🌐 Mega Web Directories (10,000+ Tools Access)</div>
-      <div class="social-links">
+  <!-- 7. Mega Web Directories Popup -->
+  <div class="modal-overlay" id="directoriesModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('directoriesModal')">&times;</button>
+      <h2>🌐 Mega Web Directories (10,000+ Tools Access)</h2>
+      <div class="modal-links">
         <a href="https://devsheets.io/" target="_blank" class="social-btn">📚 DevSheets (Cheat Sheets)</a>
         <a href="https://cheatsheets.zip/" target="_blank" class="social-btn">⚡ CheatSheets.zip (All Code)</a>
         <a href="https://freestuff.dev/" target="_blank" class="social-btn">🎁 FreeStuff.dev (Free Tools)</a>
         <a href="https://github.com/sindresorhus/awesome" target="_blank" class="social-btn">🔥 Awesome List (1000s Repos)</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">🎓 Degree & Official Portals</div>
-      <div class="social-links">
+  <!-- 8. Degree & Official Portals Popup -->
+  <div class="modal-overlay" id="degreeModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('degreeModal')">&times;</button>
+      <h2>🎓 Degree & Official Portals</h2>
+      <div class="modal-links">
         <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn">🎓 Manipal BCA LMS</a>
         <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn">🏛️ YCMOU Portal</a>
         <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn">📜 NCVT MIS (ITI)</a>
         <a href="https://digilocker.gov.in/" target="_blank" class="social-btn">📁 DigiLocker</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">⚡ Electrical, Solar & Courses</div>
-      <div class="social-links">
+  <!-- 9. Electrical, Solar & Courses Popup -->
+  <div class="modal-overlay" id="electricalModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('electricalModal')">&times;</button>
+      <h2>⚡ Electrical, Solar & Courses</h2>
+      <div class="modal-links">
         <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ My YouTube Channel</a>
         <a href="https://electricaldost.online/" target="_blank" class="social-btn">💡 Electrical Dost</a>
         <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn">🌐 The Tech Unique</a>
         <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn">🛠️ Electrical Technician</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">📁 Quick Office, Media & Document Tools</div>
-      <div class="social-links">
+  <!-- 10. Quick Office & Document Tools Popup -->
+  <div class="modal-overlay" id="officeModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('officeModal')">&times;</button>
+      <h2>📁 Quick Office, Media & Document Tools</h2>
+      <div class="modal-links">
         <a href="https://tinypng.com/" target="_blank" class="social-btn">🖼️ TinyPNG Compress</a>
         <a href="https://carbon.now.sh/" target="_blank" class="social-btn">📸 Carbon Code Snap</a>
         <a href="https://www.canva.com/" target="_blank" class="social-btn">🎨 Canva Banners & Thumbnails</a>
@@ -404,9 +442,15 @@
         <a href="https://drive.google.com/" target="_blank" class="social-btn">☁️ Google Drive & Docs</a>
         <a href="https://iloveimg.com/" target="_blank" class="social-btn">🖼️ ILoveIMG Tools</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">💻 Microcontrollers, Linux & Dev Tools</div>
-      <div class="social-links">
+  <!-- 11. Microcontrollers & Dev Tools Popup -->
+  <div class="modal-overlay" id="microModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('microModal')">&times;</button>
+      <h2>💻 Microcontrollers, Linux & Dev Tools</h2>
+      <div class="modal-links">
         <a href="https://wokwi.com/" target="_blank" class="social-btn">🤖 Wokwi ESP32 Simulator</a>
         <a href="https://pinout.xyz/" target="_blank" class="social-btn">📌 Raspberry/Pinouts</a>
         <a href="https://explainshell.com/" target="_blank" class="social-btn">🐧 Explain Shell</a>
@@ -416,9 +460,15 @@
         <a href="https://devdocs.io/" target="_blank" class="social-btn">📚 DevDocs Offline Docs</a>
         <a href="https://codepen.io/" target="_blank" class="social-btn">💻 CodePen Playground</a>
       </div>
+    </div>
+  </div>
 
-      <div class="cat-title">🛠️ Network, Testing & Design Utilities</div>
-      <div class="social-links">
+  <!-- 12. Network, Testing & Design Utilities Popup -->
+  <div class="modal-overlay" id="networkModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('networkModal')">&times;</button>
+      <h2>🛠️ Network, Testing & Design Utilities</h2>
+      <div class="modal-links">
         <a href="https://hoppscotch.io/" target="_blank" class="social-btn">📡 Hoppscotch API</a>
         <a href="https://transform.tools/" target="_blank" class="social-btn">🔄 Transform Code Tools</a>
         <a href="https://fast.com/" target="_blank" class="social-btn">🚀 Fast.com Speed Test</a>
@@ -426,9 +476,79 @@
         <a href="https://www.color-hex.com/" target="_blank" class="social-btn">🎨 Color Hex Codes</a>
         <a href="https://temp-mail.org/" target="_blank" class="social-btn">✉️ Temp Mail</a>
       </div>
+    </div>
+  </div>
+
+  <!-- MAIN PAGE LAYOUT -->
+  <div class="top-controls">
+    <button class="welcome-trigger-btn" onclick="openModal('welcomeModal')">👋 Welcome</button>
+    <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
+  </div>
+
+  <header>
+    <div class="avatar">SC</div>
+    <h2>Suyog Chaudhari</h2>
+    <p class="subtitle">Electrical Engineer | IoT Specialist | Web Developer</p>
+  </header>
+
+  <main class="container">
+    <!-- Master Systematic Hub -->
+    <section class="card">
+      <h3>🚀 Master Systematic Hub</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Click any category to open its dedicated tools popup window:</p>
+      
+      <div class="grid-launchers">
+        <button class="category-card-btn" onclick="openModal('codingModal')">
+          <span>💻 Free Coding, Languages & Practice</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('govtExamsModal')">
+          <span>🎯 Govt Exams, RRB/SSC & Mock Tests</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('typingModal')">
+          <span>⌨️ Free Typing Training</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('trainModal')">
+          <span>🚆 Live Train Tracking & Media Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('mediaModal')">
+          <span>📥 Video MP4 Converter & Media Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('workflowModal')">
+          <span>🌟 Suyog's Special Daily Workflow Hub</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('directoriesModal')">
+          <span>🌐 Mega Web Directories (10,000+ Tools)</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('degreeModal')">
+          <span>🎓 Degree & Official Portals</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('electricalModal')">
+          <span>⚡ Electrical, Solar & Courses</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('officeModal')">
+          <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('microModal')">
+          <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="openModal('networkModal')">
+          <span>🛠️ Network, Testing & Design Utilities</span> <span>➔</span>
+        </button>
+      </div>
     </section>
 
-    <!-- Skills -->
+    <!-- Technical Stack -->
     <section class="card">
       <h3>⚡ Technical Stack</h3>
       <div class="skills-list">
@@ -441,7 +561,7 @@
       </div>
     </section>
 
-    <!-- Quiz -->
+    <!-- Quiz Game -->
     <section class="card">
       <h3>🧠 ITI & Electrical Quiz Game</h3>
       <div class="quiz-container" id="quizContainer">
@@ -453,18 +573,19 @@
   </main>
 
   <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add("active");
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove("active");
+    }
+
     function toggleTheme() {
       document.body.classList.toggle("light-theme");
     }
 
-    function openWelcome() {
-      document.getElementById("welcomeModal").classList.add("active");
-    }
-
-    function closeWelcome() {
-      document.getElementById("welcomeModal").classList.remove("active");
-    }
-
+    // Quiz JavaScript
     const quizData = [
       {
         question: "Q1. What is the SI unit of Electrical Resistance?",
@@ -527,7 +648,7 @@
             <div style="text-align: center; padding: 20px;">
               <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
               <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${score} / ${quizData.length}</p>
-              <button class="social-btn" onclick="restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px;">Play Again</button>
+              <button class="social-btn" onclick="restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play Again</button>
             </div>
           `;
         }
