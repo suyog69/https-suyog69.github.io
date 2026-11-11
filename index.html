@@ -115,16 +115,21 @@
       <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
 
-    <!-- 9. Electrical & Solar -->
-    <div onclick="openModal('electricalModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
-      <div>
-        <span class="text-2xl mb-2 block">⚡</span>
-        <h3 class="font-bold text-lg text-slate-100">Electrical, Solar & Courses</h3>
-        <p class="text-xs text-slate-400 mt-1">Electrical Dost, Tech Unique & YouTube</p>
-        <a class="social-btn">🛠️ Electrical Technician</a>
+ <!-- 9. Electrical, Solar & Courses Popup (Updated) -->
+  <div class="modal-overlay" id="electricalModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal('electricalModal')">&times;</button>
+      <h2>⚡ Electrical, Solar & Courses</h2>
+      <div class="modal-links">
+        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ My YouTube Channel</a>
+        <a href="https://electricaldost.online/" target="_blank" class="social-btn">💡 Electrical Dost</a>
+        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn">🌐 The Tech Unique</a>
+        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn">🛠️ Electrical Technician</a>
+        <a href="https://www.electrical4u.com/" target="_blank" class="social-btn">📘 Electrical4U (Theory & MCQs)</a>
+        <a href="https://allaboutcircuits.com/" target="_blank" class="social-btn">🔌 All About Circuits</a>
       </div>
-      <span class="text-sky-400 text-xs font-semibold mt-4 flex items-center gap-1">Open Resources &rarr;</span>
     </div>
+  </div>
 
     <!-- 10. Office & Document Tools -->
     <div onclick="openModal('officeModal')" class="glass-card p-5 rounded-xl cursor-pointer hover:border-sky-400 transition transform hover:-translate-y-1 shadow-md flex flex-col justify-between">
