@@ -35,6 +35,64 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
+    /* Welcome Modal Styling */
+    .welcome-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+
+    .welcome-card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--accent);
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+    }
+
+    .welcome-card h2 {
+      color: var(--accent);
+      margin-top: 0;
+      font-size: 1.8rem;
+    }
+
+    .welcome-card p {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .welcome-btn {
+      background-color: var(--accent);
+      color: #0f172a;
+      font-weight: bold;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .welcome-btn:hover {
+      transform: scale(1.05);
+      background-color: #0284c7;
+      color: #fff;
+    }
+
     .theme-toggle {
       align-self: flex-end;
       max-width: 680px;
@@ -118,10 +176,21 @@
     .badge {
       background-color: #0369a1;
       color: #e0f2fe;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .badge:hover, .badge.active {
+      background-color: var(--accent);
+      color: #0f172a;
+      font-weight: bold;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
     }
 
     .social-links {
@@ -139,7 +208,7 @@
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 500;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
     }
 
     .social-btn:hover {
@@ -147,11 +216,29 @@
       color: #fff;
     }
 
+    .social-btn.highlight {
+      background-color: #0284c7 !important;
+      color: #ffffff !important;
+      border: 1px solid var(--accent);
+      transform: scale(1.03);
+    }
+
     .cat-title {
       font-size: 0.95rem;
       font-weight: bold;
       color: var(--accent);
       margin: 15px 0 8px 0;
+    }
+
+    .skill-info-box {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      background-color: var(--bg-color);
+      border: 1px dashed var(--accent);
+      font-size: 0.9rem;
+      color: var(--text-main);
+      display: none;
     }
 
     /* Quiz Styling */
@@ -212,6 +299,16 @@
 </head>
 <body>
 
+  <!-- Welcome Modal -->
+  <div class="welcome-modal-overlay" id="welcomeModal">
+    <div class="welcome-card">
+      <div class="avatar" style="width: 70px; height: 70px; font-size: 1.8rem; margin-bottom: 15px;">SC</div>
+      <h2>Welcome! 👋</h2>
+      <p>Welcome to <strong>Suyog Chaudhari's Mega Tech Hub & Personal Dashboard</strong>.<br>Explore coding resources, Govt mock tests, IoT tools, media converters, and live railway trackers.</p>
+      <button class="welcome-btn" onclick="closeWelcomeModal()">Enter Dashboard 🚀</button>
+    </div>
+  </div>
+
   <div class="theme-toggle">
     <button class="theme-btn" onclick="toggleTheme()">☀️ Light / 🌙 Dark Mode</button>
   </div>
@@ -223,61 +320,117 @@
   </header>
 
   <main class="container">
+    <!-- Skills Interactive Section -->
+    <section class="card">
+      <h3>⚡ Technical Stack & Resource Filter</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Click any skill badge below to filter/highlight matching web tools in the launcher:</p>
+      <div class="skills-list">
+        <span class="badge" onclick="filterBySkill('esp32', this)">ESP32 & IoT</span>
+        <span class="badge" onclick="filterBySkill('electrical', this)">Electrical Wiring & Solar</span>
+        <span class="badge" onclick="filterBySkill('python', this)">Python</span>
+        <span class="badge" onclick="filterBySkill('web', this)">HTML / CSS / JS</span>
+        <span class="badge" onclick="filterBySkill('linux', this)">Termux & Linux</span>
+        <span class="badge" onclick="filterBySkill('git', this)">Git & GitHub</span>
+      </div>
+      <div id="skillInfoBox" class="skill-info-box"></div>
+    </section>
+
     <!-- Quick Launcher Hub -->
     <section class="card">
       <h3>🚀 Master Work Launcher</h3>
       
+      <!-- Free Coding & Online Learning -->
+      <div class="cat-title">💻 Free Coding, Languages & Practice</div>
+      <div class="social-links">
+        <a href="https://www.freecodecamp.org/" target="_blank" class="social-btn" data-skills="python,web">🎓 freeCodeCamp (Free Python & Web)</a>
+        <a href="https://www.w3schools.com/default.asp" target="_blank" class="social-btn" data-skills="python,web">📚 W3Schools Tutorials</a>
+        <a href="https://www.programiz.com/" target="_blank" class="social-btn" data-skills="python">🐍 Programiz Python & C++</a>
+      </div>
+
+      <!-- Free Govt Exams & Mock Tests -->
+      <div class="cat-title">📝 Govt Exams, RRB/SSC & Mock Tests</div>
+      <div class="social-links">
+        <a href="https://www.oliveboard.in/free-mock-test/" target="_blank" class="social-btn">🎯 Oliveboard RRB & SSC Free Mocks</a>
+      </div>
+
+      <!-- Free Typing Training -->
+      <div class="cat-title">⌨️ Free Typing Speed Training</div>
+      <div class="social-links">
+        <a href="https://monkeytype.com/" target="_blank" class="social-btn">⚡ Monkeytype Speed Test</a>
+        <a href="https://www.typingclub.com/" target="_blank" class="social-btn">⌨️ TypingClub Touch Typing</a>
+      </div>
+
+      <!-- Live Train Tracking & Travel -->
+      <div class="cat-title">🚆 Live Train Tracking & Travel Tools</div>
+      <div class="social-links">
+        <a href="https://www.railyatri.in/" target="_blank" class="social-btn">🚂 RailYatri Train Status</a>
+        <a href="https://etrain.info/" target="_blank" class="social-btn">🚆 eTrain Info & Status</a>
+        <a href="https://m-indicator.in/" target="_blank" class="social-btn">🚆 m-Indicator Web</a>
+        <a href="https://whereismytrain.in/" target="_blank" class="social-btn">📍 Where is my Train</a>
+        <a href="https://www.ixigo.com/trains" target="_blank" class="social-btn">🚆 Ixigo Train Status & PNR</a>
+      </div>
+
       <!-- Video MP4 Converter & Media Downloader Tools -->
       <div class="cat-title">📥 Video MP4 Converter & Media Tools</div>
       <div class="social-links">
         <a href="https://convertio.co/mp4-converter/" target="_blank" class="social-btn">🔄 Video MP4 Converter</a>
+        <a href="https://snapinst.app/" target="_blank" class="social-btn">🎬 Insta Reels Downloader</a>
+        <a href="https://instadp.io/" target="_blank" class="social-btn">🖼️ Insta HD DP Viewer</a>
         <a href="https://storysaver.net/" target="_blank" class="social-btn">📖 Insta Stories Saver</a>
         <a href="https://displaypurposes.com/" target="_blank" class="social-btn">#️⃣ Insta Hashtag Generator</a>
+        <a href="https://tubetastic.io/youtube-tag-extractor" target="_blank" class="social-btn">🏷️ YT Tag Extractor</a>
         <a href="https://exportcomments.com/youtube-thumbnail-downloader" target="_blank" class="social-btn">🖼️ YT Thumbnail Downloader</a>
         <a href="https://keywordtool.io/youtube" target="_blank" class="social-btn">🔍 YT SEO Keyword Generator</a>
         <a href="https://podcast.adobe.com/enhance" target="_blank" class="social-btn">🎙️ Adobe Audio Enhancer</a>
         <a href="https://vocalremover.org/" target="_blank" class="social-btn">🎼 Vocal & Music Remover</a>
         <a href="https://clideo.com/editor" target="_blank" class="social-btn">✂️ Clideo Video Editor</a>
         <a href="https://www.kapwing.com/tools" target="_blank" class="social-btn">🎬 Kapwing Studio</a>
+        <a href="https://cobalt.tools" target="_blank" class="social-btn">📥 Cobalt.tools (Ad-free Downloader)</a>
+        <a href="https://app.clipchamp.com/" target="_blank" class="social-btn">🎬 Clipchamp Video Editor</a>
         <a href="https://wetransfer.com/" target="_blank" class="social-btn">📦 WeTransfer (2GB Share)</a>
         <a href="https://file.io/" target="_blank" class="social-btn">📁 File.io (Temp Storage)</a>
       </div>
 
+      <!-- Special Workflow Hub -->
       <div class="cat-title">🌟 Suyog's Special Daily Workflow Hub</div>
       <div class="social-links">
-        <a href="https://github.com/trending" target="_blank" class="social-btn">🔥 GitHub Trending Repos</a>
-        <a href="https://stackoverflow.com/" target="_blank" class="social-btn">💬 Stack Overflow Q&A</a>
+        <a href="https://github.com/trending" target="_blank" class="social-btn" data-skills="git">🔥 GitHub Trending Repos</a>
+        <a href="https://stackoverflow.com/" target="_blank" class="social-btn" data-skills="python,web">💬 Stack Overflow Q&A</a>
         <a href="https://chatgpt.com/" target="_blank" class="social-btn">🤖 ChatGPT Assistant</a>
         <a href="https://claude.ai/" target="_blank" class="social-btn">🧠 Claude AI</a>
         <a href="https://www.youtube.com/" target="_blank" class="social-btn">▶️ YouTube Learning</a>
         <a href="https://web.whatsapp.com/" target="_blank" class="social-btn">💬 WhatsApp Web</a>
       </div>
 
+      <!-- Mega Web Directories -->
       <div class="cat-title">🌐 Mega Web Directories (10,000+ Tools Access)</div>
       <div class="social-links">
-        <a href="https://devsheets.io/" target="_blank" class="social-btn">📚 DevSheets (Cheat Sheets)</a>
-        <a href="https://cheatsheets.zip/" target="_blank" class="social-btn">⚡ CheatSheets.zip (All Code)</a>
+        <a href="https://devsheets.io/" target="_blank" class="social-btn" data-skills="python,web">📚 DevSheets (Cheat Sheets)</a>
+        <a href="https://cheatsheets.zip/" target="_blank" class="social-btn" data-skills="python,web">⚡ CheatSheets.zip (All Code)</a>
         <a href="https://freestuff.dev/" target="_blank" class="social-btn">🎁 FreeStuff.dev (Free Tools)</a>
-        <a href="https://github.com/sindresorhus/awesome" target="_blank" class="social-btn">🔥 Awesome List (1000s Repos)</a>
+        <a href="https://github.com/sindresorhus/awesome" target="_blank" class="social-btn" data-skills="git">🔥 Awesome List (1000s Repos)</a>
       </div>
 
+      <!-- Degree & Official Portals -->
       <div class="cat-title">🎓 Degree & Official Portals</div>
       <div class="social-links">
         <a href="https://digilocker.gov.in/" target="_blank" class="social-btn">📁 DigiLocker</a>
       </div>
 
+      <!-- Electrical & Solar -->
       <div class="cat-title">⚡ Electrical, Solar & Courses</div>
       <div class="social-links">
-        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn">⚡ My YouTube Channel</a>
-        <a href="https://electricaldost.online/" target="_blank" class="social-btn">💡 Electrical Dost</a>
-        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn">🌐 The Tech Unique</a>
-        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn">🛠️ Electrical Technician</a>
+        <a href="https://www.youtube.com/@ELECTRICIANTOENGINEER" target="_blank" class="social-btn" data-skills="electrical">⚡ My YouTube Channel</a>
+        <a href="https://electricaldost.online/" target="_blank" class="social-btn" data-skills="electrical">💡 Electrical Dost</a>
+        <a href="https://thetechuniqueacademy.com/" target="_blank" class="social-btn" data-skills="electrical">🌐 The Tech Unique</a>
+        <a href="https://electricaltechnician.akamai.net.in/new-courses/52/content?activeTab=Content" target="_blank" class="social-btn" data-skills="electrical">🛠️ Electrical Technician</a>
       </div>
 
+      <!-- Office & Media Utilities -->
       <div class="cat-title">📁 Quick Office, Media & Document Tools</div>
       <div class="social-links">
         <a href="https://tinypng.com/" target="_blank" class="social-btn">🖼️ TinyPNG Compress</a>
-        <a href="https://carbon.now.sh/" target="_blank" class="social-btn">📸 Carbon Code Snap</a>
+        <a href="https://carbon.now.sh/" target="_blank" class="social-btn" data-skills="web,python">📸 Carbon Code Snap</a>
         <a href="https://www.canva.com/" target="_blank" class="social-btn">🎨 Canva Banners & Thumbnails</a>
         <a href="https://excalidraw.com/" target="_blank" class="social-btn">📐 Excalidraw Whiteboard</a>
         <a href="https://photopea.com/" target="_blank" class="social-btn">🖼️ Photopea Online Photoshop</a>
@@ -292,49 +445,28 @@
         <a href="https://iloveimg.com/" target="_blank" class="social-btn">🖼️ ILoveIMG Tools</a>
       </div>
 
+      <!-- Microcontrollers & Linux -->
       <div class="cat-title">💻 Microcontrollers, Linux & Dev Tools</div>
       <div class="social-links">
-        <a href="https://wokwi.com/" target="_blank" class="social-btn">🤖 Wokwi ESP32 Simulator</a>
-        <a href="https://pinout.xyz/" target="_blank" class="social-btn">📌 Raspberry/Pinouts</a>
-        <a href="https://explainshell.com/" target="_blank" class="social-btn">🐧 Explain Shell</a>
-        <a href="https://crontab.guru/" target="_blank" class="social-btn">⏰ Crontab Guru</a>
-        <a href="https://gchq.github.io/CyberChef/" target="_blank" class="social-btn">🔐 CyberChef Tools</a>
-        <a href="https://duinocoin.com/" target="_blank" class="social-btn">⛏️ Duino-Coin Wallet</a>
-        <a href="https://devdocs.io/" target="_blank" class="social-btn">📚 DevDocs Offline Docs</a>
-        <a href="https://codepen.io/" target="_blank" class="social-btn">💻 CodePen Playground</a>
+        <a href="https://wokwi.com/" target="_blank" class="social-btn" data-skills="esp32">🤖 Wokwi ESP32 Simulator</a>
+        <a href="https://pinout.xyz/" target="_blank" class="social-btn" data-skills="esp32">📌 Raspberry/Pinouts</a>
+        <a href="https://explainshell.com/" target="_blank" class="social-btn" data-skills="linux">🐧 Explain Shell</a>
+        <a href="https://crontab.guru/" target="_blank" class="social-btn" data-skills="linux">⏰ Crontab Guru</a>
+        <a href="https://gchq.github.io/CyberChef/" target="_blank" class="social-btn" data-skills="linux">🔐 CyberChef Tools</a>
+        <a href="https://duinocoin.com/" target="_blank" class="social-btn" data-skills="esp32">⛏️ Duino-Coin Wallet</a>
+        <a href="https://devdocs.io/" target="_blank" class="social-btn" data-skills="web,python">📚 DevDocs Offline Docs</a>
+        <a href="https://codepen.io/" target="_blank" class="social-btn" data-skills="web">💻 CodePen Playground</a>
       </div>
 
+      <!-- Network & Design Utilities -->
       <div class="cat-title">🛠️ Network, Testing & Design Utilities</div>
       <div class="social-links">
-        <a href="https://hoppscotch.io/" target="_blank" class="social-btn">📡 Hoppscotch API</a>
-        <a href="https://transform.tools/" target="_blank" class="social-btn">🔄 Transform Code Tools</a>
+        <a href="https://hoppscotch.io/" target="_blank" class="social-btn" data-skills="web">📡 Hoppscotch API</a>
+        <a href="https://transform.tools/" target="_blank" class="social-btn" data-skills="web">🔄 Transform Code Tools</a>
         <a href="https://fast.com/" target="_blank" class="social-btn">🚀 Fast.com Speed Test</a>
         <a href="https://www.speedtest.net/" target="_blank" class="social-btn">🌐 Speedtest Ookla</a>
-        <a href="https://www.color-hex.com/" target="_blank" class="social-btn">🎨 Color Hex Codes</a>
+        <a href="https://www.color-hex.com/" target="_blank" class="social-btn" data-skills="web">🎨 Color Hex Codes</a>
         <a href="https://temp-mail.org/" target="_blank" class="social-btn">✉️ Temp Mail</a>
-      </div>    
-     
-     <div class="cat-title">🚆 Live Train Tracking & Media Tools</div>
-      <div class="social-links">
-        <a href="https://www.railyatri.in/" target="_blank" class="social-btn">🚂 RailYatri Train Status</a>
-        <a href="https://etrain.info/" target="_blank" class="social-btn">🚆 eTrain Info & Status</a>
-        <a href="https://whereismytrain.in/" target="_blank" class="social-btn">📍 Where is my Train</a>
-        <a href="https://cobalt.tools" target="_blank" class="social-btn">📥 Cobalt.tools (Ad-free Downloader)</a>
-        <a href="https://app.clipchamp.com/" target="_blank" class="social-btn">🎬 Clipchamp Video Editor</a>
-        <a href="https://www.ixigo.com/trains" target="_blank" class="social-btn">🚆 Ixigo Train Status & PNR</a>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="card">
-      <h3>⚡ Technical Stack</h3>
-      <div class="skills-list">
-        <span class="badge">ESP32 & IoT</span>
-        <span class="badge">Electrical Wiring & Solar</span>
-        <span class="badge">Python</span>
-        <span class="badge">HTML / CSS / JS</span>
-        <span class="badge">Termux & Linux</span>
-        <span class="badge">Git & GitHub</span>
       </div>
     </section>
 
@@ -350,8 +482,46 @@
   </main>
 
   <script>
+    function closeWelcomeModal() {
+      const modal = document.getElementById("welcomeModal");
+      modal.style.opacity = "0";
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 300);
+    }
+
     function toggleTheme() {
       document.body.classList.toggle("light-theme");
+    }
+
+    function filterBySkill(skillKey, element) {
+      const allBadges = document.querySelectorAll(".badge");
+      const allBtns = document.querySelectorAll(".social-btn");
+      const infoBox = document.getElementById("skillInfoBox");
+
+      const isActive = element.classList.contains("active");
+
+      allBadges.forEach(b => b.classList.remove("active"));
+      allBtns.forEach(btn => btn.classList.remove("highlight"));
+
+      if (isActive) {
+        infoBox.style.display = "none";
+        return;
+      }
+
+      element.classList.add("active");
+      let count = 0;
+
+      allBtns.forEach(btn => {
+        const skills = btn.getAttribute("data-skills");
+        if (skills && skills.split(",").includes(skillKey)) {
+          btn.classList.add("highlight");
+          count++;
+        }
+      });
+
+      infoBox.style.display = "block";
+      infoBox.innerHTML = `✨ Highlighted <strong>${count}</strong> tools & resources related to <strong>${element.textContent}</strong> in the launcher below!`;
     }
 
     const quizData = [
