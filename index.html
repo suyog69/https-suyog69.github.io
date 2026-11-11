@@ -303,20 +303,6 @@
       color: #fff;
     }
 
-    /* Live Footprint Logger Box */
-    .footprint-box {
-      background: var(--bg-color);
-      border: 1px dashed var(--accent);
-      padding: 12px;
-      border-radius: 8px;
-      font-family: monospace;
-      font-size: 0.8rem;
-      color: var(--accent);
-      max-height: 120px;
-      overflow-y: auto;
-      margin-top: 10px;
-    }
-
     /* Quiz Styling */
     .quiz-container { margin-top: 10px; }
     .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
@@ -333,7 +319,7 @@
 </head>
 <body onload="initTracker()">
 
-  <!-- Welcome Modal / Popup (Opens automatically on page load) -->
+  <!-- Welcome Modal / Popup -->
   <div class="modal-overlay" id="welcomeModal">
     <div class="modal-card">
       <button class="close-btn" onclick="closeModal('welcomeModal')">&times;</button>
@@ -346,8 +332,22 @@
     </div>
   </div>
 
-  <!-- POPUP MODALS FOR ALL CATEGORIES -->
+  <!-- SECRET ADMIN FOOTPRINT MODAL (Only opens when you press Ctrl + Shift + A) -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-card" style="border-color: #22c55e; max-width: 550px;">
+      <button class="close-btn" onclick="closeModal('adminModal')">&times;</button>
+      <h2 style="color: #22c55e;">🔒 Secret Admin Dashboard</h2>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
+        Yahan visitor ke live footprints aur clicks track ho rahe hain (Sirf aapko dikhega):
+      </p>
+      <div id="adminFootprintLog" style="background: #0b0f19; border: 1px solid #334155; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #22c55e; max-height: 250px; overflow-y: auto; text-align: left;">
+        [System]: Waiting for logs...<br>
+      </div>
+      <button class="submit-btn" style="background: #22c55e; color: #0f172a; margin-top: 15px; width: 100%;" onclick="clearLogs()">Clear Logs</button>
+    </div>
+  </div>
 
+  <!-- POPUP MODALS FOR ALL CATEGORIES -->
   <!-- 1. Free Coding Popup -->
   <div class="modal-overlay" id="codingModal">
     <div class="modal-card">
@@ -576,7 +576,7 @@
     </div>
   </div>
 
-  <!-- 16. Contact Me & Direct Message Popup (Configured with Formspree) -->
+  <!-- 16. Contact Me & Direct Message Popup -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-card">
       <button class="close-btn" onclick="closeModal('contactModal')">&times;</button>
@@ -594,7 +594,7 @@
         <label>Message:</label>
         <textarea name="message" rows="4" placeholder="Write your message here..." required></textarea>
 
-        <button type="submit" class="submit-btn">Send Message 🚀</button>
+        <button type="submit" class="submit-btn" onclick="logAction('Submitted Contact Form')">Send Message 🚀</button>
       </form>
     </div>
   </div>
@@ -684,15 +684,6 @@
       </div>
     </section>
 
-    <!-- Live Visitor Footprint & Activity Tracker Box -->
-    <section class="card">
-      <h3>📊 Live Visitor Footprint & Activity Tracker</h3>
-      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 5px;">Yahan visitor ki live activities aur clicks track hote hain:</p>
-      <div class="footprint-box" id="footprintLog">
-        [System]: Initializing visitor session & device logs...<br>
-      </div>
-    </section>
-
     <!-- Technical Stack -->
     <section class="card">
       <h3>⚡ Technical Stack</h3>
@@ -731,24 +722,35 @@
       logAction('Toggled Theme mode');
     }
 
-    // Live Visitor Footprint & Activity Logger
+    // Secret Admin Trigger: Press Ctrl + Shift + A to open Admin Log Panel
+    document.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'a') {
+        event.preventDefault();
+        openModal('adminModal');
+      }
+    });
+
+    // Live Visitor Footprint & Activity Logger (Hidden from normal users)
     function initTracker() {
       openModal('welcomeModal');
-      const logBox = document.getElementById('footprintLog');
+      const adminLog = document.getElementById('adminFootprintLog');
       const time = new Date().toLocaleTimeString();
       const platform = navigator.platform || "Unknown Device";
       const userAgent = navigator.userAgent.substring(0, 45) + "...";
       
-      logBox.innerHTML += `> [${time}] Visitor connected from ${platform}<br>`;
-      logBox.innerHTML += `> [${time}] Browser Agent: ${userAgent}<br>`;
-      logBox.scrollTop = logBox.scrollHeight;
+      adminLog.innerHTML += `> [${time}] Visitor connected from ${platform}<br>`;
+      adminLog.innerHTML += `> [${time}] Browser: ${userAgent}<br>`;
     }
 
     function logAction(actionName) {
-      const logBox = document.getElementById('footprintLog');
+      const adminLog = document.getElementById('adminFootprintLog');
       const time = new Date().toLocaleTimeString();
-      logBox.innerHTML += `> [${time}] Action: ${actionName}<br>`;
-      logBox.scrollTop = logBox.scrollHeight;
+      adminLog.innerHTML += `> [${time}] Action: ${actionName}<br>`;
+      adminLog.scrollTop = adminLog.scrollHeight;
+    }
+
+    function clearLogs() {
+      document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>';
     }
 
     // Quiz JavaScript
