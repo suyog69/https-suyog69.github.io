@@ -355,10 +355,10 @@
       <button class="close-btn" onclick="closeModal('adminModal')">&times;</button>
       <h2 style="color: #22c55e;">🔒 Secret Admin Dashboard</h2>
       <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
-        Live visitor footprints & instant email trigger status:
+        Live visitor footprints, location, battery & email alert status:
       </p>
       <div id="adminFootprintLog" style="background: #0b0f19; border: 1px solid #334155; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 0.8rem; color: #22c55e; max-height: 250px; overflow-y: auto; text-align: left;">
-        [System]: Initializing tracker & mail alert system...<br>
+        [System]: Initializing tracker, IP geo & email system...<br>
       </div>
       <button class="submit-btn" style="background: #22c55e; color: #0f172a; margin-top: 15px;" onclick="clearLogs()">Clear Logs</button>
     </div>
@@ -747,10 +747,10 @@
       }
     });
 
-    // 🚀 AUTOMATIC EMAIL ALERT + MOBILE FOOTPRINT TRACKER
-    function sendInstantEmailAlert(actionDetails) {
+    // 🚀 ADVANCED TRACKING: IP LOCATION + BATTERY + EMAIL ALERT
+    function sendInstantEmailAlert(actionDetails, extraInfo = "") {
       const formspreeEndpoint = "https://formspree.io/f/xbgorypr"; 
-      const visitorInfo = `Device/OS: ${navigator.platform}\nBrowser: ${navigator.userAgent}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}`;
+      const visitorInfo = `Device/OS: ${navigator.platform}\nBrowser: ${navigator.userAgent}\nTime: ${new Date().toLocaleString()}\nAction: ${actionDetails}\n${extraInfo}`;
 
       fetch(formspreeEndpoint, {
         method: "POST",
@@ -768,14 +768,39 @@
       });
     }
 
-    function initTracker() {
+    async function initTracker() {
       openModal('welcomeModal');
       const adminLog = document.getElementById('adminFootprintLog');
       const time = new Date().toLocaleTimeString();
-      const platform = navigator.platform || "Mobile/Unknown Device";
-      
-      adminLog.innerHTML += `> [${time}] Visitor active on: ${platform}<br>`;
-      sendInstantEmailAlert("Visitor opened/logged into the website.");
+      let locationDetails = "Location: Fetching...";
+      let batteryDetails = "Battery: Checking...";
+
+      // Check Battery status if supported by mobile/browser
+      if (navigator.getBattery) {
+        try {
+          const battery = await navigator.getBattery();
+          batteryDetails = `Battery: ${Math.round(battery.level * 100)}% (${battery.charging ? 'Charging' : 'Discharging'})`;
+        } catch (e) {
+          batteryDetails = "Battery: Not accessible";
+        }
+      }
+
+      // Fetch IP & Location details
+      try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        locationDetails = `IP: ${data.ip} | City: ${data.city}, ${data.region}, ${data.country_name}`;
+      } catch (err) {
+        locationDetails = "Location: Network Restricted";
+      }
+
+      const summary = `${locationDetails}\n${batteryDetails}`;
+      adminLog.innerHTML += `> [${time}] Visitor connected!<br>`;
+      adminLog.innerHTML += `> [${time}] ${locationDetails}<br>`;
+      adminLog.innerHTML += `> [${time}] ${batteryDetails}<br>`;
+
+      // Send instant email alert on load
+      sendInstantEmailAlert("Visitor opened the website.", summary);
     }
 
     function logAction(actionName) {
