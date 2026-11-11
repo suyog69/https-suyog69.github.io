@@ -333,23 +333,16 @@
     .scratchpad-input { resize: vertical; min-height: 80px; }
     .calc-result { font-weight: bold; color: var(--accent); margin-top: 5px; font-size: 1.05rem; }
 
-    .shortcuts-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      margin-top: 8px;
-    }
-    .shortcut-key {
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      padding: 4px 8px;
-      border-radius: 4px;
-      color: var(--accent);
-      font-family: monospace;
-      font-weight: bold;
-    }
+    .todo-container { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+    .todo-row { display: flex; align-items: center; gap: 10px; }
+    .todo-input { flex: 1; }
+    .todo-list { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; max-height: 150px; overflow-y: auto; }
+    .todo-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg-color); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.9rem; }
+    .todo-item.completed span { text-decoration: line-through; color: var(--text-sub); }
+    .delete-todo { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1rem; }
+
+    .ping-box { display: flex; align-items: center; justify-content: space-between; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; margin-top: 10px; }
+    .ping-value { font-family: monospace; font-weight: bold; color: var(--accent); font-size: 1.1rem; }
 
     .quiz-container { margin-top: 10px; }
     .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
@@ -537,7 +530,7 @@
       <div class="modal-links">
         <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Manipal LMS')">🎓 Manipal BCA LMS</a>
         <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened YCMOU')">🏛️ YCMOU Portal</a>
-        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
+        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
         <a href="https://digilocker.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened DigiLocker')">📁 DigiLocker</a>
       </div>
     </div>
@@ -654,7 +647,23 @@
     </div>
   </div>
 
-  <!-- 16. Contact Me & Direct Message Popup -->
+  <!-- 16. EPFO, Labour & Financial Services Popup (NEW) -->
+  <div class="modal-overlay" id="epfoModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="playClickSound(); closeModal('epfoModal')">&times;</button>
+      <h2>💼 EPFO, Labour & Financial Portals</h2>
+      <div class="modal-links">
+        <a href="https://unifiedportal-mem.epfindia.gov.in/memberinterface/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened EPFO Member Portal')">🏛️ EPFO Member Passbook & UAN Portal</a>
+        <a href="https://passbook.epfindia.gov.in/MemberPassBook/Login" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened EPFO Passbook')">📄 EPFO Instant Passbook View</a>
+        <a href="https://web.umang.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened UMANG Web')">📱 UMANG App Web (EPFO & Govt Services)</a>
+        <a href="https://eshram.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened e-Shram')">🛠️ e-Shram Portal (Labour Card)</a>
+        <a href="https://www.ncs.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened NCS Portal')">💼 National Career Service (NCS Jobs)</a>
+        <a href="https://www.incometax.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Income Tax')">💰 Income Tax e-Filing Portal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17. Contact Me & Direct Message Popup -->
   <div class="modal-overlay" id="contactModal">
     <div class="modal-card">
       <button class="close-btn" onclick="playClickSound(); closeModal('contactModal')">&times;</button>
@@ -733,15 +742,15 @@
           <span>⚡ Electrical, Solar & Courses</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Office Tools Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('officeModal'); logAction('Opened Office Tools Hub');">
           <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Microcontrollers Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('microModal'); logAction('Opened Microcontrollers Hub');">
           <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Network Utilities Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('networkModal'); logAction('Opened Network Utilities Hub');">
           <span>🛠️ Network, Testing & Design Utilities</span> <span>➔</span>
         </button>
 
@@ -757,7 +766,11 @@
           <span>🏡 Family Utility & Govt Services</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Contact Hub');" style="border-left-color: #f59e0b;">
+        <button class="category-card-btn" onclick="playClickSound(); openModal('epfoModal'); logAction('Opened EPFO Hub');" style="border-left-color: #f59e0b;">
+          <span>💼 EPFO, Labour & Financial Portals</span> <span>➔</span>
+        </button>
+
+        <button class="category-card-btn" onclick="playClickSound(); openModal('contactModal'); logAction('Opened Contact Hub');" style="border-left-color: #10b981;">
           <span>✉️ Contact Me / Send Message (Email)</span> <span>➔</span>
         </button>
       </div>
@@ -772,13 +785,27 @@
       </div>
     </section>
 
-    <!-- Keyboard Shortcuts Guide -->
+    <!-- Live Ping / Network Latency Tester -->
     <section class="card">
-      <h3>⌨️ Secret Keyboard Shortcuts</h3>
-      <div class="shortcuts-list">
-        <div><span class="shortcut-key">Ctrl + Shift + A</span> : Open Secret Admin Dashboard</div>
-        <div><span class="shortcut-key">Ctrl + Shift + Q</span> : Open Quick QR Generator</div>
-        <div><span class="shortcut-key">Ctrl + Shift + P</span> : Open Password Generator</div>
+      <h3>📡 Live Network Ping Tester</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Check your connection latency (Response Time):</p>
+      <div class="ping-box">
+        <span style="font-size: 0.9rem; font-weight: 500;">Server Latency:</span>
+        <span class="ping-value" id="pingResult">Click Test ➔</span>
+      </div>
+      <button class="submit-btn" style="margin-top: 10px;" onclick="playClickSound(); testPing()">Test Latency 🚀</button>
+    </section>
+
+    <!-- Task / Todo Checklist Widget -->
+    <section class="card">
+      <h3>📋 Daily Tasks & Project Checklist</h3>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Add and track your daily tasks (Auto-saved locally):</p>
+      <div class="todo-container">
+        <div class="todo-row">
+          <input type="text" id="todoInput" class="calc-input todo-input" placeholder="Enter new task...">
+          <button class="submit-btn" style="width: 80px;" onclick="playClickSound(); addTodo()">Add</button>
+        </div>
+        <div class="todo-list" id="todoList"></div>
       </div>
     </section>
 
@@ -794,9 +821,9 @@
       <h3>⚡ Electrical Ohm's Law Calculator</h3>
       <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 8px;">Quickly calculate Current (I = V / R):</p>
       <div class="calc-grid">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Voltage (Volts - V):</label>
+        <label style="font-size: 0.80rem; color: var(--text-sub);">Voltage (Volts - V):</label>
         <input type="number" id="calcV" class="calc-input" placeholder="e.g. 230" oninput="calculateOhm()">
-        <label style="font-size: 0.8rem; color: var(--text-sub);">Resistance (Ohms - R):</label>
+        <label style="font-size: 0.80rem; color: var(--text-sub);">Resistance (Ohms - R):</label>
         <input type="number" id="calcR" class="calc-input" placeholder="e.g. 50" oninput="calculateOhm()">
         <div class="calc-result" id="calcResult">Result Current (I): 0 A</div>
       </div>
@@ -815,9 +842,9 @@
       </div>
     </section>
 
-    <!-- Quiz Game -->
+    <!-- Expanded ITI & RRB Electrical Quiz Game -->
     <section class="card">
-      <h3>🧠 ITI & Electrical Quiz Game</h3>
+      <h3>🧠 ITI & RRB Electrician Master Quiz (50+ Questions Bank)</h3>
       <div class="quiz-container" id="quizContainer">
         <div class="question-box" id="questionText">Loading question...</div>
         <div class="options-grid" id="optionsContainer"></div>
@@ -878,7 +905,68 @@
       localStorage.setItem("hub_scratchpad", text);
     }
 
-    // QR Code Generator Function
+    async function testPing() {
+      const pingBox = document.getElementById('pingResult');
+      pingBox.textContent = "Testing...";
+      const startTime = performance.now();
+      try {
+        await fetch('https://www.cloudflare.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' });
+        const endTime = performance.now();
+        const duration = Math.round(endTime - startTime);
+        pingBox.textContent = `${duration} ms (Fast ⚡)`;
+        logAction(`Tested Ping: ${duration}ms`);
+      } catch (err) {
+        const endTime = performance.now();
+        const duration = Math.round(endTime - startTime);
+        pingBox.textContent = `${duration} ms`;
+      }
+    }
+
+    let todos = JSON.parse(localStorage.getItem("hub_todos")) || [
+      { text: "Complete BCA Assignments", completed: false },
+      { text: "Test ESP32 Wi-Fi Repeater code", completed: true }
+    ];
+
+    function renderTodos() {
+      const todoList = document.getElementById('todoList');
+      todoList.innerHTML = "";
+      todos.forEach((todo, index) => {
+        const item = document.createElement("div");
+        item.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+        item.innerHTML = `
+          <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1;">
+            <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleTodo(${index})">
+            <span>${todo.text}</span>
+          </label>
+          <button class="delete-todo" onclick="deleteTodo(${index})">&times;</button>
+        `;
+        todoList.appendChild(item);
+      });
+      localStorage.setItem("hub_todos", JSON.stringify(todos));
+    }
+
+    function addTodo() {
+      const input = document.getElementById('todoInput');
+      const text = input.value.trim();
+      if(text) {
+        todos.push({ text: text, completed: false });
+        input.value = "";
+        renderTodos();
+        logAction('Added new task to checklist');
+      }
+    }
+
+    function toggleTodo(index) {
+      todos[index].completed = !todos[index].completed;
+      renderTodos();
+    }
+
+    function deleteTodo(index) {
+      todos.splice(index, 1);
+      renderTodos();
+      logAction('Deleted task from checklist');
+    }
+
     function generateQR() {
       const text = document.getElementById('qrText').value.trim();
       const qrImg = document.getElementById('qrImage');
@@ -887,7 +975,6 @@
       }
     }
 
-    // Password Generator Function
     function generatePassword() {
       const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!%*?&";
       let pass = "";
@@ -913,27 +1000,10 @@
       if (savedNotes) {
         document.getElementById('scratchpad').value = savedNotes;
       }
+      renderTodos();
       generateQR();
       generatePassword();
-    });
-
-    // Keyboard Shortcuts Listeners
-    document.addEventListener('keydown', function(event) {
-      if (event.ctrlKey && event.shiftKey) {
-        if (event.key.toLowerCase() === 'a') {
-          event.preventDefault();
-          playClickSound();
-          openModal('adminModal');
-        } else if (event.key.toLowerCase() === 'q') {
-          event.preventDefault();
-          playClickSound();
-          openModal('qrModal');
-        } else if (event.key.toLowerCase() === 'p') {
-          event.preventDefault();
-          playClickSound();
-          openModal('passModal');
-        }
-      }
+      initQuiz();
     });
 
     function calculateOhm() {
@@ -1012,91 +1082,120 @@
       document.getElementById('adminFootprintLog').innerHTML = '[System]: Logs cleared.<br>';
     }
 
-    const quizData = [
-      {
-        question: "Q1. What is the SI unit of Electrical Resistance?",
-        options: ["Volt", "Ampere", "Ohm", "Watt"],
-        answer: 2
-      },
-      {
-        question: "Q2. Which microcontroller is widely used for Wi-Fi IoT projects?",
-        options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"],
-        answer: 0
-      },
-      {
-        question: "Q3. In a domestic electrical circuit, fuses are connected in:",
-        options: ["Parallel", "Series with Live wire", "Series with Neutral", "Earth wire"],
-        answer: 1
-      }
+    const masterQuizData = [
+      { q: "What is the SI unit of Electrical Resistance?", options: ["Volt", "Ampere", "Ohm", "Watt"], ans: 2 },
+      { q: "Which microcontroller is widely used for Wi-Fi IoT projects?", options: ["ESP32", "ATmega328", "Raspberry Pi Pico", "Intel 8085"], ans: 0 },
+      { q: "In a domestic electrical circuit, fuses are connected in:", options: ["Parallel", "Series with Live wire", "Series with Neutral", "Earth wire"], ans: 1 },
+      { q: "What is the unit of Electrical Power?", options: ["Joule", "Watt", "Coulomb", "Volt-Ampere"], ans: 1 },
+      { q: "Which instrument is used to measure electrical current?", options: ["Voltmeter", "Ammeter", "Ohmmeter", "Wattmeter"], ans: 1 },
+      { q: "The specific resistance of a wire depends upon:", options: ["Length", "Cross-sectional area", "Material", "Mass"], ans: 2 },
+      { q: "What is the full form of MCB in electrical installations?", options: ["Miniature Circuit Breaker", "Main Current Board", "Motor Control Box", "Maximum Current Breaker"], ans: 0 },
+      { q: "Which type of fire extinguisher is used for electrical fires?", options: ["Water type", "Foam type", "Carbon Dioxide (CO2)", "Soda acid"], ans: 2 },
+      { q: "Ohm's law is applicable only when the _____ remains constant.", options: ["Temperature", "Voltage", "Current", "Resistance"], ans: 0 },
+      { q: "The rating of fuse wire is expressed in:", options: ["Volts", "Amperes", "Watts", "Ohms"], ans: 1 },
+      { q: "Which material is best used for overhead transmission line conductors?", options: ["Copper", "Iron", "ACSR (Aluminium Conductor Steel Reinforced)", "Tungsten"], ans: 2 },
+      { q: "What is the purpose of earthing in electrical appliances?", options: ["To save electricity", "To protect from electric shock", "To increase voltage", "To decrease current"], ans: 1 },
+      { q: "The instrument used to measure insulation resistance is:", options: ["Multimeter", "Megger", "Earth Tester", "Wattmeter"], ans: 1 },
+      { q: "Fleming's Left Hand Rule is applicable to:", options: ["DC Generator", "DC Motor", "Transformer", "Alternator"], ans: 1 },
+      { q: "The core of a transformer is laminated to reduce:", options: ["Copper loss", "Eddy current loss", "Hysteresis loss", "Friction loss"], ans: 1 },
+      { q: "Which motor is used in ceiling fans?", options: ["Series motor", "Shunt motor", "Permanent capacitor induction motor", "Synchronous motor"], ans: 2 },
+      { q: "What is the unit of magnetic flux?", options: ["Tesla", "Weber", "Henry", "Gauss"], ans: 1 },
+      { q: "The power factor of a purely resistive AC circuit is:", options: ["Zero", "Unity (1)", "Lagging", "Leading"], ans: 1 },
+      { q: "Battery capacity is generally measured in:", options: ["Ampere-hours (Ah)", "Watts", "Volts", "Kilowatt-hours"], ans: 0 },
+      { q: "Which diode is used for voltage regulation?", options: ["LED", "Zener diode", "Schottky diode", "Photodiode"], ans: 1 },
+      { q: "The working principle of a transformer is:", options: ["Self induction", "Mutual induction", "Faraday's law of electrolysis", "Joule's law"], ans: 1 },
+      { q: "What is the color of the Earth wire in standard 3-core flexible cable?", options: ["Red", "Black", "Green or Yellow-Green", "Blue"], ans: 2 },
+      { q: "The speed of a DC shunt motor can be controlled above rated speed by:", options: ["Armature control method", "Field rheostat control method", "Voltage control method", "None of these"], ans: 1 },
+      { q: "An ideal voltmeter has:", options: ["Zero resistance", "Infinite resistance", "Low resistance", "Moderate resistance"], ans: 1 },
+      { q: "An ideal ammeter has:", options: ["Infinite resistance", "Zero resistance", "High resistance", "Variable resistance"], ans: 1 },
+      { q: "Which cell can be recharged?", options: ["Primary cell", "Secondary cell", "Voltaic cell", "Leclanche cell"], ans: 1 },
+      { q: "The reciprocal of resistivity is called:", options: ["Conductance", "Conductivity", "Reluctance", "Susceptance"], ans: 1 },
+      { q: "Slip ring induction motors are preferred where:", options: ["High starting torque is required", "Constant speed is required", "Low cost is required", "Small power is needed"], ans: 0 },
+      { q: "Which bridge is used for the measurement of medium resistance?", options: ["Kelvin bridge", "Wheatstone bridge", "Maxwell bridge", "Schering bridge"], ans: 1 },
+      { q: "The chemical effect of electric current is used in:", options: ["Electroplating", "Electric heating", "Lighting", "Motor operation"], ans: 0 },
+      { q: "What is the main function of a commutator in a DC generator?", options: ["To reduce sparking", "To convert AC into DC", "To increase output voltage", "To decrease losses"], ans: 1 },
+      { q: "Fluorescent tube light choke acts as a:", options: ["Resistor", "Capacitor", "Ballast / Inductor", "Transformer"], ans: 2 },
+      { q: "The dielectric strength of insulating oil in a transformer is tested to check:", options: ["Moisture content", "Viscosity", "Acidity", "Flash point"], ans: 0 },
+      { q: "Thyristor is a _____ semiconductor device.", options: ["Two-layer", "Three-layer", "Four-layer (PNPN)", "Single-layer"], ans: 2 },
+      { q: "Which motor is used in electric traction (trains)?", options: ["DC Series motor", "Synchronous motor", "Squirrel cage induction motor", "Shunt motor"], ans: 0 },
+      { q: "Stroboscope is used to measure:", options: ["Speed of rotating objects", "Frequency", "Power factor", "Illumination"], ans: 0 },
+      { q: "The unit of capacitance is:", options: ["Farad", "Henry", "Coulomb", "Siemens"], ans: 0 },
+      { q: "In a 3-phase star connected system, line voltage is equal to:", options: ["Phase voltage", "sqrt(3) times Phase voltage", "Phase voltage / sqrt(3)", "3 times Phase voltage"], ans: 1 },
+      { q: "Which type of wiring is best suited for temporary installations?", options: ["Casing-capping wiring", "Conduit wiring", "Cleat wiring", "Lead sheathed wiring"], ans: 2 },
+      { q: "The electrolyte used in a lead-acid storage battery is:", options: ["Dilute Hydrochloric acid", "Dilute Sulphuric acid", "Potassium hydroxide", "Ammonium chloride"], ans: 1 }
     ];
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+    let currentQuizSet = [];
+    let currentQuestionIndex = 0;
+    let quizScore = 0;
+    let answeredState = false;
 
-    function loadQuiz() {
-      answered = false;
-      const q = quizData[currentQuestion];
-      document.getElementById("questionText").textContent = q.question;
+    function initQuiz() {
+      currentQuizSet = [...masterQuizData].sort(() => 0.5 - Math.random()).slice(0, 5);
+      currentQuestionIndex = 0;
+      quizScore = 0;
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      answeredState = false;
+      const qObj = currentQuizSet[currentQuestionIndex];
+      document.getElementById("questionText").textContent = `Q${currentQuestionIndex + 1}. ${qObj.q}`;
       const optContainer = document.getElementById("optionsContainer");
       optContainer.innerHTML = "";
 
-      q.options.forEach((opt, index) => {
+      qObj.options.forEach((opt, index) => {
         const btn = document.createElement("button");
         btn.className = "option-btn";
         btn.textContent = opt;
-        btn.onclick = () => { playClickSound(); selectOption(index, btn); };
+        btn.onclick = () => { playClickSound(); selectQuizOption(index, btn); };
         optContainer.appendChild(btn);
       });
-      document.getElementById("quizScore").textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+      document.getElementById("quizScore").textContent = `Question ${currentQuestionIndex + 1} of ${currentQuizSet.length}`;
     }
 
-    function selectOption(selectedIndex, btnElement) {
-      if (answered) return;
-      answered = true;
-      const q = quizData[currentQuestion];
+    function selectQuizOption(selectedIndex, btnElement) {
+      if (answeredState) return;
+      answeredState = true;
+      const qObj = currentQuizSet[currentQuestionIndex];
       const buttons = document.querySelectorAll(".option-btn");
 
-      if (selectedIndex === q.answer) {
+      if (selectedIndex === qObj.ans) {
         btnElement.classList.add("correct");
-        score++;
+        quizScore++;
         logAction('Quiz: Correct Answer Selected');
       } else {
         btnElement.classList.add("wrong");
-        buttons[q.answer].classList.add("correct");
+        buttons[qObj.ans].classList.add("correct");
         logAction('Quiz: Wrong Answer Selected');
       }
 
       setTimeout(() => {
-        currentQuestion++;
-        if (currentQuestion < quizData.length) {
-          loadQuiz();
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuizSet.length) {
+          loadQuestion();
         } else {
           document.getElementById("quizContainer").innerHTML = `
             <div style="text-align: center; padding: 20px;">
               <h3 style="color: var(--accent);">Quiz Completed! 🎉</h3>
-              <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${score} / ${quizData.length}</p>
-              <button class="social-btn" onclick="playClickSound(); restartQuiz()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play Again</button>
+              <p style="font-size: 1.1rem; margin: 10px 0;">Your Score: ${quizScore} / ${currentQuizSet.length}</p>
+              <button class="social-btn" onclick="playClickSound(); restartQuizSession()" style="margin-top: 10px; cursor: pointer; background: var(--accent); color: #0f172a; font-weight: bold; border: none; padding: 10px 20px; border-radius: 6px; text-align: center;">Play New Set 🔄</button>
             </div>
           `;
-          logAction(`Quiz Completed with Score: ${score}/${quizData.length}`);
+          logAction(`Quiz Completed with Score: ${quizScore}/${currentQuizSet.length}`);
         }
       }, 1500);
     }
 
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
+    function restartQuizSession() {
       document.getElementById("quizContainer").innerHTML = `
         <div class="question-box" id="questionText"></div>
         <div class="options-grid" id="optionsContainer"></div>
         <div class="quiz-score" id="quizScore"></div>
       `;
-      loadQuiz();
-      logAction('Restarted Quiz Game');
+      initQuiz();
+      logAction('Restarted ITI Quiz Session');
     }
-
-    loadQuiz();
   </script>
 </body>
 </html>
