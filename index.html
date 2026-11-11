@@ -196,7 +196,6 @@
       margin: 0;
     }
 
-    /* Live Session Timer Badge */
     .session-badge {
       display: inline-block;
       margin-top: 8px;
@@ -298,7 +297,6 @@
       color: #fff;
     }
 
-    /* Secret Hidden Dot Trigger */
     .secret-dot {
       position: fixed;
       bottom: 5px;
@@ -330,13 +328,29 @@
       width: 100%;
     }
 
-    /* Calculator & Scratchpad Styling */
     .calc-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
     .calc-input, .scratchpad-input { background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 6px; width: 100%; box-sizing: border-box; font-family: inherit; }
     .scratchpad-input { resize: vertical; min-height: 80px; }
     .calc-result { font-weight: bold; color: var(--accent); margin-top: 5px; font-size: 1.05rem; }
 
-    /* Quiz Styling */
+    .shortcuts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      margin-top: 8px;
+    }
+    .shortcut-key {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: var(--accent);
+      font-family: monospace;
+      font-weight: bold;
+    }
+
     .quiz-container { margin-top: 10px; }
     .question-box { font-size: 1.05rem; font-weight: 600; margin-bottom: 15px; color: var(--text-main); }
     .options-grid { display: flex; flex-direction: column; gap: 10px; }
@@ -380,6 +394,33 @@
         [System]: Initializing advanced tracking & email hook...<br>
       </div>
       <button class="submit-btn" style="background: #22c55e; color: #0f172a; margin-top: 15px;" onclick="playClickSound(); clearLogs()">Clear Logs</button>
+    </div>
+  </div>
+
+  <!-- QR CODE MODAL -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="playClickSound(); closeModal('qrModal')">&times;</button>
+      <h2>📷 Quick QR Code Generator</h2>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Type any link or text to generate QR code:</p>
+      <input type="text" id="qrText" class="calc-input" placeholder="Enter URL or text..." value="https://suyog-tech-hub.com" oninput="generateQR()">
+      <div style="margin-top: 15px; background: #fff; padding: 15px; border-radius: 8px; display: inline-block;">
+        <img id="qrImage" src="" alt="QR Code" style="width: 180px; height: 180px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- PASSWORD GENERATOR MODAL -->
+  <div class="modal-overlay" id="passModal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="playClickSound(); closeModal('passModal')">&times;</button>
+      <h2>🔑 Secure Password Generator</h2>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 12px;">Generate strong random passwords for accounts/IoT:</p>
+      <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+        <input type="text" id="passOutput" class="calc-input" readonly style="font-family: monospace; font-weight: bold; text-align: center;">
+      </div>
+      <button class="submit-btn" onclick="playClickSound(); generatePassword()">Generate New Password 🔄</button>
+      <button class="submit-btn" style="margin-top: 8px; background: #22c55e; color: #0f172a;" onclick="playClickSound(); copyPassword()">Copy to Clipboard 📋</button>
     </div>
   </div>
 
@@ -496,7 +537,7 @@
       <div class="modal-links">
         <a href="https://lms.onlinemanipal.com/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened Manipal LMS')">🎓 Manipal BCA LMS</a>
         <a href="https://ycmou.digitaluniversity.ac/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened YCMOU')">🏛️ YCMOU Portal</a>
-        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
+        <a href="https://ncvtmis.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened NCVT MIS')">📜 NCVT MIS (ITI)</a>
         <a href="https://digilocker.gov.in/" target="_blank" class="social-btn" onclick="playClickSound(); logAction('Opened DigiLocker')">📁 DigiLocker</a>
       </div>
     </div>
@@ -692,11 +733,11 @@
           <span>⚡ Electrical, Solar & Courses</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); openModal('officeModal'); logAction('Opened Office Tools Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Office Tools Hub');">
           <span>📁 Quick Office, Media & Document Tools</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); openModal('microModal'); logAction('Opened Microcontrollers Hub');">
+        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Microcontrollers Hub');">
           <span>💻 Microcontrollers, Linux & Dev Tools</span> <span>➔</span>
         </button>
 
@@ -716,9 +757,28 @@
           <span>🏡 Family Utility & Govt Services</span> <span>➔</span>
         </button>
 
-        <button class="category-card-btn" onclick="playClickSound(); openModal('contactModal'); logAction('Opened Contact Hub');" style="border-left-color: #f59e0b;">
+        <button class="category-card-btn" onclick="playClickSound(); logAction('Opened Contact Hub');" style="border-left-color: #f59e0b;">
           <span>✉️ Contact Me / Send Message (Email)</span> <span>➔</span>
         </button>
+      </div>
+    </section>
+
+    <!-- Quick Utilities: QR Code & Password Generator Buttons -->
+    <section class="card">
+      <h3>🛠️ Quick Utility Widgets</h3>
+      <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <button class="submit-btn" onclick="playClickSound(); openModal('qrModal'); logAction('Opened QR Generator');">📷 QR Code Tool</button>
+        <button class="submit-btn" onclick="playClickSound(); openModal('passModal'); logAction('Opened Password Gen');">🔑 Password Gen</button>
+      </div>
+    </section>
+
+    <!-- Keyboard Shortcuts Guide -->
+    <section class="card">
+      <h3>⌨️ Secret Keyboard Shortcuts</h3>
+      <div class="shortcuts-list">
+        <div><span class="shortcut-key">Ctrl + Shift + A</span> : Open Secret Admin Dashboard</div>
+        <div><span class="shortcut-key">Ctrl + Shift + Q</span> : Open Quick QR Generator</div>
+        <div><span class="shortcut-key">Ctrl + Shift + P</span> : Open Password Generator</div>
       </div>
     </section>
 
@@ -818,6 +878,32 @@
       localStorage.setItem("hub_scratchpad", text);
     }
 
+    // QR Code Generator Function
+    function generateQR() {
+      const text = document.getElementById('qrText').value.trim();
+      const qrImg = document.getElementById('qrImage');
+      if(text) {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(text)}`;
+      }
+    }
+
+    // Password Generator Function
+    function generatePassword() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!%*?&";
+      let pass = "";
+      for (let i = 0; i < 12; i++) {
+        pass += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById('passOutput').value = pass;
+    }
+
+    function copyPassword() {
+      const passBox = document.getElementById('passOutput');
+      passBox.select();
+      navigator.clipboard.writeText(passBox.value);
+      alert("Password copied to clipboard!");
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem("hub_theme");
       if (savedTheme === "light") {
@@ -827,13 +913,26 @@
       if (savedNotes) {
         document.getElementById('scratchpad').value = savedNotes;
       }
+      generateQR();
+      generatePassword();
     });
 
+    // Keyboard Shortcuts Listeners
     document.addEventListener('keydown', function(event) {
-      if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'a') {
-        event.preventDefault();
-        playClickSound();
-        openModal('adminModal');
+      if (event.ctrlKey && event.shiftKey) {
+        if (event.key.toLowerCase() === 'a') {
+          event.preventDefault();
+          playClickSound();
+          openModal('adminModal');
+        } else if (event.key.toLowerCase() === 'q') {
+          event.preventDefault();
+          playClickSound();
+          openModal('qrModal');
+        } else if (event.key.toLowerCase() === 'p') {
+          event.preventDefault();
+          playClickSound();
+          openModal('passModal');
+        }
       }
     });
 
