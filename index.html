@@ -887,7 +887,7 @@
       </div>
     </section>
 
-    <!-- NEW ADDITION 1: Lithium Battery BMS Threshold Calculator -->
+    <!-- Lithium Battery BMS Threshold Calculator -->
     <section class="card">
       <h3>🔋 Lithium Battery BMS Cell Cutoff Configurator</h3>
       <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -908,7 +908,7 @@
       </div>
     </section>
 
-    <!-- NEW ADDITION 2: MQTT Topic Tree Payload Designer -->
+    <!-- MQTT Topic Tree Payload Designer -->
     <section class="card">
       <h3>📶 MQTT Topic Tree & JSON Payload Designer</h3>
       <div class="calc-grid">
@@ -920,7 +920,7 @@
       </div>
     </section>
 
-    <!-- NEW ADDITION 3: Transformer Impedance Fault Level Calculator -->
+    <!-- Transformer Impedance Fault Level Calculator -->
     <section class="card">
       <h3>⚡ Transformer Fault Level & $\%Z$ Calculator</h3>
       <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
@@ -939,6 +939,57 @@
       </div>
       <div class="prog-box">
         <div class="prog-row"><span>Full Load & Short Circuit Current:</span> <span class="prog-val" id="transResult">FL: 695.6A | Isc: 13.9 kA</span></div>
+      </div>
+    </section>
+
+    <!-- NEW ADDITION 1: VFD Fault Code Quick Decoder -->
+    <section class="card">
+      <h3>🛠️ Industrial VFD Fault Code Decoder</h3>
+      <div class="calc-grid">
+        <input type="text" id="vfdInput" class="calc-input" placeholder="Enter fault code e.g. OC, OL, EF..." value="OC" oninput="decodeVFD()">
+        <div class="prog-box">
+          <div class="prog-row"><span>Fault Description & Action:</span> <span class="prog-val" id="vfdResult">Overcurrent: Check motor cables, acceleration time, or mechanical jamming.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW ADDITION 2: Termux Crontab Job Scheduler Builder -->
+    <section class="card">
+      <h3>🤖 Termux / Linux Crontab Expression Builder</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Frequency Interval:</label>
+          <select id="cronFreq" class="calc-input" onchange="generateCron()">
+            <option value="min">Every Minute (* * * * *)</option>
+            <option value="hour" selected>Every Hour (0 * * * *)</option>
+            <option value="day">Every Day at Midnight (0 0 * * *)</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Script Target:</label>
+          <input type="text" id="cronScript" class="calc-input" value="python3 backup.py" oninput="generateCron()">
+        </div>
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>Crontab Syntax:</span> <span class="prog-val" id="cronResult">0 * * * * python3 backup.py</span></div>
+      </div>
+    </section>
+
+    <!-- NEW ADDITION 3: CSS Glassmorphism & Neon Glow Generator -->
+    <section class="card">
+      <h3>🎨 CSS Glassmorphism & Neon Glow Generator</h3>
+      <div class="calc-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Blur Intensity (px):</label>
+          <input type="number" id="glassBlur" class="calc-input" value="12" oninput="generateGlassCSS()">
+        </div>
+        <div>
+          <label style="font-size: 0.8rem; color: var(--text-sub);">Glow Color:</label>
+          <input type="color" id="glassColor" class="calc-input" value="#38bdf8" oninput="generateGlassCSS()" style="height: 38px; padding: 2px;">
+        </div>
+      </div>
+      <div class="prog-box">
+        <div class="prog-row"><span>CSS Output:</span> <span class="prog-val" id="glassCssResult" style="font-size: 0.75rem;">background: rgba(17,24,39,0.7); backdrop-filter: blur(12px); border: 1px solid #38bdf8; box-shadow: 0 0 15px rgba(56,189,248,0.3);</span></div>
       </div>
     </section>
 
@@ -1276,6 +1327,34 @@
       document.getElementById('transResult').textContent = `FL: ${fl.toFixed(1)}A | Isc: ${(isc/1000).toFixed(1)} kA`;
     }
 
+    function decodeVFD() {
+      const code = document.getElementById('vfdInput').value.trim().toUpperCase();
+      const res = document.getElementById('vfdResult');
+      const table = {
+        "OC": "Overcurrent: Check motor wiring, acceleration time, or load jam.",
+        "OL": "Overload: Motor current exceeded rating for too long.",
+        "OV": "Overvoltage: Deceleration time too short or regenerative braking issue.",
+        "UV": "Undervoltage: Input supply voltage dropped below threshold.",
+        "EF": "External Fault: Digital input safety trip triggered."
+      };
+      res.textContent = table[code] || "Unknown Fault Code. Check manufacturer manual.";
+    }
+
+    function generateCron() {
+      const freq = document.getElementById('cronFreq').value;
+      const script = document.getElementById('cronScript').value || 'python3 script.py';
+      let expr = "* * * * *";
+      if(freq === 'hour') expr = "0 * * * *";
+      if(freq === 'day') expr = "0 0 * * *";
+      document.getElementById('cronResult').textContent = `${expr} ${script}`;
+    }
+
+    function generateGlassCSS() {
+      const blur = document.getElementById('glassBlur').value || 12;
+      const color = document.getElementById('glassColor').value || '#38bdf8';
+      document.getElementById('glassCssResult').textContent = `background: rgba(17,24,39,0.75); backdrop-filter: blur(${blur}px); border: 1px solid ${color}; box-shadow: 0 0 15px ${color}33;`;
+    }
+
     function generateTSInterface() {
       const sql = document.getElementById('sqlInput').value.toLowerCase();
       if(!sql) { document.getElementById('tsResult').textContent = "-"; return; }
@@ -1485,6 +1564,7 @@
       renderTodos(); generateQR(); generatePassword(); calculateProgrammer(); fetchIpDetails(); initQuiz();
       generateUUID(); solveQuadratic(); calculatePercentage(); calculateSlabBill(); calculatePFC(); calculateSolarArray(); inspectSubnet();
       calculateESPBattery(); calculateEarthMesh(); calculateMotorSlip(); calculateArcFlash(); calculateBMS(); generateMQTT(); calculateTransformer();
+      decodeVFD(); generateCron(); generateGlassCSS();
     });
 
     function calculateOhm() {
